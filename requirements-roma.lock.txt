@@ -1,0 +1,23 @@
+# Windows / Python 3.12；2026-10-03 在 torch_1 中验证的项目直接依赖。
+# 请在项目根目录运行：python -m pip install -r requirements-roma.lock.txt
+# RoMa源码固定到官方提交；首次模型缓存准备见 docs/setup.md。
+--extra-index-url https://download.pytorch.org/whl/cu126
+torch==2.8.0+cu126
+torchvision==0.23.0+cu126
+torchaudio==2.8.0+cu126
+numpy==2.2.6
+opencv-python==4.12.0.88
+pillow==12.0.0
+matplotlib==3.10.7
+scipy==1.15.3
+pandas==2.2.3
+mapbox-earcut==2.0.0
+shapely==2.0.6
+einops==0.8.1
+rich==14.2.0
+tqdm==4.67.1
+requests==2.32.3
+transformers==4.46.3
+tokenizers==0.20.3
+safetensors==0.5.3
+romav2 @ git+https://github.com/Parskatt/RoMaV2.git@95c9968145c8906b7b59383258e9f73b02853d89

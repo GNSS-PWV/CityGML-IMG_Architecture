@@ -6,9 +6,15 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .env
+.env.*
+!.env.example
+.venv*/
+references/
+downloads/
 
 # 已下载权重与批量输出由本机管理；文档中的小型示例另放 docs/images。
 model_cache/
 my_results/
 *.pth
+*.pt
 *.safetensors

@@ -1,0 +1,159 @@
+{
+  "status": "auto_checks_failed",
+  "auto_accepted": false,
+  "manual_calibration_used": false,
+  "independent_accuracy_verified": false,
+  "selected_method": "roma",
+  "sampled_count": 2000,
+  "candidate_count": 850,
+  "automatic_validation": {
+    "method": "USAC_MAGSAC",
+    "transform": "photo pixel centers -> full render pixel centers",
+    "holdout_policy": "photo 8x4 spatial cells; (column+row)%3==0 held out; no refit on holdout",
+    "ransac_px": 4.0,
+    "input_count": 850,
+    "valid_count": 850,
+    "train_count": 624,
+    "holdout_count": 226,
+    "train_inlier_count": 292,
+    "holdout_inlier_count": 95,
+    "train_inlier_fraction": 0.46794871794871795,
+    "holdout_inlier_fraction": 0.42035398230088494,
+    "train_inlier_errors": {
+      "median_px": 2.1205057522204793,
+      "p90_px": 3.5067173966765757,
+      "max_px": 3.994663603510968,
+      "nonfinite_count": 0
+    },
+    "holdout_all_errors": {
+      "median_px": 4.850780242070632,
+      "p90_px": 13.922053451017325,
+      "max_px": 21.250648712278803,
+      "nonfinite_count": 0
+    },
+    "holdout_inlier_errors": {
+      "median_px": 2.0290247043895837,
+      "p90_px": 3.40125605361051,
+      "max_px": 3.995112782815718,
+      "nonfinite_count": 0
+    },
+    "train_photo_coverage": {
+      "convex_hull_fraction": 0.4702905655431963,
+      "x_span_fraction": 0.878125011920929,
+      "y_span_fraction": 0.8218750357627869
+    },
+    "train_render_coverage": {
+      "convex_hull_fraction": 0.1446206528728151,
+      "x_span_fraction": 0.7418450946278042,
+      "y_span_fraction": 0.30029509040216606
+    },
+    "checks": {
+      "train_inliers_at_least_40": true,
+      "holdout_matches_at_least_20": true,
+      "holdout_inliers_at_least_20": true,
+      "holdout_inlier_fraction_at_least_0_50": false,
+      "train_photo_hull_fraction_at_least_0_30": true,
+      "train_photo_x_span_at_least_0_65": true,
+      "train_photo_y_span_at_least_0_60": true,
+      "no_projective_pole_in_photo": true,
+      "no_mirrored_or_collapsed_photo": true
+    },
+    "gate_passed": false,
+    "failed_checks": [
+      "holdout_inlier_fraction_at_least_0_50"
+    ],
+    "independent_validation_passed": false,
+    "interpretation": "仅检查候选匹配的平面几何自洽；重复窗户错位仍可能通过，真实精度未验证。"
+  },
+  "structure_validation": {
+    "method": "RoMa-guided mutual-nearest window centers + spatial-holdout homography",
+    "transform": "photo pixel centers -> full render pixel centers",
+    "policy": {
+      "min_detection_score": 0.2,
+      "photo_border_margin_px": 4.0,
+      "min_size_ratio": 0.55,
+      "max_size_ratio": 1.8,
+      "max_association_distance_render_px": 30.0,
+      "fit_ransac_render_px": 4.0,
+      "min_train_inliers": 12,
+      "min_holdout_matches": 6,
+      "min_train_inlier_fraction": 0.7,
+      "min_holdout_inlier_fraction": 0.7,
+      "min_photo_hull_fraction": 0.3,
+      "min_photo_x_span": 0.65,
+      "min_photo_y_span": 0.6,
+      "max_initial_change_render_px": 30.0,
+      "max_initial_change_spacing_fraction": 0.45,
+      "split": "8x4 photo cells; (column+row)%3==0 held out; no refit on holdout"
+    },
+    "wall_id": "DEBY_LOD2_4959323_5150f87d-bb94-4ffe-bdac-c5d180e863d5",
+    "gate_passed": false,
+    "checks": {
+      "train_inliers_at_least_12": true,
+      "holdout_matches_at_least_6": true,
+      "train_inlier_fraction_at_least_0_70": true,
+      "holdout_inlier_fraction_at_least_0_70": false,
+      "train_photo_hull_fraction_at_least_0_30": true,
+      "train_photo_x_span_at_least_0_65": true,
+      "train_photo_y_span_at_least_0_60": true,
+      "no_projective_pole_in_photo": true,
+      "no_mirrored_or_collapsed_photo": true,
+      "refinement_stays_near_roma_initial": false
+    },
+    "failed_checks": [
+      "holdout_inlier_fraction_at_least_0_70",
+      "refinement_stays_near_roma_initial"
+    ],
+    "manual_points_used": false,
+    "gt_masks_used": false,
+    "independent_validation_passed": false,
+    "interpretation": "自动几何一致性，不是独立真值验证；重复窗列错位仍可能通过，尤其当RoMa初值已错移。",
+    "visible_model_windows": 66,
+    "eligible_photo_windows": 62,
+    "rejected_detections": {
+      "not_window_or_low_score": 0,
+      "invalid_box_or_score": 0,
+      "clipped_or_near_photo_border": 3,
+      "invalid_initial_projection": 0
+    },
+    "association_count": 62,
+    "train_count": 39,
+    "holdout_count": 23,
+    "solver": "USAC_MAGSAC",
+    "train_inlier_count": 29,
+    "holdout_inlier_count": 16,
+    "train_inlier_fraction": 0.7435897435897436,
+    "holdout_inlier_fraction": 0.6956521739130435,
+    "train_inlier_errors": {
+      "median_px": 1.923028644691805,
+      "p90_px": 3.240474141804827,
+      "max_px": 3.3843033156048494,
+      "nonfinite_count": 0
+    },
+    "holdout_all_errors": {
+      "median_px": 2.8478927689811844,
+      "p90_px": 5.156450979512276,
+      "max_px": 17.203222364688965,
+      "nonfinite_count": 0
+    },
+    "holdout_inlier_errors": {
+      "median_px": 1.9376153675697732,
+      "p90_px": 3.6959734514824003,
+      "max_px": 3.8976300778333535,
+      "nonfinite_count": 0
+    },
+    "train_photo_coverage": {
+      "convex_hull_fraction": 0.6150570840265609,
+      "x_span_fraction": 0.8832812445504324,
+      "y_span_fraction": 0.7676611164180027
+    },
+    "initial_change": {
+      "median_visible_window_spacing_px": 84.00595217006948,
+      "max_allowed_initial_change_px": 30.0,
+      "max_initial_change_px": 30.049572384551308,
+      "check_grid": "9x5 over full photo including corners"
+    }
+  },
+  "validation_scope": "自动几何一致性；重复窗列错配仍可能通过，真实米制精度未验证。",
+  "scope": "已知建筑与正面；验证照片-渲染匹配，不代表建筑检索已实现，也不评估纯LoD2条件。"
+}
