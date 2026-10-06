@@ -1,0 +1,604 @@
+{
+  "date": "2026-10-06",
+  "scope": "Development-set audit after correcting rules on the same photos; not an independent test-set accuracy claim.",
+  "batch_run": "WORKSPACE/my_results/facade_pipeline/batch_20261006_205125_008123",
+  "input_photo_count": 17,
+  "gallery_buildings": 27,
+  "gallery_views": 216,
+  "status_counts": {
+    "needs_review": 14,
+    "mapped": 3
+  },
+  "accepted_building_ids_matching_dataset": 3,
+  "accepted_wrong_building_ids": 0,
+  "mapped_prediction_count": 67,
+  "retrieval_expected_rank_1": 10,
+  "retrieval_expected_rank_at_most_5": 15,
+  "detection_cache_reused_count": 17,
+  "new_paid_detection_requests": 0,
+  "independent_world_accuracy_verified": false,
+  "source_citygml_modified": false,
+  "runtime_workspace_source_sha256": {
+    "run_facade_pipeline.py": "75f1a6c979acbd56cc4d1f05e7a9f931dace2d19aacb0c87ee844e0155e7a2dc",
+    "facade_retrieval.py": "1542c9eb0f9b1fff744f6e98fb4e76510e43c340982615ced4af9ed87cfc36ac",
+    "facade_auto_mapping.py": "8271dddda3c6b182b8bbe4ed6f5cab65511508f76cd51cb88f0255c6dd77518d",
+    "match_facade_roma.py": "103d86c32f07dfa14efc24ffa7947caed0663ce2c8b3a5bab620802563dc1f5d",
+    "facade_match_geometry.py": "b1c6608cd822e7341fa74cdb4e13af7f2bc0e955724806cc597e4a1c046ab708",
+    "facade_match_structure.py": "4e84e87c7d0cd365d4074ffdc38954a268c0f60c0c2843eb3030b0ebb2b8dbd3",
+    "map_facade_to_3d.py": "508ab5ba2de36828f5c72ac333cc935562db2aa6d9f2daa57aec0d33809d4f8b",
+    "try_grounding_dino16.py": "955f136ddf32e04fe09b90879af0d38a2fdfb0acf9da47a70eb7ac214b467c9a"
+  },
+  "published_source_sha256": {
+    "run_facade_pipeline.py": "75f1a6c979acbd56cc4d1f05e7a9f931dace2d19aacb0c87ee844e0155e7a2dc",
+    "facade_retrieval.py": "1542c9eb0f9b1fff744f6e98fb4e76510e43c340982615ced4af9ed87cfc36ac",
+    "facade_auto_mapping.py": "8271dddda3c6b182b8bbe4ed6f5cab65511508f76cd51cb88f0255c6dd77518d",
+    "match_facade_roma.py": "dbf04c1d0b003c91d8be77a35313751545107154eca05746737b828803cb56ea",
+    "facade_match_geometry.py": "b1c6608cd822e7341fa74cdb4e13af7f2bc0e955724806cc597e4a1c046ab708",
+    "facade_match_structure.py": "4e84e87c7d0cd365d4074ffdc38954a268c0f60c0c2843eb3030b0ebb2b8dbd3",
+    "map_facade_to_3d.py": "508ab5ba2de36828f5c72ac333cc935562db2aa6d9f2daa57aec0d33809d4f8b",
+    "try_grounding_dino16.py": "cb2f2e793b466a7029cb9e5eeec6ec9487fd31bc7a046776047265716bda2ad0"
+  },
+  "source_layout_note": "The working copy reads the nested dataset; the published match_facade_roma.py reads Drills relative to its repository root. The inference implementation is the same.",
+  "tests": {
+    "workspace_passed": 100,
+    "repository_passed": 100,
+    "command": "python -m unittest discover -s tests -v"
+  },
+  "records": [
+    {
+      "photo": "4906970.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_205125_034946",
+      "status": "needs_review",
+      "building_id": null,
+      "mapped_count": 0,
+      "expected_building_for_evaluation_only": "4906970",
+      "retrieval_building_rank": 1,
+      "building_correct_if_selected": null,
+      "rejected_count": null,
+      "mapped_class_counts": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      },
+      "selected_candidate": null,
+      "candidate_count": 14,
+      "candidate_geometry_errors": {
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 5,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_ac380bd2-4ec6-4bb3-95d8-0aa44360323a": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_d234e9f5-0375-494c-87fa-b2d8d6329d67": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_7ffaa531-fe6b-4ab6-9865-a2dc6288a638": 2,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_ab42eb9e-e45d-477d-8a9f-681ededbe53a": 1
+      },
+      "preview_context_warnings": []
+    },
+    {
+      "photo": "4906972_front_01.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_205244_477852",
+      "status": "needs_review",
+      "building_id": null,
+      "mapped_count": 0,
+      "expected_building_for_evaluation_only": "4906972",
+      "retrieval_building_rank": 6,
+      "building_correct_if_selected": null,
+      "rejected_count": null,
+      "mapped_class_counts": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      },
+      "selected_candidate": null,
+      "candidate_count": 15,
+      "candidate_geometry_errors": {
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_ac380bd2-4ec6-4bb3-95d8-0aa44360323a": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_d234e9f5-0375-494c-87fa-b2d8d6329d67": 1,
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 4,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_7ffaa531-fe6b-4ab6-9865-a2dc6288a638": 2,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_ab42eb9e-e45d-477d-8a9f-681ededbe53a": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907521_ef6d26c2-16a4-4bb6-b627-9f286541495c": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907521_4c68ea4e-19d1-4cb0-adc2-31981faf28b1": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907515_485322f4-003c-4c0c-b7c6-7083eb382903": 2,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907515_d14c7991-d38b-46c2-a42a-6471db2539f2": 1
+      },
+      "preview_context_warnings": []
+    },
+    {
+      "photo": "4906972_front_02.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_205334_678066",
+      "status": "needs_review",
+      "building_id": null,
+      "mapped_count": 0,
+      "expected_building_for_evaluation_only": "4906972",
+      "retrieval_building_rank": 5,
+      "building_correct_if_selected": null,
+      "rejected_count": null,
+      "mapped_class_counts": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      },
+      "selected_candidate": null,
+      "candidate_count": 15,
+      "candidate_geometry_errors": {
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 5,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_ac380bd2-4ec6-4bb3-95d8-0aa44360323a": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_d234e9f5-0375-494c-87fa-b2d8d6329d67": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_7ffaa531-fe6b-4ab6-9865-a2dc6288a638": 2,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_ab42eb9e-e45d-477d-8a9f-681ededbe53a": 1
+      },
+      "preview_context_warnings": []
+    },
+    {
+      "photo": "4906972_front_03.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_205441_872006",
+      "status": "needs_review",
+      "building_id": null,
+      "mapped_count": 0,
+      "expected_building_for_evaluation_only": "4906972",
+      "retrieval_building_rank": 7,
+      "building_correct_if_selected": null,
+      "rejected_count": null,
+      "mapped_class_counts": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      },
+      "selected_candidate": null,
+      "candidate_count": 14,
+      "candidate_geometry_errors": {
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 4,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_ac380bd2-4ec6-4bb3-95d8-0aa44360323a": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_d234e9f5-0375-494c-87fa-b2d8d6329d67": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_7ffaa531-fe6b-4ab6-9865-a2dc6288a638": 2,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_ab42eb9e-e45d-477d-8a9f-681ededbe53a": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907515_485322f4-003c-4c0c-b7c6-7083eb382903": 2,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907515_d14c7991-d38b-46c2-a42a-6471db2539f2": 1
+      },
+      "preview_context_warnings": []
+    },
+    {
+      "photo": "4906981.jpg",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_205536_251372",
+      "status": "needs_review",
+      "building_id": null,
+      "mapped_count": 0,
+      "expected_building_for_evaluation_only": "4906981",
+      "retrieval_building_rank": 2,
+      "building_correct_if_selected": null,
+      "rejected_count": null,
+      "mapped_class_counts": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      },
+      "selected_candidate": null,
+      "candidate_count": 13,
+      "candidate_geometry_errors": {
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_0e2d5fa6-049d-4887-bcbb-ec1b76b21d0b": 2,
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 7
+      },
+      "preview_context_warnings": []
+    },
+    {
+      "photo": "4907506.jpg",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_205641_476585",
+      "status": "needs_review",
+      "building_id": null,
+      "mapped_count": 0,
+      "expected_building_for_evaluation_only": "4907506",
+      "retrieval_building_rank": 1,
+      "building_correct_if_selected": null,
+      "rejected_count": null,
+      "mapped_class_counts": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      },
+      "selected_candidate": null,
+      "candidate_count": 12,
+      "candidate_geometry_errors": {
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907506_b8e882ec-4c52-4761-bff8-ed870ba4662a": 1,
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 3,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907518_d72332e1-9827-4f4d-b793-29c7f9596b2d": 1
+      },
+      "preview_context_warnings": []
+    },
+    {
+      "photo": "4907507.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_205741_658896",
+      "status": "mapped",
+      "building_id": "4907507",
+      "mapped_count": 35,
+      "expected_building_for_evaluation_only": "4907507",
+      "retrieval_building_rank": 5,
+      "building_correct_if_selected": true,
+      "rejected_count": 1,
+      "mapped_class_counts": {
+        "window": 35
+      },
+      "selection": {
+        "accepted": true,
+        "reason": "automatic_checks_passed",
+        "best_candidate_id": "candidate_15",
+        "runner_up_id": null,
+        "geometry_score": 0.9090909090909091,
+        "margin": 0.9090909090909091,
+        "min_score": 0.35,
+        "min_margin": 0.08,
+        "independent_accuracy_verified": false,
+        "cross_view_agreement": {
+          "available": true,
+          "passed": true,
+          "comparisons": [
+            {
+              "candidate_id": "candidate_16",
+              "point_count": 45,
+              "median_m": 0.006063109834838626,
+              "p90_m": 0.010030679487723178,
+              "passed": true
+            }
+          ],
+          "median_limit_m": 0.3,
+          "p90_limit_m": 0.75,
+          "independent_accuracy_verified": false
+        }
+      },
+      "selected_candidate": "candidate_15",
+      "candidate_count": 17,
+      "candidate_geometry_errors": {
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_7ffaa531-fe6b-4ab6-9865-a2dc6288a638": 2,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_ab42eb9e-e45d-477d-8a9f-681ededbe53a": 1,
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 4,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907514_9f0fe318-e654-43c1-873c-19793b0b3233": 2,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907515_ace99c14-e926-4dbb-bfd6-0d52a4621173": 2,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907521_ef6d26c2-16a4-4bb6-b627-9f286541495c": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907521_4c68ea4e-19d1-4cb0-adc2-31981faf28b1": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907521_8a66b6e3-fbec-40a9-8ad1-d2a84da40be9": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907521_bad17f28-a12c-40aa-982b-7c31580850da": 1
+      },
+      "preview_context_warnings": []
+    },
+    {
+      "photo": "4907514.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_205829_788173",
+      "status": "needs_review",
+      "building_id": null,
+      "mapped_count": 0,
+      "expected_building_for_evaluation_only": "4907514",
+      "retrieval_building_rank": 1,
+      "building_correct_if_selected": null,
+      "rejected_count": null,
+      "mapped_class_counts": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      },
+      "selected_candidate": null,
+      "candidate_count": 14,
+      "candidate_geometry_errors": {
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907514_9f0fe318-e654-43c1-873c-19793b0b3233": 2,
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 5,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907515_ace99c14-e926-4dbb-bfd6-0d52a4621173": 2,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907521_ef6d26c2-16a4-4bb6-b627-9f286541495c": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907521_4c68ea4e-19d1-4cb0-adc2-31981faf28b1": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_7ffaa531-fe6b-4ab6-9865-a2dc6288a638": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_ab42eb9e-e45d-477d-8a9f-681ededbe53a": 1
+      },
+      "preview_context_warnings": []
+    },
+    {
+      "photo": "4907518_front.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_205906_792281",
+      "status": "mapped",
+      "building_id": "4907518",
+      "mapped_count": 16,
+      "expected_building_for_evaluation_only": "4907518",
+      "retrieval_building_rank": 1,
+      "building_correct_if_selected": true,
+      "rejected_count": 0,
+      "mapped_class_counts": {
+        "window": 15,
+        "ambiguous": 1
+      },
+      "selection": {
+        "accepted": true,
+        "reason": "automatic_checks_passed",
+        "best_candidate_id": "candidate_02",
+        "runner_up_id": "candidate_03",
+        "geometry_score": 0.7835218093699515,
+        "margin": 0.6981003543100988,
+        "min_score": 0.35,
+        "min_margin": 0.08,
+        "independent_accuracy_verified": false,
+        "cross_view_agreement": {
+          "available": true,
+          "passed": true,
+          "comparisons": [
+            {
+              "candidate_id": "candidate_12",
+              "point_count": 45,
+              "median_m": 0.055725008414367144,
+              "p90_m": 0.12006087623191083,
+              "passed": true
+            },
+            {
+              "candidate_id": "candidate_13",
+              "point_count": 45,
+              "median_m": 0.042194291521738266,
+              "p90_m": 0.09698928346001932,
+              "passed": true
+            }
+          ],
+          "median_limit_m": 0.3,
+          "p90_limit_m": 0.75,
+          "independent_accuracy_verified": false
+        }
+      },
+      "selected_candidate": "candidate_02",
+      "candidate_count": 13,
+      "candidate_geometry_errors": {
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907518_d72332e1-9827-4f4d-b793-29c7f9596b2d": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907506_b8e882ec-4c52-4761-bff8-ed870ba4662a": 1,
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 1
+      },
+      "preview_context_warnings": [
+        {
+          "wall_id": "DEBY_LOD2_4907518_ca66d47e-1ff2-459d-b936-f68c340e32fe",
+          "reason": "墙面外环不是有效多边形，不能静默修补后用于三维映射。",
+          "action": "raw_3d_outline_only"
+        }
+      ]
+    },
+    {
+      "photo": "4907518_left.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_210015_187640",
+      "status": "needs_review",
+      "building_id": null,
+      "mapped_count": 0,
+      "expected_building_for_evaluation_only": "4907518",
+      "retrieval_building_rank": 1,
+      "building_correct_if_selected": null,
+      "rejected_count": null,
+      "mapped_class_counts": null,
+      "selection": {
+        "accepted": false,
+        "reason": "insufficient_cross_view_confirmation",
+        "best_candidate_id": "candidate_13",
+        "runner_up_id": "candidate_09",
+        "geometry_score": 0.46977256412630813,
+        "margin": 0.4381990623514509,
+        "min_score": 0.35,
+        "min_margin": 0.08,
+        "independent_accuracy_verified": false,
+        "cross_view_agreement": {
+          "available": false,
+          "passed": false,
+          "comparisons": [],
+          "median_limit_m": 0.3,
+          "p90_limit_m": 0.75,
+          "independent_accuracy_verified": false,
+          "reason": "insufficient_cross_view_confirmation"
+        }
+      },
+      "selected_candidate": null,
+      "candidate_count": 15,
+      "candidate_geometry_errors": {
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907518_d72332e1-9827-4f4d-b793-29c7f9596b2d": 1,
+        "目标墙边界无效，拒绝自动映射：DEBY_LOD2_4907518_ca66d47e-1ff2-459d-b936-f68c340e32fe；墙面外环不是有效多边形，不能静默修补后用于三维映射。": 1,
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 2
+      },
+      "preview_context_warnings": []
+    },
+    {
+      "photo": "4907518_right.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_210137_367596",
+      "status": "needs_review",
+      "building_id": null,
+      "mapped_count": 0,
+      "expected_building_for_evaluation_only": "4907518",
+      "retrieval_building_rank": 1,
+      "building_correct_if_selected": null,
+      "rejected_count": null,
+      "mapped_class_counts": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      },
+      "selected_candidate": null,
+      "candidate_count": 10,
+      "candidate_geometry_errors": {
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907518_d72332e1-9827-4f4d-b793-29c7f9596b2d": 1,
+        "目标墙边界无效，拒绝自动映射：DEBY_LOD2_4907518_ca66d47e-1ff2-459d-b936-f68c340e32fe；墙面外环不是有效多边形，不能静默修补后用于三维映射。": 1,
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 4
+      },
+      "preview_context_warnings": []
+    },
+    {
+      "photo": "4907520_front.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_210227_375538",
+      "status": "mapped",
+      "building_id": "4907520",
+      "mapped_count": 16,
+      "expected_building_for_evaluation_only": "4907520",
+      "retrieval_building_rank": 1,
+      "building_correct_if_selected": true,
+      "rejected_count": 6,
+      "mapped_class_counts": {
+        "window": 16
+      },
+      "selection": {
+        "accepted": true,
+        "reason": "automatic_checks_passed",
+        "best_candidate_id": "candidate_01",
+        "runner_up_id": "candidate_08",
+        "geometry_score": 0.8106194690265487,
+        "margin": 0.809626630847405,
+        "min_score": 0.35,
+        "min_margin": 0.08,
+        "independent_accuracy_verified": false,
+        "cross_view_agreement": {
+          "available": true,
+          "passed": true,
+          "comparisons": [
+            {
+              "candidate_id": "candidate_11",
+              "point_count": 45,
+              "median_m": 0.08913050644770461,
+              "p90_m": 0.20593878542437968,
+              "passed": true
+            },
+            {
+              "candidate_id": "candidate_12",
+              "point_count": 45,
+              "median_m": 0.07284031468719224,
+              "p90_m": 0.1492686111389058,
+              "passed": true
+            }
+          ],
+          "median_limit_m": 0.3,
+          "p90_limit_m": 0.75,
+          "independent_accuracy_verified": false
+        }
+      },
+      "selected_candidate": "candidate_01",
+      "candidate_count": 12,
+      "candidate_geometry_errors": {
+        "鲁棒拟合没有得到有效单应矩阵；请检查匹配是否集中、重复或大量错误。": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907518_d72332e1-9827-4f4d-b793-29c7f9596b2d": 1,
+        "目标墙边界无效，拒绝自动映射：DEBY_LOD2_4907518_ca66d47e-1ff2-459d-b936-f68c340e32fe；墙面外环不是有效多边形，不能静默修补后用于三维映射。": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_ac380bd2-4ec6-4bb3-95d8-0aa44360323a": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_d234e9f5-0375-494c-87fa-b2d8d6329d67": 1
+      },
+      "preview_context_warnings": []
+    },
+    {
+      "photo": "4907520_right.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_210349_905108",
+      "status": "needs_review",
+      "building_id": null,
+      "mapped_count": 0,
+      "expected_building_for_evaluation_only": "4907520",
+      "retrieval_building_rank": 1,
+      "building_correct_if_selected": null,
+      "rejected_count": null,
+      "mapped_class_counts": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      },
+      "selected_candidate": null,
+      "candidate_count": 12,
+      "candidate_geometry_errors": {
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907518_d72332e1-9827-4f4d-b793-29c7f9596b2d": 1,
+        "目标墙边界无效，拒绝自动映射：DEBY_LOD2_4907518_ca66d47e-1ff2-459d-b936-f68c340e32fe；墙面外环不是有效多边形，不能静默修补后用于三维映射。": 1,
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 3
+      },
+      "preview_context_warnings": []
+    },
+    {
+      "photo": "4959322.jpg",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_210456_346975",
+      "status": "needs_review",
+      "building_id": null,
+      "mapped_count": 0,
+      "expected_building_for_evaluation_only": "4959322",
+      "retrieval_building_rank": 2,
+      "building_correct_if_selected": null,
+      "rejected_count": null,
+      "mapped_class_counts": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      },
+      "selected_candidate": null,
+      "candidate_count": 15,
+      "candidate_geometry_errors": {
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_7ffaa531-fe6b-4ab6-9865-a2dc6288a638": 2,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_ab42eb9e-e45d-477d-8a9f-681ededbe53a": 1,
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 7,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_ac380bd2-4ec6-4bb3-95d8-0aa44360323a": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_d234e9f5-0375-494c-87fa-b2d8d6329d67": 1
+      },
+      "preview_context_warnings": []
+    },
+    {
+      "photo": "4959323_front.jpg",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_210548_923602",
+      "status": "needs_review",
+      "building_id": null,
+      "mapped_count": 0,
+      "expected_building_for_evaluation_only": "4959323",
+      "retrieval_building_rank": 1,
+      "building_correct_if_selected": null,
+      "rejected_count": null,
+      "mapped_class_counts": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      },
+      "selected_candidate": null,
+      "candidate_count": 13,
+      "candidate_geometry_errors": {
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_0e2d5fa6-049d-4887-bcbb-ec1b76b21d0b": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_ac380bd2-4ec6-4bb3-95d8-0aa44360323a": 1,
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 5,
+        "鲁棒拟合没有得到有效单应矩阵；请检查匹配是否集中、重复或大量错误。": 1
+      },
+      "preview_context_warnings": []
+    },
+    {
+      "photo": "4959323_left.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_210702_304178",
+      "status": "needs_review",
+      "building_id": null,
+      "mapped_count": 0,
+      "expected_building_for_evaluation_only": "4959323",
+      "retrieval_building_rank": 2,
+      "building_correct_if_selected": null,
+      "rejected_count": null,
+      "mapped_class_counts": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      },
+      "selected_candidate": null,
+      "candidate_count": 15,
+      "candidate_geometry_errors": {
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_ac380bd2-4ec6-4bb3-95d8-0aa44360323a": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_d234e9f5-0375-494c-87fa-b2d8d6329d67": 1,
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 9,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_7ffaa531-fe6b-4ab6-9865-a2dc6288a638": 2,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_ab42eb9e-e45d-477d-8a9f-681ededbe53a": 1
+      },
+      "preview_context_warnings": []
+    },
+    {
+      "photo": "4959323_right.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_210757_236508",
+      "status": "needs_review",
+      "building_id": null,
+      "mapped_count": 0,
+      "expected_building_for_evaluation_only": "4959323",
+      "retrieval_building_rank": 1,
+      "building_correct_if_selected": null,
+      "rejected_count": null,
+      "mapped_class_counts": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      },
+      "selected_candidate": null,
+      "candidate_count": 14,
+      "candidate_geometry_errors": {
+        "空间留出后不足4组有效训练点，无法拟合平面变换。": 5,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_ac380bd2-4ec6-4bb3-95d8-0aa44360323a": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906981_d234e9f5-0375-494c-87fa-b2d8d6329d67": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_7ffaa531-fe6b-4ab6-9865-a2dc6288a638": 2,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4906976_ab42eb9e-e45d-477d-8a9f-681ededbe53a": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907521_ef6d26c2-16a4-4bb6-b627-9f286541495c": 1,
+        "目标墙不存在、不是单一平面或不唯一，不能用于自动映射：DEBY_LOD2_4907521_4c68ea4e-19d1-4cb0-adc2-31981faf28b1": 1
+      },
+      "preview_context_warnings": []
+    }
+  ],
+  "published_source_hash_bytes": "Git index blob bytes; runtime workspace hashes may differ due to dataset-root adaptation and Windows line endings."
+}

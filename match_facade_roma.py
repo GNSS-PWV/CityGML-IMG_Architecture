@@ -140,6 +140,24 @@ def run_model(photo, crop_image, output, identity):
         return data["matches"], data["overlap"], dict(old["model"], reused_from=str(previous))
 
     import torch
+    model, info = load_roma_model()
+    tick = time.perf_counter()
+    print("[3] 推理并采样对应点……", flush=True)
+    normalized, confidence = infer_pair(model, photo, crop_image)
+    np.savez_compressed(output / "raw_matches.npz", matches=normalized, overlap=confidence)
+    info["inference_seconds"] = round(time.perf_counter() - tick, 3)
+    info["peak_cuda_memory_GB"] = round(torch.cuda.max_memory_allocated() / 1024**3, 3) if torch.cuda.is_available() else None
+    del model
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+    return normalized, confidence, info
+
+
+def load_roma_model():
+    """共用的本地模型入口；多建筑流程加载一次后逐个匹配候选。"""
+    import torch
+    import romav2
+    import PIL
     from romav2 import RoMaV2
     checkpoint = MODEL_CACHE / "checkpoints/romav2.0.1.pt"
     backbone = MODEL_CACHE / "facebookresearch_dinov3_adc254450203739c8149213a7a69d8d905b4fcfa"
@@ -152,29 +170,160 @@ def run_model(photo, crop_image, output, identity):
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(SEED)
         torch.cuda.reset_peak_memory_stats()
-    tick = time.perf_counter()
     print("[2] 加载本地 RoMa v2.0.1 权重，setting=" + SETTING, flush=True)
     model = RoMaV2(RoMaV2.Cfg(setting=SETTING, compile=False))
-    print("[3] 推理并采样对应点……", flush=True)
-    preds = model.match(photo, crop_image)
-    matches, overlap, _, _ = model.sample(preds, NUM_MATCHES)
-    normalized = matches.float().cpu().numpy()
-    confidence = overlap.float().cpu().numpy()
-    # 原始输出先落盘，即便后续验证没通过，也能检查模型实际给出了什么。
-    np.savez_compressed(output / "raw_matches.npz", matches=normalized, overlap=confidence)
     info = {"name": "RoMa v2.0.1", "official_source": "https://github.com/Parskatt/RoMaV2",
             "setting": SETTING, "num_matches": NUM_MATCHES, "seed": SEED,
             "checkpoint_sha256": sha256(checkpoint), "torch_version": torch.__version__,
-            "device": str(next(model.parameters()).device), "inference_seconds": round(time.perf_counter() - tick, 3),
-            "peak_cuda_memory_GB": round(torch.cuda.max_memory_allocated() / 1024**3, 3) if torch.cuda.is_available() else None,
+            "device": str(next(model.parameters()).device),
             "feature_backbone": "DINOv3 ViT-L/16 (included in RoMa checkpoint)",
             "input_resize": [model.W_lr, model.H_lr],
             "high_resolution_resize": [model.W_hr, model.H_hr] if model.H_hr is not None else None,
             "bidirectional": model.bidirectional, "input_coordinates": "normalized align_corners=False"}
-    del preds, model
+    info["implementation"] = {
+        "romav2_source_sha256": code_sha256(Path(romav2.__file__).parent),
+        "dinov3_source_sha256": code_sha256(backbone),
+        "torch": torch.__version__, "cuda": torch.version.cuda,
+        "numpy": np.__version__, "pillow": PIL.__version__,
+        "device": str(next(model.parameters()).device),
+        "device_name": torch.cuda.get_device_name() if torch.cuda.is_available() else "cpu",
+        "matmul_precision": torch.get_float32_matmul_precision()}
+    return model, info
+
+
+def code_sha256(directory):
+    """模型包实际源码指纹，避免更新依赖后复用旧推理。"""
+    digest = hashlib.sha256()
+    for path in sorted(Path(directory).rglob("*.py")):
+        digest.update(path.relative_to(directory).as_posix().encode("utf-8"))
+        digest.update(path.read_bytes())
+    return digest.hexdigest()
+
+
+def infer_pair(model, photo, crop_image):
+    """每对图固定采样种子，避免候选排序改变采样结果。"""
+    import torch
+    torch.manual_seed(SEED)
     if torch.cuda.is_available():
-        torch.cuda.empty_cache()
-    return normalized, confidence, info
+        torch.cuda.manual_seed_all(SEED)
+    with torch.inference_mode():
+        predictions = model.match(photo, crop_image)
+        matches, overlap, _, _ = model.sample(predictions, NUM_MATCHES)
+    return matches.float().cpu().numpy(), overlap.float().cpu().numpy()
+
+
+def tiled_correspondences(model, photo, render, initial_h, allowed_mask):
+    """粗H引导局部RoMa匹配，返回原照片点、完整渲染点、可信度和逐块记录。
+
+    复用实验D的1200×1000/重叠300网格，但这里只运行本地RoMa，不调用云API。
+    将照片块边界经粗H投到渲染图，包围框各边扩展其宽/高的10%，再匹配两块。
+    原图没有预先缩小；RoMa内部仍按自身设置缩放，每个图块因此占用更多模型像素。
+    粗H只决定搜索裁剪范围，不用它的重投影误差筛点，避免人为制造几何通过。
+    返回点统一还原到两张完整图的像素中心坐标，不拟合H、不更改质量门槛。
+    重叠块中的同一照片像素只保留最高可信度的一对；不平均可能冲突的目标位置。
+    """
+    import try_grounding_dino16 as detector
+
+    H = np.asarray(initial_h, dtype=float)
+    mask = np.asarray(allowed_mask)
+    if H.shape != (3, 3) or not np.isfinite(H).all() or np.linalg.matrix_rank(H) < 3:
+        raise ValueError("分块匹配需要有限、非奇异的照片→完整渲染图H。")
+    H = H/np.linalg.norm(H)
+    if mask.dtype != np.bool_ or mask.shape != (render.height, render.width):
+        raise ValueError("allowed_mask必须是与完整渲染图同尺寸的布尔墙面掩码。")
+    report = {"method": "coarse-H-guided local RoMa correspondences",
+              "photo_size_wh": list(photo.size), "render_size_wh": list(render.size),
+              "initial_homography_photo_to_render": H.tolist(),
+              "policy": {"tile_size_wh": [detector.TILE_WIDTH, detector.TILE_HEIGHT],
+                         "tile_overlap_px": detector.TILE_OVERLAP,
+                         "render_margin_fraction_each_side": .10, "min_render_crop_side_px": 32,
+                         "min_overlap": MIN_OVERLAP,
+                         "deduplication": "highest overlap per nearest original-photo pixel"},
+              "manual_points_used": False, "gt_masks_used": False,
+              "independent_accuracy_verified": False, "tiles": [],
+              "interpretation": "局部对应点还需原有空间留出几何检查；粗H若错列，分块仍可能错列。"}
+    photo_points, render_points, confidences, source_tiles = [], [], [], []
+
+    def inside(points, size):
+        return (np.isfinite(points).all(axis=1) & (points >= -.5).all(axis=1)
+                & (points < np.asarray(size)-.5).all(axis=1))
+
+    for tile_index, (name, box) in enumerate(detector.tile_views(*photo.size)):
+        row = {"name": name, "photo_crop_xyxy": list(box), "status": "skipped"}
+        report["tiles"].append(row)
+        x0, y0, x1, y1 = box
+        # PIL裁剪起点是整数像素中心，连续边界比其小半像素。
+        corners = np.array([[x0-.5, y0-.5], [x1-.5, y0-.5],
+                            [x1-.5, y1-.5], [x0-.5, y1-.5]])
+        denominator = np.column_stack((corners, np.ones(4)))@H[2]
+        if not ((denominator > 1e-12).all() or (denominator < -1e-12).all()):
+            row["reason"] = "projective_pole_crosses_photo_tile"
+            continue
+        projected = project_homography(corners, H)
+        if not np.isfinite(projected).all():
+            row["reason"] = "nonfinite_projected_tile"
+            continue
+        span = np.ptp(projected, axis=0)
+        area = abs(float(np.sum(projected[:, 0]*np.roll(projected[:, 1], -1)
+                                - projected[:, 1]*np.roll(projected[:, 0], -1))))/2
+        if np.any(span < 1.) or area < 1.:
+            row["reason"] = "degenerate_projected_tile"
+            continue
+        # 先与图像边界相交，再转整数，避免极大有限坐标溢出int。
+        lower = np.maximum(projected.min(axis=0)-.10*span, [-.5, -.5])
+        upper = np.minimum(projected.max(axis=0)+.10*span, np.asarray(render.size)-.5)
+        if np.any(upper-lower < 32.):
+            row["reason"] = "render_crop_outside_image_or_too_small"
+            continue
+        start = np.floor(lower+.5).astype(int)
+        stop = np.ceil(upper+.5).astype(int)
+        crop = [int(start[0]), int(start[1]), int(stop[0]), int(stop[1])]
+        row["render_crop_xyxy"] = crop
+        if not mask[crop[1]:crop[3], crop[0]:crop[2]].any():
+            row["reason"] = "no_allowed_wall_in_render_crop"
+            continue
+        try:
+            photo_crop, render_crop = photo.crop(box), render.crop(crop)
+            normalized, overlap = infer_pair(model, photo_crop, render_crop)
+            overlap = np.asarray(overlap, dtype=float)
+            a, b = roma_to_image_pixels(normalized, photo_crop.size, render_crop.size, crop[:2])
+            if overlap.shape != (len(a),):
+                raise ValueError("RoMa匹配点与可信度数组长度不一致。")
+            row["raw_match_count"] = len(a)
+            valid = (inside(a, photo_crop.size) & inside(b-np.asarray(crop[:2]), render_crop.size)
+                     & np.isfinite(overlap) & (overlap >= MIN_OVERLAP))
+            a += np.asarray(box[:2])
+            valid &= inside(a, photo.size) & inside(b, render.size)
+            indices = np.flatnonzero(valid)
+            pixels = np.floor(b[indices]+.5).astype(int)
+            valid[indices] &= mask[pixels[:, 1], pixels[:, 0]]
+            row.update({"status": "completed", "kept_before_deduplication": int(valid.sum())})
+            photo_points.append(a[valid]); render_points.append(b[valid]); confidences.append(overlap[valid])
+            source_tiles.append(np.full(int(valid.sum()), tile_index, dtype=int))
+        except (ValueError, RuntimeError) as error:
+            # 单块失败有明确记录，不伪装成已完成；全部失败返回空点交给上游拒绝。
+            row.update({"status": "failed", "reason": "local_inference_failed",
+                        "error_type": type(error).__name__, "error": str(error)})
+
+    a = np.concatenate(photo_points) if photo_points else np.empty((0, 2), dtype=float)
+    b = np.concatenate(render_points) if render_points else np.empty((0, 2), dtype=float)
+    confidence = np.concatenate(confidences) if confidences else np.empty(0, dtype=float)
+    origins = np.concatenate(source_tiles) if source_tiles else np.empty(0, dtype=int)
+    # 按可信度稳定排序，同分时保留较早图块的点，结果可复现。
+    order = np.argsort(-confidence, kind="stable")
+    pixels = np.floor(a[order]+.5).astype(np.int64)
+    _, first = np.unique(pixels, axis=0, return_index=True)
+    kept = np.sort(order[first])
+    for tile_index, row in enumerate(report["tiles"]):
+        row["kept_after_deduplication"] = int(np.count_nonzero(origins[kept] == tile_index))
+    completed = sum(row["status"] == "completed" for row in report["tiles"])
+    failed = sum(row["status"] == "failed" for row in report["tiles"])
+    report.update({"tile_count": len(report["tiles"]), "completed_tile_count": completed,
+                   "failed_tile_count": failed, "skipped_tile_count": len(report["tiles"])-completed-failed,
+                   "matches_before_deduplication": len(a), "duplicate_source_pixels_removed": len(a)-len(kept),
+                   "match_count": len(kept), "status": "no_matches" if not len(kept) else
+                   ("complete" if completed == len(report["tiles"]) else "partial")})
+    return a[kept], b[kept], confidence[kept], report
 
 
 def check_against_manual(H, manifest, camera, identity):
