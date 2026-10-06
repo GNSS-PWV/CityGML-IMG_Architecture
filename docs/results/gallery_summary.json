@@ -1,0 +1,670 @@
+{
+  "date": "2026-10-05",
+  "status": "complete",
+  "completed_count": 27,
+  "failed_count": 0,
+  "view_count": 216,
+  "buildings": [
+    {
+      "building_id": "4906970",
+      "status": "complete",
+      "source_sha256": "dc3124956fd840d2f905a255fd825d85e13b43d856429667b7a7ce54d5561dc9",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 2,
+      "stats": {
+        "RoofSurface_objects": 7,
+        "source_polygons": 2727,
+        "interior_rings": 18,
+        "WallSurface_objects": 162,
+        "Window_objects": 6,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 30,
+        "rendered_polygons": 2697,
+        "triangles": 8043,
+        "topology_repaired_polygons": 24
+      }
+    },
+    {
+      "building_id": "4906972",
+      "status": "complete",
+      "source_sha256": "e9f2e93bdeabb1f431f61ae31dfd37eae851876386de93a909d3f805835bdb5d",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 3,
+      "stats": {
+        "RoofSurface_objects": 6,
+        "source_polygons": 15064,
+        "interior_rings": 136,
+        "WallSurface_objects": 17,
+        "Window_objects": 24,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 201,
+        "rendered_polygons": 14863,
+        "triangles": 49908,
+        "topology_repaired_polygons": 99
+      }
+    },
+    {
+      "building_id": "4906976",
+      "status": "complete",
+      "source_sha256": "5173eb69969919e69daf238ddc82647195bcff1a8f01e352fcdcdaff9e855d5e",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 2,
+      "stats": {
+        "RoofSurface_objects": 2,
+        "source_polygons": 21182,
+        "interior_rings": 339,
+        "WallSurface_objects": 98,
+        "Door_objects": 1,
+        "Window_objects": 26,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 472,
+        "rendered_polygons": 20710,
+        "triangles": 67156,
+        "topology_repaired_polygons": 120
+      }
+    },
+    {
+      "building_id": "4906978",
+      "status": "complete",
+      "source_sha256": "609e6d26afb7efc36659b21839c19b593c97ad131701a5db5d4e3b9a72c6fcff",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 4,
+      "stats": {
+        "RoofSurface_objects": 3,
+        "source_polygons": 5847,
+        "interior_rings": 31,
+        "WallSurface_objects": 7,
+        "Window_objects": 3,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 186,
+        "rendered_polygons": 5661,
+        "triangles": 14757,
+        "topology_repaired_polygons": 17
+      }
+    },
+    {
+      "building_id": "4906979",
+      "status": "complete",
+      "source_sha256": "1b4cbd3b19e6b3888b4876e9f3fcb47629b1eb194d2170cb2312a11413d29747",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 4,
+      "stats": {
+        "RoofSurface_objects": 3,
+        "source_polygons": 11681,
+        "interior_rings": 62,
+        "WallSurface_objects": 7,
+        "Window_objects": 6,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 427,
+        "rendered_polygons": 11254,
+        "triangles": 29301,
+        "topology_repaired_polygons": 33
+      }
+    },
+    {
+      "building_id": "4906980",
+      "status": "complete",
+      "source_sha256": "4a0afbd62e057f72d5faf21f50cb04feb69cd2d6e1e988dd4007bfe02e9c9c2c",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 1,
+      "stats": {
+        "RoofSurface_objects": 1,
+        "source_polygons": 114119,
+        "interior_rings": 48,
+        "WallSurface_objects": 4,
+        "Window_objects": 3,
+        "GroundSurface_objects": 110095,
+        "degenerate_polygons_skipped": 654,
+        "rendered_polygons": 113465,
+        "triangles": 220482,
+        "topology_repaired_polygons": 23
+      }
+    },
+    {
+      "building_id": "4906981",
+      "status": "complete",
+      "source_sha256": "943c903fa4f9661f22707bc2cd1c59be81940b83dbdf8934206083b3edeeea0c",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 3,
+      "stats": {
+        "RoofSurface_objects": 4,
+        "source_polygons": 45972,
+        "interior_rings": 329,
+        "WallSurface_objects": 4,
+        "Window_objects": 97,
+        "GroundSurface_objects": 4,
+        "degenerate_polygons_skipped": 3083,
+        "rendered_polygons": 42889,
+        "triangles": 132248,
+        "topology_repaired_polygons": 348
+      }
+    },
+    {
+      "building_id": "4907506",
+      "status": "complete",
+      "source_sha256": "a3f8823d3ca093967709d1cb809ac35a4ef44c0f7c1bae2610babf95fc25aff5",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 2,
+      "stats": {
+        "RoofSurface_objects": 4,
+        "source_polygons": 1481,
+        "interior_rings": 306,
+        "Window_objects": 63,
+        "WallSurface_objects": 7,
+        "Door_objects": 2,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 0,
+        "rendered_polygons": 1481,
+        "triangles": 5133,
+        "topology_repaired_polygons": 1
+      }
+    },
+    {
+      "building_id": "4907507",
+      "status": "complete",
+      "source_sha256": "68ce9d2909aa91646eddcfe68602a2523a4be5c9b88c0e768951740e793fe60c",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 2,
+      "stats": {
+        "RoofSurface_objects": 2,
+        "source_polygons": 15309,
+        "interior_rings": 103,
+        "WallSurface_objects": 4,
+        "Window_objects": 35,
+        "Door_objects": 1,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 170,
+        "rendered_polygons": 15139,
+        "triangles": 44102,
+        "topology_repaired_polygons": 154
+      }
+    },
+    {
+      "building_id": "4907514",
+      "status": "complete",
+      "source_sha256": "f3b01eb17319e94112e1c00a535624c0ad9488ad95a2408a88a35b929fd02a81",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 3,
+      "stats": {
+        "RoofSurface_objects": 7,
+        "source_polygons": 20105,
+        "interior_rings": 922,
+        "WallSurface_objects": 21,
+        "Window_objects": 28,
+        "Door_objects": 1,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 602,
+        "rendered_polygons": 19503,
+        "triangles": 50869,
+        "topology_repaired_polygons": 89
+      }
+    },
+    {
+      "building_id": "4907515",
+      "status": "complete",
+      "source_sha256": "956c7e5abe1f2c9fa8aa8230b2d5b84bd46b6a515b45d840b573be1ca940d321",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 3,
+      "stats": {
+        "RoofSurface_objects": 13,
+        "source_polygons": 16871,
+        "interior_rings": 113,
+        "WallSurface_objects": 227,
+        "Window_objects": 33,
+        "Door_objects": 1,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 656,
+        "rendered_polygons": 16215,
+        "triangles": 38979,
+        "topology_repaired_polygons": 73
+      }
+    },
+    {
+      "building_id": "4907516",
+      "status": "complete",
+      "source_sha256": "6d4d7ec8a19491ae16b5243aa5f134c6af9a20e24b7dd05caccdcba47d0cb004",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 2,
+      "stats": {
+        "RoofSurface_objects": 4,
+        "source_polygons": 5113,
+        "interior_rings": 35,
+        "WallSurface_objects": 4,
+        "Window_objects": 12,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 69,
+        "rendered_polygons": 5044,
+        "triangles": 14698,
+        "topology_repaired_polygons": 72
+      }
+    },
+    {
+      "building_id": "4907517",
+      "status": "complete",
+      "source_sha256": "b0a7a3e25ed9e5d9aeef490c27553f9223ad2b4cd47fff3ab7c9a477af7f5f21",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 2,
+      "stats": {
+        "RoofSurface_objects": 4,
+        "source_polygons": 9369,
+        "interior_rings": 61,
+        "WallSurface_objects": 10,
+        "Window_objects": 21,
+        "Door_objects": 1,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 109,
+        "rendered_polygons": 9260,
+        "triangles": 27007,
+        "topology_repaired_polygons": 124
+      }
+    },
+    {
+      "building_id": "4907518",
+      "status": "complete",
+      "source_sha256": "cf7ed0abff8cf27064d240734e6de21d334ebf04e7dca3a12f377308ae545bb5",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 3,
+      "stats": {
+        "RoofSurface_objects": 4,
+        "source_polygons": 3007,
+        "interior_rings": 305,
+        "WallSurface_objects": 12,
+        "Window_objects": 54,
+        "Door_objects": 3,
+        "GroundSurface_objects": 15,
+        "degenerate_polygons_skipped": 0,
+        "rendered_polygons": 3007,
+        "triangles": 10212,
+        "topology_repaired_polygons": 1
+      }
+    },
+    {
+      "building_id": "4907520",
+      "status": "complete",
+      "source_sha256": "e5de3f7c502677d7db19b9643a352e425559b4b6a60c72d3c8923b324b187a1c",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 0,
+      "stats": {
+        "RoofSurface_objects": 4,
+        "source_polygons": 32138,
+        "interior_rings": 65,
+        "WallSurface_objects": 4,
+        "Window_objects": 55,
+        "Door_objects": 1,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 597,
+        "rendered_polygons": 31541,
+        "triangles": 91430,
+        "topology_repaired_polygons": 13
+      }
+    },
+    {
+      "building_id": "4907521",
+      "status": "complete",
+      "source_sha256": "61d6fbe1799b98ec1bbad170946ac792283cfc069ee1684cfd578ff945338e6c",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 2,
+      "stats": {
+        "RoofSurface_objects": 4,
+        "source_polygons": 32206,
+        "interior_rings": 575,
+        "WallSurface_objects": 50,
+        "Window_objects": 89,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 1239,
+        "rendered_polygons": 30967,
+        "triangles": 90548,
+        "topology_repaired_polygons": 1
+      }
+    },
+    {
+      "building_id": "4959321",
+      "status": "complete",
+      "source_sha256": "f889b28101646ea9b109a74cb3b6b8d26a7eb00554613b1a8148bfa4038b2490",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 4,
+      "stats": {
+        "RoofSurface_objects": 2,
+        "source_polygons": 11672,
+        "interior_rings": 62,
+        "WallSurface_objects": 4,
+        "Window_objects": 6,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 410,
+        "rendered_polygons": 11262,
+        "triangles": 29396,
+        "topology_repaired_polygons": 14
+      }
+    },
+    {
+      "building_id": "4959322",
+      "status": "complete",
+      "source_sha256": "2a3cef07987abf49b1a4cb671bfb6859fe3462a717f7e881ac33e43b47255b91",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 1,
+      "stats": {
+        "RoofSurface_objects": 2,
+        "source_polygons": 13617,
+        "interior_rings": 147,
+        "WallSurface_objects": 4,
+        "Window_objects": 21,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 4390,
+        "rendered_polygons": 9227,
+        "triangles": 28345,
+        "topology_repaired_polygons": 223
+      }
+    },
+    {
+      "building_id": "4959323",
+      "status": "complete",
+      "source_sha256": "a7b30f1596683837329e7b674e16d0dada2c98e3640092129d9092479a67ba37",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 3,
+      "stats": {
+        "RoofSurface_objects": 11,
+        "source_polygons": 62576,
+        "interior_rings": 584,
+        "WallSurface_objects": 4,
+        "Window_objects": 102,
+        "Door_objects": 1,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 1097,
+        "rendered_polygons": 61479,
+        "triangles": 192886,
+        "topology_repaired_polygons": 278
+      }
+    },
+    {
+      "building_id": "4959324",
+      "status": "complete",
+      "source_sha256": "e4c354cb8125cea346b0444e1d23a7dbca7de1a94643e7ceae7be468da5002cc",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 2,
+      "stats": {
+        "RoofSurface_objects": 1,
+        "source_polygons": 3113,
+        "interior_rings": 36,
+        "WallSurface_objects": 4,
+        "Window_objects": 3,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 5,
+        "rendered_polygons": 3108,
+        "triangles": 11504,
+        "topology_repaired_polygons": 3
+      }
+    },
+    {
+      "building_id": "4959457",
+      "status": "complete",
+      "source_sha256": "3fd6aee85a80f00d6fe8dac10f2420e995f98d75659e99af2c5ba01539a22b02",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 7,
+      "stats": {
+        "RoofSurface_objects": 16,
+        "source_polygons": 58476,
+        "interior_rings": 1356,
+        "WallSurface_objects": 657,
+        "Window_objects": 361,
+        "GroundSurface_objects": 25,
+        "degenerate_polygons_skipped": 1432,
+        "rendered_polygons": 57044,
+        "triangles": 177783,
+        "topology_repaired_polygons": 314
+      }
+    },
+    {
+      "building_id": "4959458",
+      "status": "complete",
+      "source_sha256": "97442254b8bf8e80628d9a54d53519f551ffc121aeccb9e6fcdf9083f40d19ba",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 3,
+      "stats": {
+        "RoofSurface_objects": 2,
+        "source_polygons": 20027,
+        "interior_rings": 214,
+        "WallSurface_objects": 35,
+        "Window_objects": 21,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 4041,
+        "rendered_polygons": 15986,
+        "triangles": 40665,
+        "topology_repaired_polygons": 194
+      }
+    },
+    {
+      "building_id": "4959460",
+      "status": "complete",
+      "source_sha256": "723f9ad18f55ed63d15310656bdd67e38217ca2b4c2adc5b16edb34457627974",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 5,
+      "stats": {
+        "RoofSurface_objects": 8,
+        "source_polygons": 147580,
+        "interior_rings": 232,
+        "WallSurface_objects": 119,
+        "Window_objects": 301,
+        "Door_objects": 10,
+        "GroundSurface_objects": 6,
+        "degenerate_polygons_skipped": 31616,
+        "rendered_polygons": 115964,
+        "triangles": 258661,
+        "topology_repaired_polygons": 111
+      }
+    },
+    {
+      "building_id": "4959462",
+      "status": "complete",
+      "source_sha256": "53220c0777336fafb37bc73d3ea3c73dc21f0248a59f333fa072dc5612d59ed6",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 0,
+      "stats": {
+        "RoofSurface_objects": 1,
+        "source_polygons": 14184,
+        "interior_rings": 76,
+        "WallSurface_objects": 17,
+        "Window_objects": 113,
+        "GroundSurface_objects": 2,
+        "degenerate_polygons_skipped": 0,
+        "rendered_polygons": 14184,
+        "triangles": 37297,
+        "topology_repaired_polygons": 0
+      }
+    },
+    {
+      "building_id": "4959465",
+      "status": "complete",
+      "source_sha256": "9a8aa5dba712f6162f440004119665e8f9724c029d589e2917439a6c840f532a",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 3,
+      "stats": {
+        "RoofSurface_objects": 52,
+        "source_polygons": 69108,
+        "interior_rings": 562,
+        "Window_objects": 112,
+        "Door_objects": 3,
+        "WallSurface_objects": 159,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 693,
+        "rendered_polygons": 68415,
+        "triangles": 227478,
+        "topology_repaired_polygons": 458
+      }
+    },
+    {
+      "building_id": "4959466",
+      "status": "complete",
+      "source_sha256": "818a553387a4fdd1e0559b53cc22e3feb3cc0352c6eaeeaf1a1a2e8d7d263496",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 3,
+      "stats": {
+        "RoofSurface_objects": 6,
+        "source_polygons": 57972,
+        "interior_rings": 489,
+        "WallSurface_objects": 17,
+        "Window_objects": 103,
+        "Door_objects": 2,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 646,
+        "rendered_polygons": 57326,
+        "triangles": 185452,
+        "topology_repaired_polygons": 497
+      }
+    },
+    {
+      "building_id": "60042",
+      "status": "complete",
+      "source_sha256": "edf7bf18550a08d971e6c4d0ea3d07ec9739295e8ceed56730bcdd19edaeea21",
+      "view_count": 8,
+      "image_size_wh": [
+        1800,
+        1200
+      ],
+      "manual_direction_used": false,
+      "missing_texture_count": 2,
+      "stats": {
+        "RoofSurface_objects": 16,
+        "source_polygons": 31252,
+        "interior_rings": 1204,
+        "WallSurface_objects": 66,
+        "Window_objects": 211,
+        "GroundSurface_objects": 1,
+        "degenerate_polygons_skipped": 946,
+        "rendered_polygons": 30306,
+        "triangles": 89046,
+        "topology_repaired_polygons": 82
+      }
+    }
+  ],
+  "scope": "RGB/depth/camera remain local; this is a published summary, not a complete render library. No retrieval executed."
+}

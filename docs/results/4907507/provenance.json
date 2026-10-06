@@ -1,0 +1,86 @@
+{
+  "status": "mapped",
+  "photo": "WORKSPACE/CityGML-IMG_Architecture/Drills/Texture2LoD3_dataset/textures/4907507.png",
+  "photo_sha256": "cb4012a29e03b1ccebf9a7f35e50cac23440d042cbf989821b34f5fa94e436cf",
+  "gallery": "WORKSPACE/my_results/render_gallery/gallery_20261005_212322_924197/gallery_index.json",
+  "gallery_sha256": "b608e52e2230af7416fa40c79d2c716bd3059d250872f749bf8a94d6690e800e",
+  "output_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_205741_658896",
+  "filename_building_id_used": false,
+  "manual_calibration_used": false,
+  "gt_masks_used": false,
+  "source_sha256": {
+    "run_facade_pipeline.py": "75f1a6c979acbd56cc4d1f05e7a9f931dace2d19aacb0c87ee844e0155e7a2dc",
+    "facade_retrieval.py": "1542c9eb0f9b1fff744f6e98fb4e76510e43c340982615ced4af9ed87cfc36ac",
+    "facade_auto_mapping.py": "8271dddda3c6b182b8bbe4ed6f5cab65511508f76cd51cb88f0255c6dd77518d",
+    "match_facade_roma.py": "103d86c32f07dfa14efc24ffa7947caed0663ce2c8b3a5bab620802563dc1f5d",
+    "facade_match_geometry.py": "b1c6608cd822e7341fa74cdb4e13af7f2bc0e955724806cc597e4a1c046ab708",
+    "facade_match_structure.py": "4e84e87c7d0cd365d4074ffdc38954a268c0f60c0c2843eb3030b0ebb2b8dbd3",
+    "map_facade_to_3d.py": "508ab5ba2de36828f5c72ac333cc935562db2aa6d9f2daa57aec0d33809d4f8b",
+    "try_grounding_dino16.py": "955f136ddf32e04fe09b90879af0d38a2fdfb0acf9da47a70eb7ac214b467c9a"
+  },
+  "selection": {
+    "accepted": true,
+    "reason": "automatic_checks_passed",
+    "best_candidate_id": "candidate_15",
+    "runner_up_id": null,
+    "geometry_score": 0.9090909090909091,
+    "margin": 0.9090909090909091,
+    "min_score": 0.35,
+    "min_margin": 0.08,
+    "independent_accuracy_verified": false,
+    "cross_view_agreement": {
+      "available": true,
+      "passed": true,
+      "comparisons": [
+        {
+          "candidate_id": "candidate_16",
+          "point_count": 45,
+          "median_m": 0.006063109834838626,
+          "p90_m": 0.010030679487723178,
+          "passed": true
+        }
+      ],
+      "median_limit_m": 0.3,
+      "p90_limit_m": 0.75,
+      "independent_accuracy_verified": false
+    }
+  },
+  "candidate_count": 17,
+  "detection_source": "WORKSPACE/my_results/grounding_dino16/batch_detection/D_20260930_155603_929347/4907507/detections.json",
+  "independent_accuracy_verified": false,
+  "building_id": "4907507",
+  "wall_id": "DEBY_LOD2_4907507_8ee10064-1c61-4081-948f-ca2915a1d26a",
+  "view_name": "view_180",
+  "selected_candidate": "candidate_15",
+  "elapsed_seconds": 48.1,
+  "export_note": "Portable example; WORKSPACE paths refer to local artifacts, not files included in Git. See predictions.json for full world coordinates. Source hashes record the outer workspace implementation; the repository copy adapts the dataset root.",
+  "model": {
+    "name": "RoMa v2.0.1",
+    "official_source": "https://github.com/Parskatt/RoMaV2",
+    "setting": "base",
+    "num_matches": 2000,
+    "seed": 42,
+    "checkpoint_sha256": "1557dec0d21b62366465f7ff4d5fdf228cc695d0582e196ad2b80e05230828b7",
+    "torch_version": "2.8.0+cu126",
+    "device": "cuda:0",
+    "feature_backbone": "DINOv3 ViT-L/16 (included in RoMa checkpoint)",
+    "input_resize": [
+      640,
+      640
+    ],
+    "high_resolution_resize": null,
+    "bidirectional": false,
+    "input_coordinates": "normalized align_corners=False",
+    "implementation": {
+      "romav2_source_sha256": "86190529bd1449d52d25856f076dbbb8632d390eee6df1f05e697cb389a21d15",
+      "dinov3_source_sha256": "4f0a98797cdceee185a053126aad83fe8318b809dbd274f2f98064f1588d1aa7",
+      "torch": "2.8.0+cu126",
+      "cuda": "12.6",
+      "numpy": "2.2.6",
+      "pillow": "12.0.0",
+      "device": "cuda:0",
+      "device_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "matmul_precision": "highest"
+    }
+  }
+}

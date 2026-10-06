@@ -1,0 +1,323 @@
+{
+  "scope": "17 development photos; evaluation label not used by inference; no independent metric accuracy claim",
+  "records": [
+    {
+      "photo": "4906970.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_195927_012036",
+      "status": "needs_review",
+      "expected_building_for_evaluation_only": "4906970",
+      "retrieval_building_rank": 1,
+      "building_id": null,
+      "building_correct_if_selected": null,
+      "selected_candidate": null,
+      "mapped_count": 0,
+      "rejected_count": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      }
+    },
+    {
+      "photo": "4906972_front_01.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_200041_899553",
+      "status": "needs_review",
+      "expected_building_for_evaluation_only": "4906972",
+      "retrieval_building_rank": 6,
+      "building_id": null,
+      "building_correct_if_selected": null,
+      "selected_candidate": null,
+      "mapped_count": 0,
+      "rejected_count": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      }
+    },
+    {
+      "photo": "4906972_front_02.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_200138_486269",
+      "status": "needs_review",
+      "expected_building_for_evaluation_only": "4906972",
+      "retrieval_building_rank": 5,
+      "building_id": null,
+      "building_correct_if_selected": null,
+      "selected_candidate": null,
+      "mapped_count": 0,
+      "rejected_count": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      }
+    },
+    {
+      "photo": "4906972_front_03.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_200237_240582",
+      "status": "needs_review",
+      "expected_building_for_evaluation_only": "4906972",
+      "retrieval_building_rank": 7,
+      "building_id": null,
+      "building_correct_if_selected": null,
+      "selected_candidate": null,
+      "mapped_count": 0,
+      "rejected_count": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      }
+    },
+    {
+      "photo": "4906981.jpg",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_200327_706119",
+      "status": "needs_review",
+      "expected_building_for_evaluation_only": "4906981",
+      "retrieval_building_rank": 2,
+      "building_id": null,
+      "building_correct_if_selected": null,
+      "selected_candidate": null,
+      "mapped_count": 0,
+      "rejected_count": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      }
+    },
+    {
+      "photo": "4907506.jpg",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_200422_752537",
+      "status": "needs_review",
+      "expected_building_for_evaluation_only": "4907506",
+      "retrieval_building_rank": 1,
+      "building_id": null,
+      "building_correct_if_selected": null,
+      "selected_candidate": null,
+      "mapped_count": 0,
+      "rejected_count": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      }
+    },
+    {
+      "photo": "4907507.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_200516_201149",
+      "status": "mapped",
+      "expected_building_for_evaluation_only": "4907507",
+      "retrieval_building_rank": 5,
+      "building_id": "4907507",
+      "building_correct_if_selected": true,
+      "selected_candidate": "candidate_15",
+      "mapped_count": 35,
+      "rejected_count": 1,
+      "selection": {
+        "accepted": true,
+        "reason": "automatic_checks_passed",
+        "best_candidate_id": "candidate_15",
+        "runner_up_id": "candidate_02",
+        "geometry_score": 0.9090909090909091,
+        "margin": 0.902378399296685,
+        "min_score": 0.35,
+        "min_margin": 0.08,
+        "independent_accuracy_verified": false,
+        "cross_view_agreement": {
+          "available": true,
+          "passed": true,
+          "comparisons": [
+            {
+              "candidate_id": "candidate_16",
+              "point_count": 45,
+              "median_m": 0.006063109834838626,
+              "p90_m": 0.010030679487723178,
+              "passed": true
+            }
+          ],
+          "median_limit_m": 0.3,
+          "p90_limit_m": 0.75,
+          "independent_accuracy_verified": false
+        }
+      }
+    },
+    {
+      "photo": "4907514.png",
+      "status": "failed",
+      "error_type": "StopIteration",
+      "error": ""
+    },
+    {
+      "photo": "4907518_front.png",
+      "status": "failed",
+      "error_type": "ValueError",
+      "error": "墙面外环不是有效多边形，不能静默修补后用于三维映射。"
+    },
+    {
+      "photo": "4907518_left.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_200750_178543",
+      "status": "mapped",
+      "expected_building_for_evaluation_only": "4907518",
+      "retrieval_building_rank": 1,
+      "building_id": "4907520",
+      "building_correct_if_selected": false,
+      "selected_candidate": "candidate_13",
+      "mapped_count": 19,
+      "rejected_count": 2,
+      "selection": {
+        "accepted": true,
+        "reason": "automatic_checks_passed",
+        "best_candidate_id": "candidate_13",
+        "runner_up_id": "candidate_09",
+        "geometry_score": 0.46977256412630813,
+        "margin": 0.4381990623514509,
+        "min_score": 0.35,
+        "min_margin": 0.08,
+        "independent_accuracy_verified": false,
+        "cross_view_agreement": {
+          "available": false,
+          "passed": true,
+          "comparisons": [],
+          "median_limit_m": 0.3,
+          "p90_limit_m": 0.75,
+          "independent_accuracy_verified": false,
+          "reason": "only_one_view_passed; no_cross_view_confirmation"
+        }
+      }
+    },
+    {
+      "photo": "4907518_right.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_200855_048707",
+      "status": "needs_review",
+      "expected_building_for_evaluation_only": "4907518",
+      "retrieval_building_rank": 1,
+      "building_id": null,
+      "building_correct_if_selected": null,
+      "selected_candidate": null,
+      "mapped_count": 0,
+      "rejected_count": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      }
+    },
+    {
+      "photo": "4907520_front.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_200938_406647",
+      "status": "mapped",
+      "expected_building_for_evaluation_only": "4907520",
+      "retrieval_building_rank": 1,
+      "building_id": "4907520",
+      "building_correct_if_selected": true,
+      "selected_candidate": "candidate_01",
+      "mapped_count": 16,
+      "rejected_count": 6,
+      "selection": {
+        "accepted": true,
+        "reason": "automatic_checks_passed",
+        "best_candidate_id": "candidate_01",
+        "runner_up_id": "candidate_09",
+        "geometry_score": 0.8106194690265487,
+        "margin": 0.8082228224828235,
+        "min_score": 0.35,
+        "min_margin": 0.08,
+        "independent_accuracy_verified": false,
+        "cross_view_agreement": {
+          "available": false,
+          "passed": true,
+          "comparisons": [],
+          "median_limit_m": 0.3,
+          "p90_limit_m": 0.75,
+          "independent_accuracy_verified": false,
+          "reason": "only_one_view_passed; no_cross_view_confirmation"
+        }
+      }
+    },
+    {
+      "photo": "4907520_right.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_201029_252990",
+      "status": "needs_review",
+      "expected_building_for_evaluation_only": "4907520",
+      "retrieval_building_rank": 1,
+      "building_id": null,
+      "building_correct_if_selected": null,
+      "selected_candidate": null,
+      "mapped_count": 0,
+      "rejected_count": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      }
+    },
+    {
+      "photo": "4959322.jpg",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_201123_623639",
+      "status": "needs_review",
+      "expected_building_for_evaluation_only": "4959322",
+      "retrieval_building_rank": 2,
+      "building_id": null,
+      "building_correct_if_selected": null,
+      "selected_candidate": null,
+      "mapped_count": 0,
+      "rejected_count": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      }
+    },
+    {
+      "photo": "4959323_front.jpg",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_201210_766777",
+      "status": "needs_review",
+      "expected_building_for_evaluation_only": "4959323",
+      "retrieval_building_rank": 1,
+      "building_id": null,
+      "building_correct_if_selected": null,
+      "selected_candidate": null,
+      "mapped_count": 0,
+      "rejected_count": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      }
+    },
+    {
+      "photo": "4959323_left.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_201248_756785",
+      "status": "needs_review",
+      "expected_building_for_evaluation_only": "4959323",
+      "retrieval_building_rank": 2,
+      "building_id": null,
+      "building_correct_if_selected": null,
+      "selected_candidate": null,
+      "mapped_count": 0,
+      "rejected_count": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      }
+    },
+    {
+      "photo": "4959323_right.png",
+      "run_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_201327_451755",
+      "status": "needs_review",
+      "expected_building_for_evaluation_only": "4959323",
+      "retrieval_building_rank": 1,
+      "building_id": null,
+      "building_correct_if_selected": null,
+      "selected_candidate": null,
+      "mapped_count": 0,
+      "rejected_count": null,
+      "selection": {
+        "accepted": false,
+        "reason": "no_candidate_passed_geometry"
+      }
+    }
+  ],
+  "warning": "Superseded development run: one wrong-building acceptance, two runtime failures. Do not use its mapped outputs as verified geometry.",
+  "runtime_workspace_source_sha256": {
+    "run_facade_pipeline.py": "3d411781b74c0b9576c6bff0cb2d83ea63fbac368a40915cf7e32ea0d784fec0",
+    "facade_retrieval.py": "1542c9eb0f9b1fff744f6e98fb4e76510e43c340982615ced4af9ed87cfc36ac",
+    "facade_auto_mapping.py": "321333bf8057dabe0503d37e2b3c6ab0a76e43d82aeb6f798d018d9b46fa9d4c",
+    "match_facade_roma.py": "d6d2765d0eafe07b7deb85cf6c7f32da5e4cf5bff5f4a15f6ee5d2019d0f084c",
+    "facade_match_geometry.py": "b1c6608cd822e7341fa74cdb4e13af7f2bc0e955724806cc597e4a1c046ab708",
+    "facade_match_structure.py": "4e84e87c7d0cd365d4074ffdc38954a268c0f60c0c2843eb3030b0ebb2b8dbd3",
+    "map_facade_to_3d.py": "508ab5ba2de36828f5c72ac333cc935562db2aa6d9f2daa57aec0d33809d4f8b",
+    "try_grounding_dino16.py": "955f136ddf32e04fe09b90879af0d38a2fdfb0acf9da47a70eb7ac214b467c9a"
+  }
+}

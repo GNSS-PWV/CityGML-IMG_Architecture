@@ -1,0 +1,4369 @@
+{
+  "validation_date": "2026-10-05",
+  "gallery": "LOCAL_WORKSPACE\\my_results\\render_gallery\\gallery_20261005_212322_924197",
+  "method": "Full 216 artifact consistency/semantic source audit; up to257 depth pixels per view backprojected including world origin then reprojected. No render/model inference rerun.",
+  "expected_buildings": 27,
+  "expected_views": 216,
+  "buildings_checked": 27,
+  "views_checked": 216,
+  "passed": true,
+  "failed_building_ids": [],
+  "all_27_reusable": true,
+  "max_camera_inverse_error": 7.958078640513122e-13,
+  "max_world_roundtrip_pixel_error": 6.847858458058909e-08,
+  "max_world_roundtrip_depth_error_m": 4.5343995225266553e-10,
+  "foreground_fraction_range": [
+    0.12818703703703704,
+    0.7440888888888889
+  ],
+  "elapsed_seconds": 77.063,
+  "visual_inspection": {
+    "status": "passed",
+    "method": "Viewed full overview and three representative rendered PNGs through view_image.",
+    "files": [
+      {
+        "path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\gallery_20261005_212322_924197\\overview.png",
+        "sha256": "0f16ac4507a5c0c3798bbda3a2d31a7d00624c7dfbb235c414ca2a012e2fd781",
+        "observation": "已查看更新后的27栋总览：每栋选门窗可见像素最多的已有视角，建筑与标签完整，外观差异可辨。"
+      },
+      {
+        "path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906970\\render_20261005_213706_982378\\view_045.png",
+        "sha256": "6b287dd2fa6946fb4d80b49ebcbdb5ef1f62fc143eedad3057ed08b48212a8be",
+        "observation": "屋顶、侧墙、窗及拱廊可见，四周有留白，无边界截断。"
+      },
+      {
+        "path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906981\\render_20261005_213010_395773\\view_000.png",
+        "sha256": "28c4938bcb69613651f495fdeb1f59c2e5a28d112a721373fac01f1913ab563a",
+        "observation": "无窗长墙与屋顶完整，属于有效建筑视图，非空白图片。"
+      },
+      {
+        "path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959323\\render_20261005_212832_658967\\view_135.png",
+        "sha256": "8c0c0123a5728728b8a2da520e044f097076d8567aa58758ce10468783595657",
+        "observation": "两个有窗立面及屋顶可见，长建筑完整纳入画幅，无截断。"
+      }
+    ],
+    "presentation_note": "总览已重选代表图并再次查看；选图依据记录于overview_metadata.json。216张原始渲染及几何验证未改变。"
+  },
+  "buildings": [
+    {
+      "building_id": "4906970",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906970\\render_20261005_213706_982378",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 566034,
+          "foreground_fraction": 0.2620527777777778,
+          "visible_object_count": 3,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.2439166968979407e-08,
+          "world_roundtrip_max_depth_error_m": 2.1571366914940882e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 572077,
+          "foreground_fraction": 0.26485046296296294,
+          "visible_object_count": 16,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.7570378964204113e-16,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.005366812023567e-08,
+          "world_roundtrip_max_depth_error_m": 4.4862247250421206e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 566034,
+          "foreground_fraction": 0.2620527777777778,
+          "visible_object_count": 4,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.4210854715202004e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.260821929667145e-08,
+          "world_roundtrip_max_depth_error_m": 2.0945378764736233e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 572077,
+          "foreground_fraction": 0.26485046296296294,
+          "visible_object_count": 9,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0017402019002475e-08,
+          "world_roundtrip_max_depth_error_m": 4.4725823045155266e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 650295,
+          "foreground_fraction": 0.3010625,
+          "visible_object_count": 62,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.910188984766137e-08,
+          "world_roundtrip_max_depth_error_m": 2.1196200350459549e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 662525,
+          "foreground_fraction": 0.30672453703703706,
+          "visible_object_count": 62,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0430198926769663e-08,
+          "world_roundtrip_max_depth_error_m": 4.0805758771966794e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 637401,
+          "foreground_fraction": 0.29509305555555554,
+          "visible_object_count": 54,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.8746277419268154e-08,
+          "world_roundtrip_max_depth_error_m": 2.1761081825388828e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 658169,
+          "foreground_fraction": 0.3047078703703704,
+          "visible_object_count": 55,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0303324415872339e-08,
+          "world_roundtrip_max_depth_error_m": 4.128892783228366e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906970\\render_20261005_213706_982378",
+      "passed": true
+    },
+    {
+      "building_id": "4906972",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906972\\render_20261005_213345_767148",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1607232,
+          "foreground_fraction": 0.7440888888888889,
+          "visible_object_count": 32,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0974872566293925e-08,
+          "world_roundtrip_max_depth_error_m": 4.511093720793724e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 742991,
+          "foreground_fraction": 0.3439773148148148,
+          "visible_object_count": 7,
+          "visible_wall_count": 0,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.3679376681684516e-08,
+          "world_roundtrip_max_depth_error_m": 2.022204625973245e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1607232,
+          "foreground_fraction": 0.7440888888888889,
+          "visible_object_count": 6,
+          "visible_wall_count": 0,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.1310930858599022e-08,
+          "world_roundtrip_max_depth_error_m": 4.176996526439325e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 742991,
+          "foreground_fraction": 0.3439773148148148,
+          "visible_object_count": 7,
+          "visible_wall_count": 0,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.3217808120534755e-08,
+          "world_roundtrip_max_depth_error_m": 2.1111645764904097e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 842681,
+          "foreground_fraction": 0.39013009259259257,
+          "visible_object_count": 39,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.734446055314038e-09,
+          "world_roundtrip_max_depth_error_m": 4.0741099383012624e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 899081,
+          "foreground_fraction": 0.4162412037037037,
+          "visible_object_count": 10,
+          "visible_wall_count": 0,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.683031314314576e-08,
+          "world_roundtrip_max_depth_error_m": 2.2440360680775484e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 813594,
+          "foreground_fraction": 0.3766638888888889,
+          "visible_object_count": 10,
+          "visible_wall_count": 0,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.53833626024425e-09,
+          "world_roundtrip_max_depth_error_m": 4.078088977621519e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 885669,
+          "foreground_fraction": 0.41003194444444446,
+          "visible_object_count": 41,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.636124125070637e-08,
+          "world_roundtrip_max_depth_error_m": 2.092122031172039e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906972\\render_20261005_213345_767148",
+      "passed": true
+    },
+    {
+      "building_id": "4906976",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906976\\render_20261005_213328_689588",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1466477,
+          "foreground_fraction": 0.678924537037037,
+          "visible_object_count": 2,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.061016519088298e-08,
+          "world_roundtrip_max_depth_error_m": 4.397833208713564e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 525946,
+          "foreground_fraction": 0.24349351851851853,
+          "visible_object_count": 5,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.3184952624433208e-08,
+          "world_roundtrip_max_depth_error_m": 2.1540813577303197e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1466477,
+          "foreground_fraction": 0.678924537037037,
+          "visible_object_count": 65,
+          "visible_wall_count": 11,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0808889783220366e-08,
+          "world_roundtrip_max_depth_error_m": 4.5011461224930827e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 525946,
+          "foreground_fraction": 0.24349351851851853,
+          "visible_object_count": 41,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.3388111003441736e-08,
+          "world_roundtrip_max_depth_error_m": 2.1374546577135334e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 796122,
+          "foreground_fraction": 0.368575,
+          "visible_object_count": 5,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.834376785671338e-09,
+          "world_roundtrip_max_depth_error_m": 4.118874130654149e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 788860,
+          "foreground_fraction": 0.36521296296296296,
+          "visible_object_count": 66,
+          "visible_wall_count": 12,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.699231688689906e-08,
+          "world_roundtrip_max_depth_error_m": 2.0767743080796208e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 804838,
+          "foreground_fraction": 0.3726101851851852,
+          "visible_object_count": 63,
+          "visible_wall_count": 9,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.897586667444557e-09,
+          "world_roundtrip_max_depth_error_m": 4.0189718220062787e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 805233,
+          "foreground_fraction": 0.37279305555555553,
+          "visible_object_count": 4,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.4210854715202004e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.7329512047581375e-08,
+          "world_roundtrip_max_depth_error_m": 2.1613288936350727e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906976\\render_20261005_213328_689588",
+      "passed": true
+    },
+    {
+      "building_id": "4906978",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906978\\render_20261005_213648_637189",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 276884,
+          "foreground_fraction": 0.12818703703703704,
+          "visible_object_count": 3,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.0348268865443903e-16,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.058265297615435e-08,
+          "world_roundtrip_max_depth_error_m": 4.4704506763082463e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 639820,
+          "foreground_fraction": 0.29621296296296296,
+          "visible_object_count": 5,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.1170762920519337e-08,
+          "world_roundtrip_max_depth_error_m": 2.1855584009244922e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 276884,
+          "foreground_fraction": 0.12818703703703704,
+          "visible_object_count": 11,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0408825801277999e-08,
+          "world_roundtrip_max_depth_error_m": 4.395843689053436e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 639820,
+          "foreground_fraction": 0.29621296296296296,
+          "visible_object_count": 5,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.1316282072803006e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.1363575797295198e-08,
+          "world_roundtrip_max_depth_error_m": 2.0268231537556858e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 606603,
+          "foreground_fraction": 0.2808347222222222,
+          "visible_object_count": 6,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0986241250066087e-08,
+          "world_roundtrip_max_depth_error_m": 4.0475356399838347e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 513391,
+          "foreground_fraction": 0.23768101851851853,
+          "visible_object_count": 11,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 7.105427357601002e-15,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.859405074355891e-08,
+          "world_roundtrip_max_depth_error_m": 2.2000534727339982e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 496334,
+          "foreground_fraction": 0.22978425925925927,
+          "visible_object_count": 12,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 7.105427357601002e-15,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 9.537529876979534e-09,
+          "world_roundtrip_max_depth_error_m": 4.0807890400174074e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 583603,
+          "foreground_fraction": 0.2701865740740741,
+          "visible_object_count": 6,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.021079126279801e-08,
+          "world_roundtrip_max_depth_error_m": 2.1861978893866763e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906978\\render_20261005_213648_637189",
+      "passed": true
+    },
+    {
+      "building_id": "4906979",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906979\\render_20261005_213553_448240",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 686487,
+          "foreground_fraction": 0.31781805555555553,
+          "visible_object_count": 6,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.2392669052351266e-08,
+          "world_roundtrip_max_depth_error_m": 2.162323653465137e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 303599,
+          "foreground_fraction": 0.1405550925925926,
+          "visible_object_count": 13,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0345047485316172e-08,
+          "world_roundtrip_max_depth_error_m": 4.426823352332576e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 686487,
+          "foreground_fraction": 0.31781805555555553,
+          "visible_object_count": 10,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.168940227420535e-08,
+          "world_roundtrip_max_depth_error_m": 2.1971402475173818e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 303599,
+          "foreground_fraction": 0.1405550925925926,
+          "visible_object_count": 2,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.1053657544835005e-08,
+          "world_roundtrip_max_depth_error_m": 4.260982677806169e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 547701,
+          "foreground_fraction": 0.25356527777777776,
+          "visible_object_count": 14,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.8866558093577623e-08,
+          "world_roundtrip_max_depth_error_m": 2.1174884068386746e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 526700,
+          "foreground_fraction": 0.24384259259259258,
+          "visible_object_count": 15,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 9.782979759620503e-09,
+          "world_roundtrip_max_depth_error_m": 4.1590908494981704e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 601285,
+          "foreground_fraction": 0.2783726851851852,
+          "visible_object_count": 8,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.0525590116449166e-08,
+          "world_roundtrip_max_depth_error_m": 2.028812673415814e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 599071,
+          "foreground_fraction": 0.2773476851851852,
+          "visible_object_count": 6,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 7.105427357601002e-15,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0730786925705615e-08,
+          "world_roundtrip_max_depth_error_m": 4.0800784972816473e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906979\\render_20261005_213553_448240",
+      "passed": true
+    },
+    {
+      "building_id": "4906980",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906980\\render_20261005_212325_873227",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1431097,
+          "foreground_fraction": 0.6625449074074075,
+          "visible_object_count": 17747,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.552713678800501e-15,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.035631834791275e-08,
+          "world_roundtrip_max_depth_error_m": 4.397762154439988e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 574339,
+          "foreground_fraction": 0.2658976851851852,
+          "visible_object_count": 586,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 6.845959887868958e-08,
+          "world_roundtrip_max_depth_error_m": 2.2363622065313393e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1431097,
+          "foreground_fraction": 0.6625449074074075,
+          "visible_object_count": 17773,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.042271146114217e-08,
+          "world_roundtrip_max_depth_error_m": 4.433005074133689e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 574339,
+          "foreground_fraction": 0.2658976851851852,
+          "visible_object_count": 590,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.552713678800501e-15,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 6.847858458058909e-08,
+          "world_roundtrip_max_depth_error_m": 2.1404389372037258e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 846165,
+          "foreground_fraction": 0.39174305555555555,
+          "visible_object_count": 11130,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.3698362383584026e-08,
+          "world_roundtrip_max_depth_error_m": 4.126086139422114e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 936171,
+          "foreground_fraction": 0.4334125,
+          "visible_object_count": 12606,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 4.629276418829394e-15,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 4.912277518087649e-08,
+          "world_roundtrip_max_depth_error_m": 2.1503154812307912e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 937737,
+          "foreground_fraction": 0.4341375,
+          "visible_object_count": 12637,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.5185954655171372e-08,
+          "world_roundtrip_max_depth_error_m": 4.0517988963983953e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 843734,
+          "foreground_fraction": 0.3906175925925926,
+          "visible_object_count": 11108,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 4.27303348260466e-08,
+          "world_roundtrip_max_depth_error_m": 2.04259720248956e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906980\\render_20261005_212325_873227",
+      "passed": true
+    },
+    {
+      "building_id": "4906981",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906981\\render_20261005_213010_395773",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 793210,
+          "foreground_fraction": 0.36722685185185183,
+          "visible_object_count": 10,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0407347872387618e-08,
+          "world_roundtrip_max_depth_error_m": 2.0838797354372218e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 863471,
+          "foreground_fraction": 0.3997550925925926,
+          "visible_object_count": 31,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 4.547473508864641e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.028013230097713e-08,
+          "world_roundtrip_max_depth_error_m": 4.5133674575481564e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 793210,
+          "foreground_fraction": 0.36722685185185183,
+          "visible_object_count": 66,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0419967111374717e-08,
+          "world_roundtrip_max_depth_error_m": 2.11400674743345e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 863471,
+          "foreground_fraction": 0.3997550925925926,
+          "visible_object_count": 24,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 9.994437277782708e-09,
+          "world_roundtrip_max_depth_error_m": 4.318678747949889e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 959967,
+          "foreground_fraction": 0.44442916666666665,
+          "visible_object_count": 28,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0885514711844735e-08,
+          "world_roundtrip_max_depth_error_m": 2.0742163542308845e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 959242,
+          "foreground_fraction": 0.4440935185185185,
+          "visible_object_count": 86,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 5.708557182515506e-09,
+          "world_roundtrip_max_depth_error_m": 4.0876102502807043e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 959607,
+          "foreground_fraction": 0.4442625,
+          "visible_object_count": 88,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.092030288418755e-08,
+          "world_roundtrip_max_depth_error_m": 2.1429968910524622e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 959952,
+          "foreground_fraction": 0.4444222222222222,
+          "visible_object_count": 28,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 5.83827386435587e-09,
+          "world_roundtrip_max_depth_error_m": 4.070273007528158e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4906981\\render_20261005_213010_395773",
+      "passed": true
+    },
+    {
+      "building_id": "4907506",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907506\\render_20261005_213710_041216",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1030634,
+          "foreground_fraction": 0.47714537037037036,
+          "visible_object_count": 52,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.4210854715202004e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 9.904397302307189e-09,
+          "world_roundtrip_max_depth_error_m": 4.5156411943025887e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 600323,
+          "foreground_fraction": 0.2779273148148148,
+          "visible_object_count": 33,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.2024424193120395e-16,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.066235538222827e-08,
+          "world_roundtrip_max_depth_error_m": 2.1472601474670228e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1030634,
+          "foreground_fraction": 0.47714537037037036,
+          "visible_object_count": 7,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 9.782411325431895e-09,
+          "world_roundtrip_max_depth_error_m": 4.509956852416508e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 600323,
+          "foreground_fraction": 0.2779273148148148,
+          "visible_object_count": 5,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.4210854715202004e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.045135261141695e-08,
+          "world_roundtrip_max_depth_error_m": 2.020499323407421e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 760841,
+          "foreground_fraction": 0.3522412037037037,
+          "visible_object_count": 73,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.551978680770844e-09,
+          "world_roundtrip_max_depth_error_m": 3.97193389289896e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 739594,
+          "foreground_fraction": 0.34240462962962964,
+          "visible_object_count": 35,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.5851355783524923e-08,
+          "world_roundtrip_max_depth_error_m": 2.1145751816220582e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 818765,
+          "foreground_fraction": 0.37905787037037036,
+          "visible_object_count": 7,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.773554327490274e-09,
+          "world_roundtrip_max_depth_error_m": 4.078799520357279e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 731376,
+          "foreground_fraction": 0.3386,
+          "visible_object_count": 48,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.6069634511950426e-08,
+          "world_roundtrip_max_depth_error_m": 2.1023538465669844e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907506\\render_20261005_213710_041216",
+      "passed": true
+    },
+    {
+      "building_id": "4907507",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907507\\render_20261005_213248_939833",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1172160,
+          "foreground_fraction": 0.5426666666666666,
+          "visible_object_count": 2,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 7.105427357601002e-15,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0376879799878225e-08,
+          "world_roundtrip_max_depth_error_m": 4.241940132487798e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 566891,
+          "foreground_fraction": 0.26244953703703705,
+          "visible_object_count": 2,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.2017502487869933e-08,
+          "world_roundtrip_max_depth_error_m": 2.149818101315759e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1172160,
+          "foreground_fraction": 0.5426666666666666,
+          "visible_object_count": 38,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.4210854715202004e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0448900411574868e-08,
+          "world_roundtrip_max_depth_error_m": 4.4659032027993817e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 566891,
+          "foreground_fraction": 0.26244953703703705,
+          "visible_object_count": 2,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.4210854715202004e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.2556605472345836e-08,
+          "world_roundtrip_max_depth_error_m": 2.057589654214098e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 770133,
+          "foreground_fraction": 0.35654305555555554,
+          "visible_object_count": 3,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.982851795735769e-09,
+          "world_roundtrip_max_depth_error_m": 4.1154635255225003e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 769200,
+          "foreground_fraction": 0.3561111111111111,
+          "visible_object_count": 42,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.713920028123539e-08,
+          "world_roundtrip_max_depth_error_m": 2.1510970782401273e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 769182,
+          "foreground_fraction": 0.35610277777777777,
+          "visible_object_count": 42,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.501501724822447e-09,
+          "world_roundtrip_max_depth_error_m": 4.057909563925932e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 770131,
+          "foreground_fraction": 0.3565421296296296,
+          "visible_object_count": 3,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.697821971902158e-08,
+          "world_roundtrip_max_depth_error_m": 2.1806556560477475e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907507\\render_20261005_213248_939833",
+      "passed": true
+    },
+    {
+      "building_id": "4907514",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907514\\render_20261005_213420_718261",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 702488,
+          "foreground_fraction": 0.3252259259259259,
+          "visible_object_count": 9,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 9.819132174015976e-09,
+          "world_roundtrip_max_depth_error_m": 4.446434331839555e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1075654,
+          "foreground_fraction": 0.49798796296296294,
+          "visible_object_count": 11,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.0456582205952145e-08,
+          "world_roundtrip_max_depth_error_m": 2.1363177893363172e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 702488,
+          "foreground_fraction": 0.3252259259259259,
+          "visible_object_count": 36,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.169268469064082e-16,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 9.570953807269689e-09,
+          "world_roundtrip_max_depth_error_m": 4.3998227283736924e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1075654,
+          "foreground_fraction": 0.49798796296296294,
+          "visible_object_count": 9,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.4210854715202004e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.0667471289925743e-08,
+          "world_roundtrip_max_depth_error_m": 2.070095206363476e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 803528,
+          "foreground_fraction": 0.3720037037037037,
+          "visible_object_count": 12,
+          "visible_wall_count": 6,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.4210854715202004e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.41799874251592e-09,
+          "world_roundtrip_max_depth_error_m": 3.9980818655749317e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 761386,
+          "foreground_fraction": 0.3524935185185185,
+          "visible_object_count": 40,
+          "visible_wall_count": 6,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.5550540410913527e-08,
+          "world_roundtrip_max_depth_error_m": 2.233520035588299e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 775472,
+          "foreground_fraction": 0.35901481481481484,
+          "visible_object_count": 41,
+          "visible_wall_count": 7,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.374627213925123e-09,
+          "world_roundtrip_max_depth_error_m": 4.028350986118312e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 790040,
+          "foreground_fraction": 0.3657592592592593,
+          "visible_object_count": 14,
+          "visible_wall_count": 7,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.5830551092221867e-08,
+          "world_roundtrip_max_depth_error_m": 2.120401632055291e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907514\\render_20261005_213420_718261",
+      "passed": true
+    },
+    {
+      "building_id": "4907515",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907515\\render_20261005_213427_081350",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 859687,
+          "foreground_fraction": 0.3980032407407407,
+          "visible_object_count": 9,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.2067175703123212e-08,
+          "world_roundtrip_max_depth_error_m": 4.3934278437518515e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1372089,
+          "foreground_fraction": 0.6352263888888889,
+          "visible_object_count": 80,
+          "visible_wall_count": 6,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.550518729549367e-08,
+          "world_roundtrip_max_depth_error_m": 2.15692352867336e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 859687,
+          "foreground_fraction": 0.3980032407407407,
+          "visible_object_count": 140,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.2054783837811556e-08,
+          "world_roundtrip_max_depth_error_m": 4.5065462472848594e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1372089,
+          "foreground_fraction": 0.6352263888888889,
+          "visible_object_count": 74,
+          "visible_wall_count": 6,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.0125238216053148e-15,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.569242951722117e-08,
+          "world_roundtrip_max_depth_error_m": 2.1177015696594026e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 881651,
+          "foreground_fraction": 0.40817175925925925,
+          "visible_object_count": 31,
+          "visible_wall_count": 7,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 9.31777321966365e-09,
+          "world_roundtrip_max_depth_error_m": 3.9737813040119363e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 832954,
+          "foreground_fraction": 0.38562685185185186,
+          "visible_object_count": 85,
+          "visible_wall_count": 6,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.7030743038048968e-08,
+          "world_roundtrip_max_depth_error_m": 2.149675992768607e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 906987,
+          "foreground_fraction": 0.4199013888888889,
+          "visible_object_count": 73,
+          "visible_wall_count": 7,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 9.674067769083194e-09,
+          "world_roundtrip_max_depth_error_m": 4.1089265323535074e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 910243,
+          "foreground_fraction": 0.4214087962962963,
+          "visible_object_count": 19,
+          "visible_wall_count": 7,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.7790171114029363e-08,
+          "world_roundtrip_max_depth_error_m": 2.1286439277901081e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907515\\render_20261005_213427_081350",
+      "passed": true
+    },
+    {
+      "building_id": "4907516",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907516\\render_20261005_213627_592168",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 921307,
+          "foreground_fraction": 0.42653101851851855,
+          "visible_object_count": 3,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 4.754274903024394e-15,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.0594037525588647e-08,
+          "world_roundtrip_max_depth_error_m": 2.0381207832542714e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 860747,
+          "foreground_fraction": 0.39849398148148146,
+          "visible_object_count": 14,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.4715169527335092e-08,
+          "world_roundtrip_max_depth_error_m": 4.3802828031402896e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 921307,
+          "foreground_fraction": 0.42653101851851855,
+          "visible_object_count": 5,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.028327455467661e-08,
+          "world_roundtrip_max_depth_error_m": 2.056026460195426e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 860747,
+          "foreground_fraction": 0.39849398148148146,
+          "visible_object_count": 3,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.3658109310199507e-08,
+          "world_roundtrip_max_depth_error_m": 4.4495607198768994e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 868166,
+          "foreground_fraction": 0.4019287037037037,
+          "visible_object_count": 18,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.4130031306413002e-08,
+          "world_roundtrip_max_depth_error_m": 2.155431388928264e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 810967,
+          "foreground_fraction": 0.3754476851851852,
+          "visible_object_count": 19,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.1369365893187933e-08,
+          "world_roundtrip_max_depth_error_m": 4.0237324583358713e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 822981,
+          "foreground_fraction": 0.38100972222222224,
+          "visible_object_count": 5,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.300225787621457e-08,
+          "world_roundtrip_max_depth_error_m": 2.1804424932270194e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 882058,
+          "foreground_fraction": 0.4083601851851852,
+          "visible_object_count": 4,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.2399596016621217e-08,
+          "world_roundtrip_max_depth_error_m": 4.056204261360108e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907516\\render_20261005_213627_592168",
+      "passed": true
+    },
+    {
+      "building_id": "4907517",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907517\\render_20261005_213514_525852",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1029258,
+          "foreground_fraction": 0.4765083333333333,
+          "visible_object_count": 5,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.9786292543576565e-08,
+          "world_roundtrip_max_depth_error_m": 1.9682033780554775e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 931895,
+          "foreground_fraction": 0.43143287037037037,
+          "visible_object_count": 7,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.4629449651692994e-08,
+          "world_roundtrip_max_depth_error_m": 4.3920067582803313e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1029258,
+          "foreground_fraction": 0.4765083333333333,
+          "visible_object_count": 16,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.0700903153046966e-08,
+          "world_roundtrip_max_depth_error_m": 2.17028173210565e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 931895,
+          "foreground_fraction": 0.43143287037037037,
+          "visible_object_count": 14,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.4259740055422299e-08,
+          "world_roundtrip_max_depth_error_m": 4.517346496868413e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 890724,
+          "foreground_fraction": 0.4123722222222222,
+          "visible_object_count": 8,
+          "visible_wall_count": 6,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.3791244530002587e-08,
+          "world_roundtrip_max_depth_error_m": 2.1257307025734917e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 843871,
+          "foreground_fraction": 0.3906810185185185,
+          "visible_object_count": 21,
+          "visible_wall_count": 7,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.2243276614753995e-08,
+          "world_roundtrip_max_depth_error_m": 4.065370262651413e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 831408,
+          "foreground_fraction": 0.3849111111111111,
+          "visible_object_count": 29,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.1991127141518518e-08,
+          "world_roundtrip_max_depth_error_m": 2.184634695368004e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 872027,
+          "foreground_fraction": 0.4037162037037037,
+          "visible_object_count": 16,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.2820351003028918e-08,
+          "world_roundtrip_max_depth_error_m": 4.0115821775543736e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907517\\render_20261005_213514_525852",
+      "passed": true
+    },
+    {
+      "building_id": "4907518",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907518\\render_20261005_213653_851374",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1124094,
+          "foreground_fraction": 0.5204138888888888,
+          "visible_object_count": 26,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.633805706864223e-08,
+          "world_roundtrip_max_depth_error_m": 2.1097434910188895e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 901756,
+          "foreground_fraction": 0.41747962962962964,
+          "visible_object_count": 20,
+          "visible_wall_count": 6,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.2800001059076749e-08,
+          "world_roundtrip_max_depth_error_m": 4.5066173015584354e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1124094,
+          "foreground_fraction": 0.5204138888888888,
+          "visible_object_count": 33,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.6942643671645783e-08,
+          "world_roundtrip_max_depth_error_m": 2.021636191784637e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 901756,
+          "foreground_fraction": 0.41747962962962964,
+          "visible_object_count": 33,
+          "visible_wall_count": 7,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.2691998563241214e-08,
+          "world_roundtrip_max_depth_error_m": 4.409557163853606e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 903020,
+          "foreground_fraction": 0.41806481481481483,
+          "visible_object_count": 29,
+          "visible_wall_count": 7,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.0917127585562412e-08,
+          "world_roundtrip_max_depth_error_m": 2.2150459244585363e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 911778,
+          "foreground_fraction": 0.42211944444444444,
+          "visible_object_count": 39,
+          "visible_wall_count": 6,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0880057743634097e-08,
+          "world_roundtrip_max_depth_error_m": 4.086757598997792e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 921661,
+          "foreground_fraction": 0.4266949074074074,
+          "visible_object_count": 59,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.0229435904184356e-08,
+          "world_roundtrip_max_depth_error_m": 2.1661605842382414e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 900692,
+          "foreground_fraction": 0.41698703703703704,
+          "visible_object_count": 51,
+          "visible_wall_count": 8,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.1270458344370127e-08,
+          "world_roundtrip_max_depth_error_m": 4.0191139305534307e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907518\\render_20261005_213653_851374",
+      "passed": true
+    },
+    {
+      "building_id": "4907520",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907520\\render_20261005_213147_960043",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 876787,
+          "foreground_fraction": 0.4059199074074074,
+          "visible_object_count": 24,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.2043893178798061e-15,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.1715201253537089e-08,
+          "world_roundtrip_max_depth_error_m": 4.4798298404202797e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 959296,
+          "foreground_fraction": 0.4441185185185185,
+          "visible_object_count": 23,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.5946746973204426e-08,
+          "world_roundtrip_max_depth_error_m": 2.099156404256064e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 876787,
+          "foreground_fraction": 0.4059199074074074,
+          "visible_object_count": 20,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.2714735930785537e-08,
+          "world_roundtrip_max_depth_error_m": 4.518341256698477e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 959296,
+          "foreground_fraction": 0.4441185185185185,
+          "visible_object_count": 23,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.595334080979228e-08,
+          "world_roundtrip_max_depth_error_m": 2.1083224055473693e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 909985,
+          "foreground_fraction": 0.42128935185185185,
+          "visible_object_count": 28,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.1347992767696269e-08,
+          "world_roundtrip_max_depth_error_m": 4.1018211049959064e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 900035,
+          "foreground_fraction": 0.4166828703703704,
+          "visible_object_count": 45,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.0799916455871426e-08,
+          "world_roundtrip_max_depth_error_m": 2.2246382513912977e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 906014,
+          "foreground_fraction": 0.4194509259259259,
+          "visible_object_count": 47,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.1067641025874764e-08,
+          "world_roundtrip_max_depth_error_m": 4.1086423152592033e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 901522,
+          "foreground_fraction": 0.4173712962962963,
+          "visible_object_count": 28,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.4210854715202004e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.0763309294125065e-08,
+          "world_roundtrip_max_depth_error_m": 2.0719426174764521e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907520\\render_20261005_213147_960043",
+      "passed": true
+    },
+    {
+      "building_id": "4907521",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907521\\render_20261005_213141_189867",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 976497,
+          "foreground_fraction": 0.45208194444444444,
+          "visible_object_count": 18,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.6101361072505824e-08,
+          "world_roundtrip_max_depth_error_m": 2.1459811705426546e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1002195,
+          "foreground_fraction": 0.46397916666666666,
+          "visible_object_count": 42,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.2865712051279843e-08,
+          "world_roundtrip_max_depth_error_m": 4.4531134335557e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 976497,
+          "foreground_fraction": 0.45208194444444444,
+          "visible_object_count": 39,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.5264171199523844e-08,
+          "world_roundtrip_max_depth_error_m": 2.184492586820852e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1002195,
+          "foreground_fraction": 0.46397916666666666,
+          "visible_object_count": 34,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.1712359082594048e-08,
+          "world_roundtrip_max_depth_error_m": 4.446292223292403e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 930861,
+          "foreground_fraction": 0.4309541666666667,
+          "visible_object_count": 50,
+          "visible_wall_count": 6,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.0032985048601404e-08,
+          "world_roundtrip_max_depth_error_m": 2.0303048131609103e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 937556,
+          "foreground_fraction": 0.4340537037037037,
+          "visible_object_count": 67,
+          "visible_wall_count": 6,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0027861208072864e-08,
+          "world_roundtrip_max_depth_error_m": 4.1247005810873816e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 932682,
+          "foreground_fraction": 0.4317972222222222,
+          "visible_object_count": 64,
+          "visible_wall_count": 7,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.9358253666723613e-08,
+          "world_roundtrip_max_depth_error_m": 2.0949642021150794e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 936610,
+          "foreground_fraction": 0.4336157407407407,
+          "visible_object_count": 53,
+          "visible_wall_count": 8,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.4210854715202004e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 9.792188393475953e-09,
+          "world_roundtrip_max_depth_error_m": 4.135500830670935e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4907521\\render_20261005_213141_189867",
+      "passed": true
+    },
+    {
+      "building_id": "4959321",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959321\\render_20261005_213623_686451",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 648061,
+          "foreground_fraction": 0.30002824074074075,
+          "visible_object_count": 5,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.1468395061674528e-08,
+          "world_roundtrip_max_depth_error_m": 2.1833557184436359e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 295680,
+          "foreground_fraction": 0.1368888888888889,
+          "visible_object_count": 9,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0283542906108778e-08,
+          "world_roundtrip_max_depth_error_m": 4.4710191104968544e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 648061,
+          "foreground_fraction": 0.30002824074074075,
+          "visible_object_count": 7,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.168098944821395e-08,
+          "world_roundtrip_max_depth_error_m": 2.135536192326981e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 295680,
+          "foreground_fraction": 0.1368888888888889,
+          "visible_object_count": 2,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0115172699443065e-08,
+          "world_roundtrip_max_depth_error_m": 4.1960390717576956e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 570619,
+          "foreground_fraction": 0.26417546296296296,
+          "visible_object_count": 11,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 7.105427357601002e-15,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.9489903024805244e-08,
+          "world_roundtrip_max_depth_error_m": 2.0605739337042905e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 570603,
+          "foreground_fraction": 0.26416805555555556,
+          "visible_object_count": 11,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.4210854715202004e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0150415619136766e-08,
+          "world_roundtrip_max_depth_error_m": 4.021316613034287e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 568575,
+          "foreground_fraction": 0.2632291666666667,
+          "visible_object_count": 4,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.9847902876790613e-08,
+          "world_roundtrip_max_depth_error_m": 2.2013324496583664e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 570497,
+          "foreground_fraction": 0.2641189814814815,
+          "visible_object_count": 4,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0312078302376904e-08,
+          "world_roundtrip_max_depth_error_m": 4.100968453712994e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959321\\render_20261005_213623_686451",
+      "passed": true
+    },
+    {
+      "building_id": "4959322",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959322\\render_20261005_213517_847588",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1380523,
+          "foreground_fraction": 0.6391310185185185,
+          "visible_object_count": 3,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.4210854715202004e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0395410754426848e-08,
+          "world_roundtrip_max_depth_error_m": 4.4070702642784454e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 666068,
+          "foreground_fraction": 0.3083648148148148,
+          "visible_object_count": 2,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 4.263256414560601e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.1698951968573965e-08,
+          "world_roundtrip_max_depth_error_m": 2.2708945834892802e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1380523,
+          "foreground_fraction": 0.6391310185185185,
+          "visible_object_count": 25,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.1011934475391172e-08,
+          "world_roundtrip_max_depth_error_m": 4.476987669477239e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 666068,
+          "foreground_fraction": 0.3083648148148148,
+          "visible_object_count": 24,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.179626790166367e-08,
+          "world_roundtrip_max_depth_error_m": 2.212630079156952e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 861170,
+          "foreground_fraction": 0.3986898148148148,
+          "visible_object_count": 4,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 7.985818228917196e-09,
+          "world_roundtrip_max_depth_error_m": 4.1582381982152583e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 826606,
+          "foreground_fraction": 0.382687962962963,
+          "visible_object_count": 26,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.5328851077356376e-08,
+          "world_roundtrip_max_depth_error_m": 2.1546497919189278e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 832975,
+          "foreground_fraction": 0.3856365740740741,
+          "visible_object_count": 25,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 7.171593097154982e-09,
+          "world_roundtrip_max_depth_error_m": 4.093436700713937e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 859637,
+          "foreground_fraction": 0.3979800925925926,
+          "visible_object_count": 4,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.619662270968547e-08,
+          "world_roundtrip_max_depth_error_m": 1.9632295789051568e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959322\\render_20261005_213517_847588",
+      "passed": true
+    },
+    {
+      "building_id": "4959323",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959323\\render_20261005_212832_658967",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 801900,
+          "foreground_fraction": 0.37125,
+          "visible_object_count": 13,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0356643542763777e-08,
+          "world_roundtrip_max_depth_error_m": 2.064552973024547e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 853695,
+          "foreground_fraction": 0.3952291666666667,
+          "visible_object_count": 33,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.009584593703039e-08,
+          "world_roundtrip_max_depth_error_m": 4.355911187303718e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 801900,
+          "foreground_fraction": 0.37125,
+          "visible_object_count": 71,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0215671863988973e-08,
+          "world_roundtrip_max_depth_error_m": 2.2035351321392227e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 853695,
+          "foreground_fraction": 0.3952291666666667,
+          "visible_object_count": 26,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 4.547473508864641e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 9.997165761888027e-09,
+          "world_roundtrip_max_depth_error_m": 4.4371972762746736e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 987372,
+          "foreground_fraction": 0.45711666666666667,
+          "visible_object_count": 28,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.1056499715778045e-08,
+          "world_roundtrip_max_depth_error_m": 2.070237314910628e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 973167,
+          "foreground_fraction": 0.4505402777777778,
+          "visible_object_count": 95,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 5.8371369959786534e-09,
+          "world_roundtrip_max_depth_error_m": 4.01485067413887e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 977445,
+          "foreground_fraction": 0.4525208333333333,
+          "visible_object_count": 93,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.0861526789085474e-08,
+          "world_roundtrip_max_depth_error_m": 2.1947244022157975e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 982238,
+          "foreground_fraction": 0.4547398148148148,
+          "visible_object_count": 24,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 5.846345629834104e-09,
+          "world_roundtrip_max_depth_error_m": 3.867057785100769e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959323\\render_20261005_212832_658967",
+      "passed": true
+    },
+    {
+      "building_id": "4959324",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959324\\render_20261005_212551_660155",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1241853,
+          "foreground_fraction": 0.5749319444444444,
+          "visible_object_count": 6,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.1758069124189205e-08,
+          "world_roundtrip_max_depth_error_m": 4.4494186113297474e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 431400,
+          "foreground_fraction": 0.19972222222222222,
+          "visible_object_count": 5,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 4.59143620901159e-08,
+          "world_roundtrip_max_depth_error_m": 2.1079671341794892e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1241853,
+          "foreground_fraction": 0.5749319444444444,
+          "visible_object_count": 5,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.552713678800501e-15,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.1187588572502136e-08,
+          "world_roundtrip_max_depth_error_m": 4.4491343942354433e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 431400,
+          "foreground_fraction": 0.19972222222222222,
+          "visible_object_count": 4,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 4.617868398781866e-08,
+          "world_roundtrip_max_depth_error_m": 2.0870061234745663e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 725556,
+          "foreground_fraction": 0.33590555555555557,
+          "visible_object_count": 8,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.8165792425861582e-08,
+          "world_roundtrip_max_depth_error_m": 4.0536818346481596e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 724543,
+          "foreground_fraction": 0.33543657407407407,
+          "visible_object_count": 6,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.406194082344882e-08,
+          "world_roundtrip_max_depth_error_m": 2.1823964857503597e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 725557,
+          "foreground_fraction": 0.33590601851851853,
+          "visible_object_count": 8,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.6828494153742213e-08,
+          "world_roundtrip_max_depth_error_m": 4.058158253883448e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 724542,
+          "foreground_fraction": 0.3354361111111111,
+          "visible_object_count": 8,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.4237473300891e-08,
+          "world_roundtrip_max_depth_error_m": 2.0899193486911827e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959324\\render_20261005_212551_660155",
+      "passed": true
+    },
+    {
+      "building_id": "4959457",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959457\\render_20261005_212650_429870",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 658274,
+          "foreground_fraction": 0.3047564814814815,
+          "visible_object_count": 277,
+          "visible_wall_count": 15,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 5.2076529755140655e-09,
+          "world_roundtrip_max_depth_error_m": 2.163460521842353e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 884909,
+          "foreground_fraction": 0.4096800925925926,
+          "visible_object_count": 94,
+          "visible_wall_count": 11,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 8.652184332907252e-16,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 4.4390162656782195e-09,
+          "world_roundtrip_max_depth_error_m": 4.5139358917367645e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 658274,
+          "foreground_fraction": 0.3047564814814815,
+          "visible_object_count": 22,
+          "visible_wall_count": 16,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 5.126594260218553e-09,
+          "world_roundtrip_max_depth_error_m": 2.1287860363372602e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 884909,
+          "foreground_fraction": 0.4096800925925926,
+          "visible_object_count": 103,
+          "visible_wall_count": 18,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 4.308958523324691e-09,
+          "world_roundtrip_max_depth_error_m": 4.317826096666977e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 897684,
+          "foreground_fraction": 0.41559444444444443,
+          "visible_object_count": 396,
+          "visible_wall_count": 17,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 5.501988198375329e-09,
+          "world_roundtrip_max_depth_error_m": 2.1520918380701914e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 891257,
+          "foreground_fraction": 0.41261898148148146,
+          "visible_object_count": 51,
+          "visible_wall_count": 21,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.610249794088304e-09,
+          "world_roundtrip_max_depth_error_m": 4.164348865742795e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 937013,
+          "foreground_fraction": 0.4338023148148148,
+          "visible_object_count": 50,
+          "visible_wall_count": 24,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 5.3796611609868705e-09,
+          "world_roundtrip_max_depth_error_m": 2.1947244022157975e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 862387,
+          "foreground_fraction": 0.39925324074074076,
+          "visible_object_count": 396,
+          "visible_wall_count": 22,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.760316419880837e-09,
+          "world_roundtrip_max_depth_error_m": 4.0972736314870417e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959457\\render_20261005_212650_429870",
+      "passed": true
+    },
+    {
+      "building_id": "4959458",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959458\\render_20261005_213306_668266",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1210602,
+          "foreground_fraction": 0.5604638888888889,
+          "visible_object_count": 12,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.283222996396944e-09,
+          "world_roundtrip_max_depth_error_m": 4.41090719505155e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 671678,
+          "foreground_fraction": 0.31096203703703706,
+          "visible_object_count": 2,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.133276666427264e-08,
+          "world_roundtrip_max_depth_error_m": 2.0961010704922955e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1210602,
+          "foreground_fraction": 0.5604638888888889,
+          "visible_object_count": 35,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.328925105161034e-09,
+          "world_roundtrip_max_depth_error_m": 4.431086608747137e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 671678,
+          "foreground_fraction": 0.31096203703703706,
+          "visible_object_count": 3,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.179353941755835e-08,
+          "world_roundtrip_max_depth_error_m": 2.1717028175771702e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 935020,
+          "foreground_fraction": 0.4328796296296296,
+          "visible_object_count": 12,
+          "visible_wall_count": 3,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 7.045173333608545e-09,
+          "world_roundtrip_max_depth_error_m": 3.880273879985907e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 915608,
+          "foreground_fraction": 0.4238925925925926,
+          "visible_object_count": 34,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.3582166502601467e-08,
+          "world_roundtrip_max_depth_error_m": 2.1655921500496333e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 918130,
+          "foreground_fraction": 0.4250601851851852,
+          "visible_object_count": 34,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 7.004473445704207e-09,
+          "world_roundtrip_max_depth_error_m": 3.994244934801827e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 934601,
+          "foreground_fraction": 0.43268564814814814,
+          "visible_object_count": 11,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.842170943040401e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.4425722838495858e-08,
+          "world_roundtrip_max_depth_error_m": 2.0747847884194925e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959458\\render_20261005_213306_668266",
+      "passed": true
+    },
+    {
+      "building_id": "4959460",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959460\\render_20261005_212325_838587",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 511616,
+          "foreground_fraction": 0.23685925925925927,
+          "visible_object_count": 8,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.942432158510201e-09,
+          "world_roundtrip_max_depth_error_m": 4.4218495531822555e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 440978,
+          "foreground_fraction": 0.2041564814814815,
+          "visible_object_count": 234,
+          "visible_wall_count": 7,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.73183125804644e-09,
+          "world_roundtrip_max_depth_error_m": 2.1657342585967854e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 511616,
+          "foreground_fraction": 0.23685925925925927,
+          "visible_object_count": 171,
+          "visible_wall_count": 7,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.734498932317365e-09,
+          "world_roundtrip_max_depth_error_m": 4.433786671143025e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 440978,
+          "foreground_fraction": 0.2041564814814815,
+          "visible_object_count": 64,
+          "visible_wall_count": 7,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.289134711958468e-09,
+          "world_roundtrip_max_depth_error_m": 2.0912693798891269e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 551330,
+          "foreground_fraction": 0.2552453703703704,
+          "visible_object_count": 240,
+          "visible_wall_count": 9,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.057607500522863e-09,
+          "world_roundtrip_max_depth_error_m": 3.9949554775375873e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 891982,
+          "foreground_fraction": 0.41295462962962964,
+          "visible_object_count": 366,
+          "visible_wall_count": 10,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 7.444214134011418e-09,
+          "world_roundtrip_max_depth_error_m": 2.1435653252410702e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 566170,
+          "foreground_fraction": 0.26211574074074073,
+          "visible_object_count": 213,
+          "visible_wall_count": 10,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.9322109185159206e-09,
+          "world_roundtrip_max_depth_error_m": 4.091020855412353e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 902529,
+          "foreground_fraction": 0.4178375,
+          "visible_object_count": 39,
+          "visible_wall_count": 9,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.842170943040401e-14,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 7.530388757004403e-09,
+          "world_roundtrip_max_depth_error_m": 2.1728396859543864e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959460\\render_20261005_212325_838587",
+      "passed": true
+    },
+    {
+      "building_id": "4959462",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959462\\render_20261005_213548_586798",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 835301,
+          "foreground_fraction": 0.38671342592592595,
+          "visible_object_count": 82,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.8176706362282857e-08,
+          "world_roundtrip_max_depth_error_m": 2.1714186004828662e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 808896,
+          "foreground_fraction": 0.37448888888888887,
+          "visible_object_count": 2,
+          "visible_wall_count": 2,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 7.958078640513122e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.510613856225973e-08,
+          "world_roundtrip_max_depth_error_m": 4.510525286605116e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 835301,
+          "foreground_fraction": 0.38671342592592595,
+          "visible_object_count": 66,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.860121301433537e-08,
+          "world_roundtrip_max_depth_error_m": 2.163318413295201e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 808896,
+          "foreground_fraction": 0.37448888888888887,
+          "visible_object_count": 11,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.487467216065852e-08,
+          "world_roundtrip_max_depth_error_m": 4.489209004532313e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 906599,
+          "foreground_fraction": 0.41972175925925925,
+          "visible_object_count": 95,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.7077582015190274e-08,
+          "world_roundtrip_max_depth_error_m": 2.0267520994821098e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 875048,
+          "foreground_fraction": 0.4051148148148148,
+          "visible_object_count": 57,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.698862075107172e-09,
+          "world_roundtrip_max_depth_error_m": 4.0246561638923595e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 885842,
+          "foreground_fraction": 0.410112037037037,
+          "visible_object_count": 61,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.716591668809997e-08,
+          "world_roundtrip_max_depth_error_m": 2.006999011427979e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 904630,
+          "foreground_fraction": 0.4188101851851852,
+          "visible_object_count": 89,
+          "visible_wall_count": 6,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.86336692929035e-09,
+          "world_roundtrip_max_depth_error_m": 4.050093593832571e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959462\\render_20261005_213548_586798",
+      "passed": true
+    },
+    {
+      "building_id": "4959465",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959465\\render_20261005_212613_784738",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 632097,
+          "foreground_fraction": 0.2926375,
+          "visible_object_count": 123,
+          "visible_wall_count": 44,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.1250237952917814e-09,
+          "world_roundtrip_max_depth_error_m": 4.5343995225266553e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1185266,
+          "foreground_fraction": 0.5487342592592592,
+          "visible_object_count": 20,
+          "visible_wall_count": 15,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.2174837138445582e-08,
+          "world_roundtrip_max_depth_error_m": 2.121396391885355e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 632097,
+          "foreground_fraction": 0.2926375,
+          "visible_object_count": 24,
+          "visible_wall_count": 16,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 5.684341886080801e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.21074367093388e-09,
+          "world_roundtrip_max_depth_error_m": 4.491198524192441e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 1185266,
+          "foreground_fraction": 0.5487342592592592,
+          "visible_object_count": 76,
+          "visible_wall_count": 30,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 4.547473508864641e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 1.2538180271803867e-08,
+          "world_roundtrip_max_depth_error_m": 2.1051960175100248e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 873867,
+          "foreground_fraction": 0.40456805555555553,
+          "visible_object_count": 168,
+          "visible_wall_count": 76,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.7053025658242404e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.925379132851958e-09,
+          "world_roundtrip_max_depth_error_m": 4.063736014359165e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 683570,
+          "foreground_fraction": 0.3164675925925926,
+          "visible_object_count": 41,
+          "visible_wall_count": 23,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 6.237655725271907e-09,
+          "world_roundtrip_max_depth_error_m": 2.1600499167107046e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 682352,
+          "foreground_fraction": 0.3159037037037037,
+          "visible_object_count": 111,
+          "visible_wall_count": 51,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.5487346394802444e-09,
+          "world_roundtrip_max_depth_error_m": 4.120579433219973e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 687902,
+          "foreground_fraction": 0.31847314814814814,
+          "visible_object_count": 238,
+          "visible_wall_count": 105,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 6.346454028971493e-09,
+          "world_roundtrip_max_depth_error_m": 2.1191226551309228e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959465\\render_20261005_212613_784738",
+      "passed": true
+    },
+    {
+      "building_id": "4959466",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959466\\render_20261005_212812_531608",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 621573,
+          "foreground_fraction": 0.2877652777777778,
+          "visible_object_count": 112,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.221604730351828e-09,
+          "world_roundtrip_max_depth_error_m": 2.177102942368947e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 674769,
+          "foreground_fraction": 0.3123930555555556,
+          "visible_object_count": 3,
+          "visible_wall_count": 1,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 5.684341886080801e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.285610419989098e-09,
+          "world_roundtrip_max_depth_error_m": 4.398543751449324e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 621573,
+          "foreground_fraction": 0.2877652777777778,
+          "visible_object_count": 10,
+          "visible_wall_count": 7,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 8.33847479952965e-09,
+          "world_roundtrip_max_depth_error_m": 2.2038193492335267e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 674769,
+          "foreground_fraction": 0.3123930555555556,
+          "visible_object_count": 7,
+          "visible_wall_count": 4,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 7.751509656372946e-09,
+          "world_roundtrip_max_depth_error_m": 4.4445869207265787e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 862621,
+          "foreground_fraction": 0.3993615740740741,
+          "visible_object_count": 117,
+          "visible_wall_count": 5,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.7053025658242404e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 9.725908967084251e-09,
+          "world_roundtrip_max_depth_error_m": 2.0415313883859199e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 887541,
+          "foreground_fraction": 0.4108986111111111,
+          "visible_object_count": 16,
+          "visible_wall_count": 10,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 5.079073162050918e-09,
+          "world_roundtrip_max_depth_error_m": 4.127116426388966e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 885643,
+          "foreground_fraction": 0.4100199074074074,
+          "visible_object_count": 18,
+          "visible_wall_count": 12,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 4.547473508864641e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 9.52741174842231e-09,
+          "world_roundtrip_max_depth_error_m": 1.9522872207744513e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 855191,
+          "foreground_fraction": 0.39592175925925926,
+          "visible_object_count": 120,
+          "visible_wall_count": 8,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 5.046331352787092e-09,
+          "world_roundtrip_max_depth_error_m": 4.133369202463655e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\4959466\\render_20261005_212812_531608",
+      "passed": true
+    },
+    {
+      "building_id": "60042",
+      "render_dir": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\60042\\render_20261005_213039_306458",
+      "checks": {
+        "source_sha_verified": true,
+        "renderer_sha_verified": true,
+        "automatic_front": true,
+        "source_wall_ancestry_verified": true,
+        "reusable": true
+      },
+      "views": [
+        {
+          "name": "view_000",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 625691,
+          "foreground_fraction": 0.28967175925925925,
+          "visible_object_count": 124,
+          "visible_wall_count": 20,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 4.1515513433842763e-16,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.1836862035561353e-09,
+          "world_roundtrip_max_depth_error_m": 4.4786929720430635e-10,
+          "passed": true
+        },
+        {
+          "name": "view_090",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 650942,
+          "foreground_fraction": 0.301362037037037,
+          "visible_object_count": 140,
+          "visible_wall_count": 18,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 1.1368683772161603e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 7.307335181394592e-09,
+          "world_roundtrip_max_depth_error_m": 2.1884716261411086e-10,
+          "passed": true
+        },
+        {
+          "name": "view_180",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 625691,
+          "foreground_fraction": 0.28967175925925925,
+          "visible_object_count": 28,
+          "visible_wall_count": 20,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 3.3505784813314676e-09,
+          "world_roundtrip_max_depth_error_m": 4.445723789103795e-10,
+          "passed": true
+        },
+        {
+          "name": "view_270",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 650942,
+          "foreground_fraction": 0.301362037037037,
+          "visible_object_count": 30,
+          "visible_wall_count": 21,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 7.190919859567657e-09,
+          "world_roundtrip_max_depth_error_m": 2.0941115508321673e-10,
+          "passed": true
+        },
+        {
+          "name": "view_045",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 564928,
+          "foreground_fraction": 0.26154074074074074,
+          "visible_object_count": 256,
+          "visible_wall_count": 29,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.5257804736611433e-09,
+          "world_roundtrip_max_depth_error_m": 3.986997398897074e-10,
+          "passed": true
+        },
+        {
+          "name": "view_135",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 806679,
+          "foreground_fraction": 0.3734625,
+          "visible_object_count": 160,
+          "visible_wall_count": 28,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 3.410605131648481e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 6.284608389250934e-09,
+          "world_roundtrip_max_depth_error_m": 2.071374183287844e-10,
+          "passed": true
+        },
+        {
+          "name": "view_225",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 552537,
+          "foreground_fraction": 0.25580416666666667,
+          "visible_object_count": 43,
+          "visible_wall_count": 30,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 2.6252564566675574e-09,
+          "world_roundtrip_max_depth_error_m": 4.0523673305870034e-10,
+          "passed": true
+        },
+        {
+          "name": "view_315",
+          "errors": [],
+          "size_wh": [
+            1800,
+            1200
+          ],
+          "foreground_pixel_count": 814725,
+          "foreground_fraction": 0.3771875,
+          "visible_object_count": 144,
+          "visible_wall_count": 32,
+          "border_touch": false,
+          "camera_inverse_max_abs_error": 2.2737367544323206e-13,
+          "sample_count": 257,
+          "world_roundtrip_max_pixel_error": 6.108280103944708e-09,
+          "world_roundtrip_max_depth_error_m": 2.156070877390448e-10,
+          "passed": true
+        }
+      ],
+      "errors": [],
+      "reusable_render_path": "LOCAL_WORKSPACE\\my_results\\render_gallery\\buildings\\60042\\render_20261005_213039_306458",
+      "passed": true
+    }
+  ]
+}

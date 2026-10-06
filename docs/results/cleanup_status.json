@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-06",
+  "status": "not_executed_policy_blocked",
+  "removed_file_count": 0,
+  "removed_bytes": 0,
+  "reviewed_target_count": 9,
+  "reviewed_file_count": 121,
+  "tool_response": "CreateProcess rejected: blocked by policy",
+  "process_started": false,
+  "follow_up": "Stopped deletion after rejection; no alternative shell, filesystem API, split request, or other bypass attempted.",
+  "obsolete_tracked_entrypoint_still_present": "detect_my_facade.py",
+  "active_entrypoint": "run_facade_pipeline.py"
+}

@@ -1,0 +1,64 @@
+{
+  "status": "mapped",
+  "photo": "WORKSPACE/CityGML-IMG_Architecture/Drills/Texture2LoD3_dataset/textures/4907518_front.png",
+  "photo_sha256": "0537edc8f1dc1ad1004f3f9f514801554b359231aa3b8bc5828029005ff70d32",
+  "gallery": "WORKSPACE/my_results/render_gallery/gallery_20261005_212322_924197/gallery_index.json",
+  "gallery_sha256": "b608e52e2230af7416fa40c79d2c716bd3059d250872f749bf8a94d6690e800e",
+  "output_dir": "WORKSPACE/my_results/facade_pipeline/run_20261006_205906_792281",
+  "filename_building_id_used": false,
+  "manual_calibration_used": false,
+  "gt_masks_used": false,
+  "source_sha256": {
+    "run_facade_pipeline.py": "75f1a6c979acbd56cc4d1f05e7a9f931dace2d19aacb0c87ee844e0155e7a2dc",
+    "facade_retrieval.py": "1542c9eb0f9b1fff744f6e98fb4e76510e43c340982615ced4af9ed87cfc36ac",
+    "facade_auto_mapping.py": "8271dddda3c6b182b8bbe4ed6f5cab65511508f76cd51cb88f0255c6dd77518d",
+    "match_facade_roma.py": "103d86c32f07dfa14efc24ffa7947caed0663ce2c8b3a5bab620802563dc1f5d",
+    "facade_match_geometry.py": "b1c6608cd822e7341fa74cdb4e13af7f2bc0e955724806cc597e4a1c046ab708",
+    "facade_match_structure.py": "4e84e87c7d0cd365d4074ffdc38954a268c0f60c0c2843eb3030b0ebb2b8dbd3",
+    "map_facade_to_3d.py": "508ab5ba2de36828f5c72ac333cc935562db2aa6d9f2daa57aec0d33809d4f8b",
+    "try_grounding_dino16.py": "955f136ddf32e04fe09b90879af0d38a2fdfb0acf9da47a70eb7ac214b467c9a"
+  },
+  "selection": {
+    "accepted": true,
+    "reason": "automatic_checks_passed",
+    "best_candidate_id": "candidate_02",
+    "runner_up_id": "candidate_03",
+    "geometry_score": 0.7835218093699515,
+    "margin": 0.6981003543100988,
+    "min_score": 0.35,
+    "min_margin": 0.08,
+    "independent_accuracy_verified": false,
+    "cross_view_agreement": {
+      "available": true,
+      "passed": true,
+      "comparisons": [
+        {
+          "candidate_id": "candidate_12",
+          "point_count": 45,
+          "median_m": 0.055725008414367144,
+          "p90_m": 0.12006087623191083,
+          "passed": true
+        },
+        {
+          "candidate_id": "candidate_13",
+          "point_count": 45,
+          "median_m": 0.042194291521738266,
+          "p90_m": 0.09698928346001932,
+          "passed": true
+        }
+      ],
+      "median_limit_m": 0.3,
+      "p90_limit_m": 0.75,
+      "independent_accuracy_verified": false
+    }
+  },
+  "candidate_count": 13,
+  "detection_source": "WORKSPACE/my_results/grounding_dino16/batch_detection/D_20260930_155603_929347/4907518_front/detections.json",
+  "independent_accuracy_verified": false,
+  "building_id": "4907518",
+  "wall_id": "DEBY_LOD2_4907518_a70cd5c1-43ad-4142-9c69-9649c11e671c",
+  "view_name": "view_270",
+  "selected_candidate": "candidate_02",
+  "elapsed_seconds": 68.38,
+  "export_note": "WORKSPACE paths reference local run artifacts. This is a development example, not independent ground-truth accuracy validation."
+}

@@ -3,7 +3,7 @@
 这是新增的教学适配实现，使用 NumPy 的线性代数和 Matplotlib 的交互窗口，
 不调用原 Stage 3 的 30 米图高假设，也不调用神经网络或下载权重。
 
-先运行 detect_my_facade.py。随后本文件按以下顺序工作：
+先运行 try_grounding_dino16.py 完成实验 D 批量检测。随后本文件按以下顺序工作：
 1. 找到最新批次，选择一张已成功检测的照片，并由你确认对应的平面墙。
 2. 左图点照片上的位置，右图点同一个物理位置，至少建立 4 组拟合点。
 3. 另选至少 1 组没有参与拟合的检查点，并在照片上圈定本次映射的墙面区域。
@@ -26,7 +26,7 @@ import numpy as np
 
 # ==================== 用户参数：先用当前已经熟悉的正面照片 ====================
 ROOT = Path(__file__).resolve().parent
-LATEST_RUN = ROOT / "my_results/batch_detection/latest_run.json"
+LATEST_RUN = ROOT / "my_results/grounding_dino16/batch_detection/latest_run.json"
 IMAGE_KEY = "4959323_front"  # 改为 mapping_manifest.json 中其他图片的 image_key。
 WALL_ID = None  # 可填写完整 WallSurface ID；None 表示在窗口中选择并确认。
 RECALIBRATE = True  # 已存标定且图片/模型未变时复用；True 表示重新点选。
@@ -579,7 +579,7 @@ def main():
     from PIL import Image
 
     if not LATEST_RUN.is_file():
-        print("尚无批量检测记录。请先在 PyCharm 运行 detect_my_facade.py，再运行本文件。")
+        print("尚无实验 D 批量检测记录。请先在 PyCharm 运行 try_grounding_dino16.py，再运行本文件。")
         return
     latest = json.loads(LATEST_RUN.read_text(encoding="utf-8"))
     run_dir = Path(latest["run_directory"])
@@ -589,7 +589,7 @@ def main():
     if item is None:
         raise ValueError(f"找不到 IMAGE_KEY={IMAGE_KEY}，可选：{[record['image_key'] for record in items]}")
     if item["status"] in ("detection_failed", "pending_detection") or not Path(item["detection_json"]).is_file():
-        raise ValueError("该照片还没有成功检测；请先运行 detect_my_facade.py 并检查批量汇总。")
+        raise ValueError("该照片还没有成功检测；请先运行 try_grounding_dino16.py 并检查批量汇总。")
     if not item.get("citygml_path") or not Path(item["citygml_path"]).is_file():
         raise ValueError("该照片尚未匹配已有 CityGML，需要先确认 building_id/citygml_path。")
     report = json.loads(Path(item["detection_json"]).read_text(encoding="utf-8"))
