@@ -8,7 +8,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from facade_match_geometry import project_homography
-from facade_match_structure import refine_with_window_structure
+from facade_match_structure import assess_door_layout, assess_window_layout, refine_with_window_structure
 
 
 def scene(photo_centers, target_centers=None):
@@ -38,6 +38,44 @@ def refine(initial, data):
 
 
 class FacadeMatchStructureTests(unittest.TestCase):
+    def test_door_layout_rejects_displaced_door_pattern_when_evidence_is_sufficient(self):
+        object_map = np.zeros((100, 200), dtype=int)
+        for index, x in enumerate((20, 80, 140), 1):
+            object_map[40:61, x:x+11] = index
+        manifest = {"objects": [{"kind": "Door", "wall_id": "w", "index": index}
+                                for index in (1, 2, 3)]}
+        detections = {"detections": [{"class": "door", "score": .8,
+                                       "box": [x, 40, x+10, 60]} for x in (20, 80, 140)]}
+        good = assess_door_layout(np.eye(3), (200, 100), (200, 100),
+                                  detections, object_map, manifest, "w")
+        bad = assess_door_layout(np.array([[1., 0., 35.], [0., 1., 0.], [0., 0., 1.]]),
+                                 (200, 100), (200, 100), detections, object_map, manifest, "w")
+        self.assertTrue(good["required"])
+        self.assertTrue(good["passed"])
+        self.assertFalse(bad["passed"])
+
+    def test_door_layout_marks_sparse_doors_as_unchecked(self):
+        result = assess_door_layout(np.eye(3), (100, 100), (100, 100),
+                                    {"detections": [{"class": "door", "score": .8,
+                                                     "box": [20, 20, 40, 60]}]},
+                                    np.zeros((100, 100), dtype=int), {"objects": []}, "w")
+        self.assertFalse(result["required"])
+
+    def test_layout_gate_rejects_many_windows_that_cover_too_little_width(self):
+        report = {"eligible_photo_windows": 19, "visible_model_windows": 19, "association_count": 17,
+                  "train_photo_coverage": {"convex_hull_fraction": .33, "x_span_fraction": .61, "y_span_fraction": .65}}
+        layout = assess_window_layout(report)
+        self.assertTrue(layout["required"])
+        self.assertFalse(layout["passed"])
+        self.assertIn("window_layout_photo_x_span_at_least_0_65", layout["failed_checks"])
+
+    def test_layout_gate_is_not_required_for_a_small_window_set(self):
+        report = {"eligible_photo_windows": 4, "visible_model_windows": 20, "association_count": 4,
+                  "train_photo_coverage": {"convex_hull_fraction": .1, "x_span_fraction": .2, "y_span_fraction": .2}}
+        layout = assess_window_layout(report)
+        self.assertFalse(layout["required"])
+        self.assertTrue(layout["passed"])
+
     def test_good_coarse_alignment_is_refined_without_manual_inputs(self):
         initial = np.array([[1., 0., 4.], [0., 1., -3.], [0., 0., 1.]])
         H, report, arrays = refine(initial, scene(grid()))

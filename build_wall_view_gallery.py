@@ -78,7 +78,8 @@ def save_progress(batch_dir, rows, renderer_hash, final=False):
                "scope": "Independent Experiment E gallery. Uses CityGML geometry only; no photos, detections, labels, or manual calibration."}
     base_gallery.write_json(batch_dir / "batch_summary.json", summary)
     base_gallery.write_json(batch_dir / "gallery_index.json", {"schema_version": 1, "status": status, "experiment": "E",
-                           "view_strategy": "each eligible planar facade wall at yaw -15/0/+15 degrees", "view_count": len(views),
+                           "view_strategy": "each eligible planar facade wall at yaw " + "/".join(
+                               f"{yaw:g}" for yaw in renderer.WALL_VIEW_YAWS_DEG) + " degrees", "view_count": len(views),
                            "building_count": counts["complete"], "views": views, "manual_calibration_used": False,
                            "photos_or_detections_used": False, "scope": summary["scope"]})
     with (batch_dir / "batch_summary.csv").open("w", newline="", encoding="utf-8-sig") as stream:

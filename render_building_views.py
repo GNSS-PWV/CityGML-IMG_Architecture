@@ -47,7 +47,7 @@ MAX_REFERENCE_WALL_TILT_DEG = 5.0  # 仅筛选环绕起点：墙法向与水平�
 WALL_VIEW_MAX_TILT_DEG = 10.0
 WALL_VIEW_MIN_AREA_M2 = 10.0
 WALL_VIEW_RELATIVE_AREA = .12
-WALL_VIEW_YAWS_DEG = (-15.0, 0.0, 15.0)
+WALL_VIEW_YAWS_DEG = (-30.0, 0.0, 30.0)
 USE_MODEL_COLORS = True       # 使用已有 diffuseColor；无颜色的面用下方默认色。
 BACKGROUND = (246, 245, 241)
 
@@ -647,7 +647,7 @@ def make_wall_contact_sheet(output, views, building_id):
 def render_wall_views(gml_path, output_root, building_id=None, image_size=(1800, 1200)) -> Path:
     """渲染实验 E 的墙面 3 视角图库，保存与八视角相同的几何回投数据。
 
-    每个入选 CityGML 外立面独立执行 -15°、0°、+15° 三个视角。渲染整个建筑而
+    每个入选 CityGML 外立面独立执行 -30°、0°、+30° 三个视角。渲染整个建筑而
     相机按目标墙取景，故遮挡仍由完整三维 Z-buffer 计算；不会修改 CityGML。
     """
     start = time.perf_counter()

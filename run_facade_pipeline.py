@@ -19,7 +19,7 @@ from PIL import Image, ImageDraw
 
 import match_facade_roma as roma
 from facade_match_geometry import fit_and_check, roma_to_image_pixels
-from facade_match_structure import refine_with_window_structure
+from facade_match_structure import assess_door_layout, assess_window_layout, refine_with_window_structure
 
 ROOT = Path(__file__).resolve().parent
 DATASET = next((p for p in (ROOT / "Drills/Texture2LoD3_dataset",
@@ -266,17 +266,24 @@ def candidate_match(photo, detections, view, wall_id, allowed, crop, manifest,
     vote = choose_wall_from_matches(b[arrays["inlier_mask"]], {"depth_m": depth, "object_index": objects}, manifest)
     refined_h, structure, struct_arrays = refine_with_window_structure(H, photo.size, render.size,
                                                                 detections, objects, manifest, wall_id)
+    layout = assess_window_layout(structure)
     selected_h, method, selected_report = roma.choose_automatic_transform(H, report, refined_h, structure)
+    door_layout = assess_door_layout(selected_h, photo.size, render.size, detections,
+                                     objects, manifest, wall_id)
     uses_structure = method == "roma_window_structure"
     method = dense_method + ("_window_structure" if uses_structure else "")
     # 排序仍使用原始RoMa留出证据，不能因为少量结构点被挑得好就压倒其他建筑。
-    result = {"wall_id": wall_id, "wall_vote": vote, "gate_passed": bool(selected_report["gate_passed"]),
+    layout_allows_candidate = layout["passed"] and door_layout["passed"]
+    result = {"wall_id": wall_id, "wall_vote": vote,
+              "gate_passed": bool(selected_report["gate_passed"] and layout_allows_candidate),
               "geometry_score": geometry_score(report), "selected_method": method,
               "homography_photo_to_render": selected_h.tolist(), "roma_validation": report,
               "roma_homography_photo_to_render": H.tolist(),
               "coarse_roma_homography": coarse_h.tolist(), "coarse_roma_validation": coarse_report,
               "tiled_roma": tiled_report,
-              "structure_validation": structure, "raw_matches": str(cache / "raw.npz"), "input_identity": identity,
+              "structure_validation": structure, "layout_validation": layout,
+              "door_layout_validation": door_layout,
+              "raw_matches": str(cache / "raw.npz"), "input_identity": identity,
               "crop_xyxy": crop, "independent_accuracy_verified": False}
     np.savez_compressed(directory / "roma_matches.npz", photo_xy=a, render_xy=b, **arrays)
     roma.draw_matches(photo, crop_image, a, b, crop[:2], arrays, directory, filename="roma_matches.png",

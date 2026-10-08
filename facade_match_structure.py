@@ -34,6 +34,94 @@ STRUCTURE_POLICY = {
     "split": "8x4 photo cells; (column+row)%3==0 held out; no refit on holdout",
 }
 
+# 这是候选选择前的窗布局证据门槛，不重拟合 RoMa，也不把窗中心当作真值。
+# 只有照片和模型墙面都至少可见 12 个窗时才要求它，避免少窗立面因证据本来不足
+# 被误判为错误。若窗数充足却只能覆盖局部区域，重复窗列可能造成看似自洽的错配。
+LAYOUT_POLICY = {
+    "minimum_windows_to_require_layout": 12,
+    "minimum_mutual_associations": 12,
+    "minimum_photo_hull_fraction": .30,
+    "minimum_photo_x_span_fraction": .65,
+    "minimum_photo_y_span_fraction": .60,
+}
+
+# 门的检测通常很少，只有双方都至少有 3 个可见门时才检查门的相对位置。
+# 证据不足时明确返回 required=False，不把“未检查”误写成门布局验证通过。
+DOOR_LAYOUT_POLICY = {
+    "minimum_doors_to_require_layout": 3,
+    "minimum_mutual_associations": 2,
+    "minimum_photo_association_fraction": .50,
+    "maximum_center_distance_render_fraction": .06,
+}
+
+
+def assess_window_layout(report):
+    """审计窗布局是否覆盖整张立面；返回可单独记录的证据而非准确率声明。"""
+    photo_count = int(report.get("eligible_photo_windows", 0) or 0)
+    model_count = int(report.get("visible_model_windows", 0) or 0)
+    required = min(photo_count, model_count) >= LAYOUT_POLICY["minimum_windows_to_require_layout"]
+    coverage = report.get("train_photo_coverage", {})
+    checks = {
+        "mutual_window_associations_at_least_12": int(report.get("association_count", 0) or 0) >= LAYOUT_POLICY["minimum_mutual_associations"],
+        "window_layout_photo_hull_at_least_0_30": float(coverage.get("convex_hull_fraction", 0.) or 0.) >= LAYOUT_POLICY["minimum_photo_hull_fraction"],
+        "window_layout_photo_x_span_at_least_0_65": float(coverage.get("x_span_fraction", 0.) or 0.) >= LAYOUT_POLICY["minimum_photo_x_span_fraction"],
+        "window_layout_photo_y_span_at_least_0_60": float(coverage.get("y_span_fraction", 0.) or 0.) >= LAYOUT_POLICY["minimum_photo_y_span_fraction"],
+    }
+    return {"required": required, "passed": bool(all(checks.values())) if required else True,
+            "policy": dict(LAYOUT_POLICY), "photo_window_count": photo_count, "model_window_count": model_count,
+            "checks": checks, "failed_checks": [name for name, value in checks.items() if not value] if required else [],
+            "interpretation": "仅在两侧窗数充足时要求匹配窗覆盖立面的横向和纵向范围；通过不等于独立真值验证。"}
+
+
+def assess_door_layout(homography, photo_size, render_size, detector_json,
+                       object_map, manifest, wall_id):
+    """用投影后门中心与模型可见门中心的互为最近邻关系检查门布局。"""
+    photo_wh, render_wh = _size(photo_size), _size(render_size)
+    objects = np.asarray(object_map)
+    photo_centers = []
+    for detection in detector_json.get("detections", []):
+        box = _box(detection.get("box"))
+        try:
+            score = float(detection.get("score", 0.))
+        except (TypeError, ValueError):
+            continue
+        if (detection.get("class") != "door" or box is None or not np.isfinite(score)
+                or score < STRUCTURE_POLICY["min_detection_score"]):
+            continue
+        if min(*box[:2], *(photo_wh-box[2:])) < STRUCTURE_POLICY["photo_border_margin_px"]:
+            continue
+        photo_centers.append((box[:2]+box[2:])/2)
+    model_centers = []
+    for obj in manifest.get("objects", []):
+        if obj.get("kind") != "Door" or obj.get("wall_id") != wall_id:
+            continue
+        ys, xs = np.where(objects == obj["index"])
+        if len(xs) == 0:
+            continue
+        model_centers.append(((xs.min()+xs.max())/2, (ys.min()+ys.max())/2))
+    photo_count, model_count = len(photo_centers), len(model_centers)
+    required = min(photo_count, model_count) >= DOOR_LAYOUT_POLICY["minimum_doors_to_require_layout"]
+    report = {"required": required, "passed": True, "photo_door_count": photo_count,
+              "model_door_count": model_count, "mutual_association_count": 0,
+              "policy": dict(DOOR_LAYOUT_POLICY), "failed_checks": [],
+              "interpretation": "仅在照片和目标墙各有至少 3 个有效门时检查；未触发不代表门布局通过验证。"}
+    if not required:
+        return report
+    projected = project_homography(np.asarray(photo_centers), homography)
+    model = np.asarray(model_centers)
+    distances = np.linalg.norm(projected[:, None, :]-model[None, :, :], axis=2)
+    limit = DOOR_LAYOUT_POLICY["maximum_center_distance_render_fraction"] * min(render_wh)
+    pairs = [(i, j) for i, j in enumerate(distances.argmin(axis=1))
+             if np.isfinite(distances[i, j]) and distances[i, j] <= limit and distances[:, j].argmin() == i]
+    count = len(pairs)
+    checks = {"mutual_door_associations_at_least_2": count >= DOOR_LAYOUT_POLICY["minimum_mutual_associations"],
+              "photo_door_association_fraction_at_least_0_50":
+              count/photo_count >= DOOR_LAYOUT_POLICY["minimum_photo_association_fraction"]}
+    report.update({"passed": all(checks.values()), "mutual_association_count": count,
+                   "maximum_center_distance_render_px": limit, "checks": checks,
+                   "failed_checks": [name for name, value in checks.items() if not value]})
+    return report
+
 
 def _box(value):
     try:
