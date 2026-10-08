@@ -126,6 +126,22 @@ PHOTO_PATH = Path(r"E:\我的照片\楼房正面.jpg")
 python run_facade_pipeline.py --photo-dir "Drills/Texture2LoD3_dataset/textures"
 ```
 
+### 可选：在 PyCharm 复现实验 E 对照
+
+实验 E 不替换日常 8 视角图库。先右键运行 `build_wall_view_gallery.py`，在“编辑配置 → 脚本参数”填入：
+
+```text
+--output-root E:\workinCODEX\prog_3D\my_results\experiment_e\wall_view_gallery --image-size 900 600 --workers 2
+```
+
+运行完成后，打开 `wall_view_gallery/latest_run.json`，复制其中 `run_dir`，末尾补上 `\gallery_index.json`。再编辑 `run_facade_pipeline` 的运行配置，填入：
+
+```text
+--photo-dir Drills\Texture2LoD3_dataset\textures --top-buildings 5 --views-per-building 2 --gallery-index E:\...\wall_gallery_时间\gallery_index.json --output-root E:\workinCODEX\prog_3D\my_results\experiment_e\wall_view_pipeline
+```
+
+这会复用相同照片和已有实验 D 检测，结果写进独立目录。最后运行 `evaluate_experiment_e.py`，参数依次填写基线 `summary.json`、墙面图库批次 `summary.json` 和输出目录 `docs\results\experiment_e`。评价脚本把照片名转为建筑编号只用于运行结束后的表格核对；模型推理从不读取这个编号。查看 [实验 E 对照图](images/实验E_墙面视角对照.png) 时，应同时看“正确自动映射”和“错配自动映射”，不能只看映射总数。
+
 ## 3. 运行后按什么顺序看结果
 
 控制台会打印本次目录，也可以打开：

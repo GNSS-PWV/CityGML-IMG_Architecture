@@ -53,8 +53,12 @@ def detection_for_photo(photo_path, output_dir):
     digest = roma.sha256(photo_path)
     with Image.open(photo_path) as photo:
         size = list(photo.size)
-    detection_root = ROOT / "my_results/grounding_dino16/batch_detection"
-    paths = sorted(detection_root.glob("*/**/detections.json"), reverse=True)
+    detection_roots = [ROOT / "my_results/grounding_dino16/batch_detection",
+                       ROOT.parent / "my_results/grounding_dino16/batch_detection"]
+    paths = []
+    for detection_root in detection_roots:
+        paths.extend(detection_root.glob("*/**/detections.json"))
+    paths = sorted(paths, reverse=True)
     # 此流程新照片的付费任务也固定存入内容哈希目录，重跑不会重复提交未知状态的任务。
     owned = OUTPUT_ROOT / "detection_cache" / digest / "detections.json"
     for path in [owned] + paths:
@@ -302,17 +306,25 @@ def draw_retrieval(photo_path, candidates, output):
     canvas.save(output)
 
 
-def run_pipeline(photo_path=PHOTO_PATH, top_buildings=TOP_BUILDINGS, views_per_building=VIEWS_PER_BUILDING):
+def run_pipeline(photo_path=PHOTO_PATH, top_buildings=TOP_BUILDINGS, views_per_building=VIEWS_PER_BUILDING,
+                 gallery_index=None, output_root=None):
+    """处理一张照片；可显式传入独立图库和输出根目录以做可复现实验对照。"""
     from facade_retrieval import retrieve_gallery
     from facade_auto_mapping import map_detections
     photo_path = Path(photo_path).resolve()
+    output_root = Path(output_root or OUTPUT_ROOT).resolve()
     if not photo_path.is_file():
         raise FileNotFoundError(photo_path)
-    if not GALLERY_POINTER.is_file():
-        raise FileNotFoundError("请先运行build_render_gallery.py建立多建筑渲染图库。")
-    gallery = Path(read_json(GALLERY_POINTER)["run_dir"]) / "gallery_index.json"
+    if gallery_index is None:
+        if not GALLERY_POINTER.is_file():
+            raise FileNotFoundError("请先运行build_render_gallery.py建立多建筑渲染图库。")
+        gallery = Path(read_json(GALLERY_POINTER)["run_dir"]) / "gallery_index.json"
+    else:
+        gallery = Path(gallery_index).resolve()
+    if not gallery.is_file():
+        raise FileNotFoundError("找不到图库索引：" + str(gallery))
     started = time.perf_counter()
-    output = OUTPUT_ROOT / datetime.now().strftime("run_%Y%m%d_%H%M%S_%f")
+    output = output_root / datetime.now().strftime("run_%Y%m%d_%H%M%S_%f")
     output.mkdir(parents=True)
     photo_hash = roma.sha256(photo_path)
     status = {"status": "running", "photo": str(photo_path), "photo_sha256": photo_hash,
@@ -322,12 +334,12 @@ def run_pipeline(photo_path=PHOTO_PATH, top_buildings=TOP_BUILDINGS, views_per_b
         "run_facade_pipeline.py", "facade_retrieval.py", "facade_auto_mapping.py", "match_facade_roma.py",
         "facade_match_geometry.py", "facade_match_structure.py", "map_facade_to_3d.py", "try_grounding_dino16.py")}
     write_json(output / "result.json", status)
-    write_json(OUTPUT_ROOT / "latest_run.json", {"run_dir": str(output)})
+    write_json(output_root / "latest_run.json", {"run_dir": str(output)})
     try:
         print("[1/5] 准备门窗检测（已有相同照片优先复用）", flush=True)
         detections, detection_path = detection_for_photo(photo_path, output)
         print("[2/5] DINOv3检索多建筑图库", flush=True)
-        retrieval = retrieve_gallery(photo_path, gallery, OUTPUT_ROOT / "retrieval_cache", roma.MODEL_CACHE,
+        retrieval = retrieve_gallery(photo_path, gallery, output_root / "retrieval_cache", roma.MODEL_CACHE,
                                      top_k_buildings=top_buildings, views_per_building=views_per_building)
         write_json(output / "retrieval.json", retrieval)
         views = retrieval["selected_candidates"]
@@ -425,21 +437,29 @@ def run_pipeline(photo_path=PHOTO_PATH, top_buildings=TOP_BUILDINGS, views_per_b
         raise
 
 
-def run_photo_directory(directory, top_buildings=TOP_BUILDINGS, views_per_building=VIEWS_PER_BUILDING):
+def run_photo_directory(directory, top_buildings=TOP_BUILDINGS, views_per_building=VIEWS_PER_BUILDING,
+                        gallery_index=None, output_root=None):
     """批量入口每张立即落盘；一张异常保留记录并继续，不重复提交未知的付费任务。"""
     directory = Path(directory).resolve()
+    output_root = Path(output_root or OUTPUT_ROOT).resolve()
     if not directory.is_dir():
         raise FileNotFoundError(directory)
     photos = sorted(p for p in directory.iterdir() if p.suffix.lower() in (".jpg", ".jpeg", ".png") and p.is_file())
     if not photos:
         raise ValueError("目录中没有 JPG/PNG 照片。请指定真实照片目录，不能选择标注掩码目录。")
-    batch = OUTPUT_ROOT / datetime.now().strftime("batch_%Y%m%d_%H%M%S_%f")
+    batch = output_root / datetime.now().strftime("batch_%Y%m%d_%H%M%S_%f")
     batch.mkdir(parents=True)
     summary = {"photo_directory": str(directory), "photo_count": len(photos), "records": []}
     for i, photo in enumerate(photos, 1):
         print(f"\n批量 {i}/{len(photos)}：{photo.name}", flush=True)
         try:
-            output = run_pipeline(photo, top_buildings, views_per_building)
+            # 保留旧的三位置参数调用，方便教学脚本和既有自动化测试继续替换该入口。
+            extra = {}
+            if gallery_index is not None:
+                extra["gallery_index"] = gallery_index
+            if output_root != Path(OUTPUT_ROOT).resolve():
+                extra["output_root"] = output_root
+            output = run_pipeline(photo, top_buildings, views_per_building, **extra)
             result = read_json(output/"result.json")
             row = {"photo": photo.name, "run_dir": str(output), "status": result["status"],
                    "building_id": result.get("building_id"), "mapped_count": (result.get("mapping") or {}).get("mapped_count", 0)}
@@ -460,8 +480,14 @@ if __name__ == "__main__":
     inputs.add_argument("--photo-dir", type=Path, help="批量处理一个真实照片目录，每张保存；新检测仍需额度")
     parser.add_argument("--top-buildings", type=int, default=TOP_BUILDINGS)
     parser.add_argument("--views-per-building", type=int, default=VIEWS_PER_BUILDING)
+    parser.add_argument("--gallery-index", type=Path,
+                        help="完整 gallery_index.json；省略时使用原 8 视角图库。")
+    parser.add_argument("--output-root", type=Path,
+                        help="本次结果根目录；实验对照请使用独立目录，避免覆盖基线。")
     arguments = parser.parse_args()
     if arguments.photo_dir is not None:
-        run_photo_directory(arguments.photo_dir, arguments.top_buildings, arguments.views_per_building)
+        run_photo_directory(arguments.photo_dir, arguments.top_buildings, arguments.views_per_building,
+                            gallery_index=arguments.gallery_index, output_root=arguments.output_root)
     else:
-        run_pipeline(arguments.photo, arguments.top_buildings, arguments.views_per_building)
+        run_pipeline(arguments.photo, arguments.top_buildings, arguments.views_per_building,
+                     gallery_index=arguments.gallery_index, output_root=arguments.output_root)

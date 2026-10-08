@@ -42,6 +42,12 @@ IMAGE_SIZE = (1800, 1200)       # 输出宽、高；不会改变原始模型几�
 MARGIN_FRACTION = 0.06         # 模型与画面边缘的留白比例。
 OBLIQUE_ELEVATION_DEG = 22.0   # 四张斜视图稍微俯看，可同时看到屋顶和两个立面。
 MAX_REFERENCE_WALL_TILT_DEG = 5.0  # 仅筛选环绕起点：墙法向与水平面的夹角上限。
+# 实验 E 只渲染能作为照片映射目标的“大型竖直单平面外立面”。CityGML 会把
+# 一整面楼拆成窗台、饰线等许多 WallSurface；它们不是独立的拍摄立面。
+WALL_VIEW_MAX_TILT_DEG = 10.0
+WALL_VIEW_MIN_AREA_M2 = 10.0
+WALL_VIEW_RELATIVE_AREA = .12
+WALL_VIEW_YAWS_DEG = (-15.0, 0.0, 15.0)
 USE_MODEL_COLORS = True       # 使用已有 diffuseColor；无颜色的面用下方默认色。
 BACKGROUND = (246, 245, 241)
 
@@ -560,6 +566,170 @@ def render_building(gml_path, output_root, building_id=None, front_wall_id=None,
             write_json(output / "manifest.json", manifest)
         except OSError:
             pass  # 磁盘写入也失败时，保留并抛出原始异常，不覆盖真正失败原因。
+        raise
+
+
+def eligible_wall_facades(gml_path, mesh):
+    """返回实验 E 的可映射立面，不把 CityGML 的小构件片段当成独立墙面。
+
+    规则在所有建筑上一致：墙必须能通过 ``load_walls`` 的单平面检查、近似竖直，
+    且其二维包围面积不少于 10 平方米及本楼最大候选墙面积的 12%。这个选择只看
+    CityGML 几何，不读照片、检索或门窗检测结果。
+    """
+    # 延迟导入避免渲染模块与映射模块在测试时形成初始化环；两者共用同一平面定义。
+    from map_facade_to_3d import load_walls
+
+    mesh_normals = {}
+    for item in mesh["walls"]:
+        if item.get("id") is not None:
+            mesh_normals.setdefault(item["id"], []).append(item)
+    candidates = []
+    tilt_limit = np.sin(np.deg2rad(WALL_VIEW_MAX_TILT_DEG))
+    for wall in load_walls(gml_path):
+        normal = np.cross(wall["frame"]["u"], wall["frame"]["v"])
+        normal /= np.linalg.norm(normal)
+        # map_facade_to_3d 的 SVD 法向没有正反；沿用渲染器按模型中心确定的外侧符号。
+        references = mesh_normals.get(wall["id"], [])
+        if not references:
+            continue
+        reference = max(references, key=lambda item: item["area"])
+        if np.dot(normal, reference["normal"]) < 0:
+            normal = -normal
+        if abs(normal[2]) > tilt_limit:
+            continue
+        area = float(wall["area_rank"])
+        if not np.isfinite(area) or area <= 0:
+            continue
+        candidates.append(dict(wall, outward_normal=normal, facade_area_m2=area))
+    if not candidates:
+        raise ValueError("模型没有可用于实验 E 的竖直单平面外立面。")
+    minimum = max(WALL_VIEW_MIN_AREA_M2,
+                  max(item["facade_area_m2"] for item in candidates) * WALL_VIEW_RELATIVE_AREA)
+    selected = [item for item in candidates if item["facade_area_m2"] >= minimum]
+    if not selected:
+        raise ValueError("大型立面筛选后为空，不能建立墙面视图库。")
+    return sorted(selected, key=lambda item: (-item["facade_area_m2"], item["id"]))
+
+
+def _wall_view_definitions(wall):
+    """每个目标墙生成左近正视、正视和右近正视三个正交相机方向。"""
+    normal = np.asarray(wall["outward_normal"], dtype=float).copy()
+    normal[2] = 0.
+    normal /= np.linalg.norm(normal)
+    for yaw in WALL_VIEW_YAWS_DEG:
+        radians = np.deg2rad(yaw)
+        direction = np.array([np.cos(radians) * normal[0] - np.sin(radians) * normal[1],
+                              np.sin(radians) * normal[0] + np.cos(radians) * normal[1], 0.])
+        suffix = "m%02d" % abs(int(yaw)) if yaw < 0 else ("p%02d" % int(yaw) if yaw > 0 else "0")
+        yield {"name_suffix": suffix, "yaw_deg": float(yaw), "eye_direction": direction}
+
+
+def make_wall_contact_sheet(output, views, building_id):
+    """墙面图库的汇报缩略图；匹配仍只读取无文字覆盖的单张渲染图。"""
+    columns, card_w, card_h, pad = 3, 560, 340, 38
+    rows = max(1, int(np.ceil(len(views) / columns)))
+    canvas = Image.new("RGB", (columns * card_w + pad * 2, rows * card_h + 180), BACKGROUND)
+    draw = ImageDraw.Draw(canvas)
+    font_path = Path("C:/Windows/Fonts/msyh.ttc")
+    font = lambda size: ImageFont.truetype(str(font_path), size)
+    draw.text((pad, 28), f"{building_id}  /  立面正视与近正视图库", font=font(36), fill="#3F4845")
+    draw.text((pad, 82), "每个可映射大型竖直墙面 3 视角；仅使用已有 CityGML 几何", font=font(20), fill="#76817C")
+    for index, view in enumerate(views):
+        row, col = divmod(index, columns)
+        x, y = pad + col * card_w, 130 + row * card_h
+        draw.text((x, y), f"{view['target_wall_index']:02d} · {view['yaw_deg']:+.0f}°", font=font(20), fill="#3F4845")
+        image = Image.open(output / view["image"]).convert("RGB")
+        image.thumbnail((card_w - 28, card_h - 62), Image.Resampling.LANCZOS)
+        canvas.paste(image, (x + (card_w-image.width)//2, y + 36 + (card_h-62-image.height)//2))
+    canvas.save(output / "overview.png")
+
+
+def render_wall_views(gml_path, output_root, building_id=None, image_size=(1800, 1200)) -> Path:
+    """渲染实验 E 的墙面 3 视角图库，保存与八视角相同的几何回投数据。
+
+    每个入选 CityGML 外立面独立执行 -15°、0°、+15° 三个视角。渲染整个建筑而
+    相机按目标墙取景，故遮挡仍由完整三维 Z-buffer 计算；不会修改 CityGML。
+    """
+    start = time.perf_counter()
+    gml_path, output_root = Path(gml_path).resolve(), Path(output_root).resolve()
+    if not gml_path.is_file():
+        raise FileNotFoundError("找不到 CityGML 文件：%s" % gml_path)
+    if building_id is None:
+        building_id = gml_path.stem.removeprefix("DEBY_LOD3_").removeprefix("DEBY_LOD2_")
+    image_size = tuple(int(value) for value in image_size)
+    if len(image_size) != 2 or min(image_size) < 2:
+        raise ValueError("image_size 必须是两个至少为2的整数：[宽, 高]。")
+    output = output_root / str(building_id) / datetime.now().strftime("wall_views_%Y%m%d_%H%M%S_%f")
+    output.mkdir(parents=True, exist_ok=False)
+    light = np.array([-.35, -.45, .82]); light /= np.linalg.norm(light)
+    manifest = {"schema_version": 1, "status": "running", "stage": "loading_model", "building_id": str(building_id),
+                "source_gml": str(gml_path), "views": [], "parameters": {
+                    "image_size_wh": list(image_size), "projection": "orthographic", "margin_fraction": MARGIN_FRACTION,
+                    "wall_view_yaws_deg": list(WALL_VIEW_YAWS_DEG), "wall_view_max_tilt_deg": WALL_VIEW_MAX_TILT_DEG,
+                    "wall_view_min_area_m2": WALL_VIEW_MIN_AREA_M2, "wall_view_relative_area": WALL_VIEW_RELATIVE_AREA,
+                    "selection": "valid planar vertical WallSurface above fixed absolute and relative area thresholds"}}
+    try:
+        write_json(output / "manifest.json", manifest)
+        manifest["source_sha256"] = _file_sha256(gml_path)
+        manifest["script_sha256"] = _file_sha256(__file__)
+        mesh = load_building(gml_path)
+        walls = eligible_wall_facades(gml_path, mesh)
+        manifest.update({"stage": "rendering_wall_views", "building_gml_id": mesh["building_gml_id"],
+                         "coordinate_system": mesh["srs"], "world_origin_m": mesh["origin"].tolist(),
+                         "geometry_source": "dataset existing CityGML; no photographs, detections, or labels used",
+                         "objects": mesh["objects"], "walls": _wall_metadata(mesh["walls"]),
+                         "eligible_wall_count": len(walls), "stats": mesh["stats"],
+                         "max_plane_deviation_m": mesh["max_plane_deviation_m"],
+                         "wall_selection_note": "Large vertical planar facade surfaces only; architectural fragments are excluded by area rule."})
+        write_json(output / "manifest.json", manifest)
+        objects_by_index = {obj["index"]: obj for obj in mesh["objects"]}
+        for wall_index, wall in enumerate(walls, 1):
+            wall_points = np.concatenate(wall["rings"]) - mesh["origin"]
+            for definition in _wall_view_definitions(wall):
+                tick = time.perf_counter()
+                name = f"wall_{wall_index:03d}_{definition['name_suffix']}"
+                manifest["current_view"] = name
+                write_json(output / "manifest.json", manifest)
+                direction = definition["eye_direction"]
+                camera = make_camera(wall_points, direction, image_size=image_size, margin=MARGIN_FRACTION)
+                dot = mesh["normals"] @ direction
+                colors = np.where((dot >= 0)[:, None], mesh["colors_front"], mesh["colors_back"])
+                brightness = .60 + .25 * np.abs(dot) + .15 * np.abs(mesh["normals"] @ light)
+                colors = np.clip(colors * brightness[:, None], 0, 255).astype(np.uint8)
+                rgb, depth, object_map = rasterize(mesh["triangles"], colors, mesh["object_indices"], camera)
+                Image.fromarray(rgb).save(output / (name + ".png"))
+                np.savez_compressed(output / (name + "_geometry.npz"), depth_m=depth, object_index=object_map)
+                write_json(output / (name + "_camera.json"), camera)
+                ids, counts = np.unique(object_map[object_map >= 0], return_counts=True)
+                wall_counts, wall_object_indices = Counter(), {}
+                for object_index, count in zip(ids, counts):
+                    wall_id = objects_by_index[int(object_index)].get("wall_id")
+                    if wall_id is not None:
+                        wall_counts[wall_id] += int(count)
+                        wall_object_indices.setdefault(wall_id, []).append(int(object_index))
+                view = {"name": name, "label": f"墙 {wall_index:02d} / {definition['yaw_deg']:+.0f}°", "orbit_deg": definition["yaw_deg"],
+                        "elevation_deg": 0., "view_kind": "wall_front_or_near_front", "target_wall_id": wall["id"],
+                        "target_wall_index": wall_index, "target_wall_area_m2": wall["facade_area_m2"], "yaw_deg": definition["yaw_deg"],
+                        "image": name + ".png", "camera": name + "_camera.json", "geometry": name + "_geometry.npz",
+                        "visible_objects": [{"object_index": int(i), "pixel_count": int(c)} for i, c in zip(ids, counts)],
+                        "visible_walls": [{"wall_id": wall_id, "pixel_count": count, "object_indices": wall_object_indices[wall_id]}
+                                          for wall_id, count in wall_counts.most_common()],
+                        "foreground_pixel_count": int(counts.sum()), "render_seconds": round(time.perf_counter() - tick, 3)}
+                manifest["views"].append(view)
+                write_json(output / "manifest.json", manifest)
+        manifest.pop("current_view", None)
+        make_wall_contact_sheet(output, manifest["views"], building_id)
+        manifest.update({"status": "complete", "stage": "complete", "total_seconds": round(time.perf_counter() - start, 3)})
+        write_json(output / "manifest.json", manifest)
+        write_json(output.parent / "latest_wall_views.json", {"run_dir": str(output)})
+        return output
+    except (Exception, KeyboardInterrupt) as exc:
+        manifest.update({"status": "failed", "total_seconds": round(time.perf_counter() - start, 3),
+                         "error": {"type": type(exc).__name__, "message": str(exc)}})
+        try:
+            write_json(output / "manifest.json", manifest)
+        except OSError:
+            pass
         raise
 
 

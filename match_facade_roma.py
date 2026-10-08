@@ -34,7 +34,9 @@ USE_WINDOW_STRUCTURE = True  # 用实验D已有窗框与模型窗构件自动细
 DETECTION_JSON = None       # None：使用实验D最新批次中当前照片的 detections.json。
 # 以下三项只供旧实验的 check_against_manual() 重现报告；main() 完全不使用它们。
 MANUAL_CHECK_PATH = ROOT / "my_results/calibrations/4959323_front.json"
-MODEL_CACHE = ROOT / "model_cache/roma_v2/hub"
+# 运行目录可在仓库内，也可在其父级工作区；模型缓存不纳入 Git，因此允许两种稳定位置。
+MODEL_CACHE = next((path for path in (ROOT / "model_cache/roma_v2/hub", ROOT.parent / "model_cache/roma_v2/hub")
+                    if path.is_dir()), ROOT / "model_cache/roma_v2/hub")
 SETTING = "base"       # 640×640，8 GB 显存先用此配置；precise已比较，改善有限且更占内存。
 NUM_MATCHES = 2000      # 官方采样会暂时扩展到4倍；过大会显著占用显存。
 MIN_OVERLAP = 0.20      # RoMa 的对应可信度筛选值，不是已校准的正确率。
