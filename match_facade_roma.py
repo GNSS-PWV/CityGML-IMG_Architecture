@@ -214,7 +214,7 @@ def infer_pair(model, photo, crop_image):
     return matches.float().cpu().numpy(), overlap.float().cpu().numpy()
 
 
-def tiled_correspondences(model, photo, render, initial_h, allowed_mask):
+def tiled_correspondences(model, photo, render, initial_h, allowed_mask, infer_pair_fn=None):
     """粗H引导局部RoMa匹配，返回原照片点、完整渲染点、可信度和逐块记录。
 
     复用实验D的1200×1000/重叠300网格，但这里只运行本地RoMa，不调用云API。
@@ -225,6 +225,8 @@ def tiled_correspondences(model, photo, render, initial_h, allowed_mask):
     重叠块中的同一照片像素只保留最高可信度的一对；不平均可能冲突的目标位置。
     """
     import try_grounding_dino16 as detector
+    if infer_pair_fn is None:
+        infer_pair_fn = infer_pair
 
     H = np.asarray(initial_h, dtype=float)
     mask = np.asarray(allowed_mask)
@@ -286,7 +288,7 @@ def tiled_correspondences(model, photo, render, initial_h, allowed_mask):
             continue
         try:
             photo_crop, render_crop = photo.crop(box), render.crop(crop)
-            normalized, overlap = infer_pair(model, photo_crop, render_crop)
+            normalized, overlap = infer_pair_fn(model, photo_crop, render_crop)
             overlap = np.asarray(overlap, dtype=float)
             a, b = roma_to_image_pixels(normalized, photo_crop.size, render_crop.size, crop[:2])
             if overlap.shape != (len(a),):

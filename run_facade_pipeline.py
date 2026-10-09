@@ -47,7 +47,7 @@ def write_json(path, value):
     temporary.replace(path)
 
 
-def detection_for_photo(photo_path, output_dir):
+def detection_for_photo(photo_path, output_dir, offline_only=False):
     """只以图像哈希、尺寸、D参数复用预测，建筑身份字段不进入检索/选择。"""
     import try_grounding_dino16 as detector
     digest = roma.sha256(photo_path)
@@ -71,6 +71,8 @@ def detection_for_photo(photo_path, output_dir):
             write_json(output_dir / "detection_source.json", {"path": str(path), "sha256": roma.sha256(path),
                         "reused": True, "building_id_field_used": False})
             return data, path
+    if offline_only:
+        raise FileNotFoundError("离线实验缺少这张照片的合格实验D检测缓存，已停止，未调用收费API：" + str(photo_path))
     token = os.environ.get("DDS_API_TOKEN", "").strip()
     if not token:
         raise RuntimeError("新照片没有可复用检测。请在PyCharm运行配置设置DDS_API_TOKEN；新检测会使用平台额度。")
@@ -193,18 +195,20 @@ def confirmation_views(selected, candidates, ranked_views):
     return [v for _, v in sorted(choices, key=lambda item: (-item[0], item[1]["view_name"]))[:MAX_CONFIRMATION_VIEWS]]
 
 
-def tiled_cache_identity(initial_h):
+def tiled_cache_identity(initial_h, matcher_api=roma):
     """分块策略和函数均参与缓存身份，改参数后必须真正重新匹配。"""
     import try_grounding_dino16 as detector
     return {"initial_h": np.asarray(initial_h).tolist(),
             "tile_size": [detector.TILE_WIDTH, detector.TILE_HEIGHT], "tile_overlap": detector.TILE_OVERLAP,
-            "minimum_overlap": roma.MIN_OVERLAP,
+            "minimum_overlap": matcher_api.MIN_OVERLAP,
+            "matcher_code": roma.sha256(Path(matcher_api.__file__)),
             "tile_views_code": hashlib.sha256(inspect.getsource(detector.tile_views).encode()).hexdigest(),
             "code": hashlib.sha256(inspect.getsource(roma.tiled_correspondences).encode()).hexdigest()}
 
 
 def candidate_match(photo, detections, view, wall_id, allowed, crop, manifest,
-                    objects, depth, model, model_info, photo_hash, directory):
+                    objects, depth, model, model_info, photo_hash, directory,
+                    matcher_api=roma, cache_root=None):
     """一面候选墙上的RoMa拟合和独立空间留出；全图坐标贯穿后续映射。"""
     from facade_auto_mapping import choose_wall_from_matches
     render = Image.open(view["image"]).convert("RGB")
@@ -213,35 +217,35 @@ def candidate_match(photo, detections, view, wall_id, allowed, crop, manifest,
                 "wall_id": wall_id,
                 "geometry_sha256": roma.sha256(view["geometry"]), "camera_sha256": roma.sha256(view["camera"]),
                 "manifest_sha256": roma.sha256(view["manifest"]), "crop": crop,
-                "model": model_info["checkpoint_sha256"], "setting": roma.SETTING,
+                "model": model_info["checkpoint_sha256"], "setting": matcher_api.SETTING,
                 "implementation": model_info["implementation"],
-                "sample_count": roma.NUM_MATCHES, "seed": roma.SEED,
-                "inference_code_sha256": roma.sha256(Path(roma.__file__))}
+                "sample_count": matcher_api.NUM_MATCHES, "seed": matcher_api.SEED,
+                "inference_code_sha256": roma.sha256(Path(matcher_api.__file__))}
     key = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
-    cache = OUTPUT_ROOT / "matches_cache" / key
+    cache = Path(cache_root or OUTPUT_ROOT) / "matches_cache" / key
     cache.mkdir(parents=True, exist_ok=True)
     if (cache / "raw.npz").is_file() and (cache / "identity.json").is_file() and read_json(cache / "identity.json") == identity:
         with np.load(cache / "raw.npz", allow_pickle=False) as values:
             normalized, confidence = values["matches"], values["overlap"]
     else:
-        normalized, confidence = roma.infer_pair(model, photo, crop_image)
+        normalized, confidence = matcher_api.infer_pair(model, photo, crop_image)
         np.savez_compressed(cache / "raw.npz", matches=normalized, overlap=confidence)
         write_json(cache / "identity.json", identity)
     a, b = roma_to_image_pixels(normalized, photo.size, crop_image.size, crop[:2])
-    valid = np.isfinite(a).all(axis=1) & np.isfinite(b).all(axis=1) & (confidence >= roma.MIN_OVERLAP)
+    valid = np.isfinite(a).all(axis=1) & np.isfinite(b).all(axis=1) & (confidence >= matcher_api.MIN_OVERLAP)
     ix = np.floor(np.nan_to_num(b) + .5).astype(int)
     inside = (ix[:, 0] >= 0) & (ix[:, 1] >= 0) & (ix[:, 0] < render.width) & (ix[:, 1] < render.height)
     on_wall = np.zeros(len(a), bool)
     on_wall[inside] = np.isin(objects[ix[inside, 1], ix[inside, 0]], allowed)
     a, b = a[valid & on_wall], b[valid & on_wall]
-    H, report, arrays = fit_and_check(a, b, photo.size, render.size, roma.RANSAC_THRESHOLD_PX)
+    H, report, arrays = fit_and_check(a, b, photo.size, render.size, matcher_api.RANSAC_THRESHOLD_PX)
     coarse_h, coarse_report = H.copy(), report
     dense_method, tiled_report = "roma", {"attempted": False}
     # 长图整张缩到RoMa输入尺寸后细节不足：仅用有空间证据的粗匹配确定局部搜索范围。
     # 不降低验收门槛，也不用建筑真值或照片名决定是否放大。
     if (max(photo.size)>1400 and report["train_inlier_count"]>=40 and
             report["holdout_inlier_fraction"]>=.20 and report["checks"]["no_projective_pole_in_photo"]):
-        tiled_identity = tiled_cache_identity(H)
+        tiled_identity = tiled_cache_identity(H, matcher_api)
         tiled_key = hashlib.sha256(json.dumps(tiled_identity, sort_keys=True).encode()).hexdigest()
         tiled_cache = cache / ("tiles_"+tiled_key+".npz")
         if tiled_cache.is_file():
@@ -249,12 +253,13 @@ def candidate_match(photo, detections, view, wall_id, allowed, crop, manifest,
                 fa, fb, fc = saved["photo_xy"], saved["render_xy"], saved["confidence"]
                 tile_info = json.loads(str(saved["tile_info"].item()))
         else:
-            fa, fb, fc, tile_info = roma.tiled_correspondences(model, photo, render, H, np.isin(objects, allowed))
+            fa, fb, fc, tile_info = roma.tiled_correspondences(
+                model, photo, render, H, np.isin(objects, allowed), infer_pair_fn=matcher_api.infer_pair)
             np.savez_compressed(tiled_cache, photo_xy=fa, render_xy=fb, confidence=fc,
                                 tile_info=np.array(json.dumps(tile_info, ensure_ascii=False)))
         tiled_report = {"attempted": True, "tiles": tile_info, "raw_cache": str(tiled_cache)}
         try:
-            fine_h, fine_report, fine_arrays = fit_and_check(fa, fb, photo.size, render.size, roma.RANSAC_THRESHOLD_PX)
+            fine_h, fine_report, fine_arrays = fit_and_check(fa, fb, photo.size, render.size, matcher_api.RANSAC_THRESHOLD_PX)
             tiled_report["validation"] = fine_report
             np.savez_compressed(directory/"tiled_matches.npz", photo_xy=fa, render_xy=fb, **fine_arrays)
             roma.draw_matches(photo, crop_image, fa, fb, crop[:2], fine_arrays, directory,
@@ -271,7 +276,7 @@ def candidate_match(photo, detections, view, wall_id, allowed, crop, manifest,
     door_layout = assess_door_layout(selected_h, photo.size, render.size, detections,
                                      objects, manifest, wall_id)
     uses_structure = method == "roma_window_structure"
-    method = dense_method + ("_window_structure" if uses_structure else "")
+    method = ("minima_roma" if matcher_api is not roma else dense_method) + ("_window_structure" if uses_structure else "")
     # 排序仍使用原始RoMa留出证据，不能因为少量结构点被挑得好就压倒其他建筑。
     layout_allows_candidate = layout["passed"] and door_layout["passed"]
     result = {"wall_id": wall_id, "wall_vote": vote,
@@ -287,13 +292,15 @@ def candidate_match(photo, detections, view, wall_id, allowed, crop, manifest,
               "crop_xyxy": crop, "independent_accuracy_verified": False}
     np.savez_compressed(directory / "roma_matches.npz", photo_xy=a, render_xy=b, **arrays)
     roma.draw_matches(photo, crop_image, a, b, crop[:2], arrays, directory, filename="roma_matches.png",
-                      quality_label="原RoMa几何检查：" + ("通过" if report["gate_passed"] else "未通过"))
+                      title=model_info["name"] + " / 真实照片与渲染图",
+                      quality_label="原始匹配几何检查：" + ("通过" if report["gate_passed"] else "未通过"))
     if uses_structure:
         a, b = struct_arrays["photo_xy"], struct_arrays["render_xy"]
         arrays = {k: v for k, v in struct_arrays.items() if k not in ("photo_xy", "render_xy")}
     np.savez_compressed(directory / "geometry_matches.npz", photo_xy=a, render_xy=b, **arrays)
     label = "自动几何检查通过；真实精度未验证" if result["gate_passed"] else "自动几何检查未通过"
-    roma.draw_matches(photo, crop_image, a, b, crop[:2], arrays, directory, quality_label=label)
+    roma.draw_matches(photo, crop_image, a, b, crop[:2], arrays, directory,
+                      title=model_info["name"] + " / 最终对应点", quality_label=label)
     roma.draw_alignment(photo, render, crop, selected_h, None, directory, quality_label=label)
     return result
 
@@ -314,7 +321,9 @@ def draw_retrieval(photo_path, candidates, output):
 
 
 def run_pipeline(photo_path=PHOTO_PATH, top_buildings=TOP_BUILDINGS, views_per_building=VIEWS_PER_BUILDING,
-                 gallery_index=None, output_root=None):
+                 gallery_index=None, output_root=None, matcher_api=roma,
+                 single_view_experiment=False, offline_detection=False,
+                 retrieval_cache_root=None):
     """处理一张照片；可显式传入独立图库和输出根目录以做可复现实验对照。"""
     from facade_retrieval import retrieve_gallery
     from facade_auto_mapping import map_detections
@@ -330,13 +339,19 @@ def run_pipeline(photo_path=PHOTO_PATH, top_buildings=TOP_BUILDINGS, views_per_b
         gallery = Path(gallery_index).resolve()
     if not gallery.is_file():
         raise FileNotFoundError("找不到图库索引：" + str(gallery))
+    if single_view_experiment:
+        gallery_data = read_json(gallery)
+        if not gallery_data.get("views") or any(float(v.get("orbit_deg", 999)) != 0 for v in gallery_data["views"]):
+            raise ValueError("单视角实验只能使用全为0°的图库。")
     started = time.perf_counter()
     output = output_root / datetime.now().strftime("run_%Y%m%d_%H%M%S_%f")
     output.mkdir(parents=True)
     photo_hash = roma.sha256(photo_path)
     status = {"status": "running", "photo": str(photo_path), "photo_sha256": photo_hash,
               "gallery": str(gallery), "gallery_sha256": roma.sha256(gallery), "output_dir": str(output),
-              "filename_building_id_used": False, "manual_calibration_used": False, "gt_masks_used": False}
+              "filename_building_id_used": False, "manual_calibration_used": False, "gt_masks_used": False,
+              "matcher": "RoMa v2.0.1" if matcher_api is roma else matcher_api.__name__,
+              "validation_policy": "single_0_degree_view" if single_view_experiment else "two_view_confirmation"}
     status["source_sha256"] = {name: roma.sha256(ROOT/name) for name in (
         "run_facade_pipeline.py", "facade_retrieval.py", "facade_auto_mapping.py", "match_facade_roma.py",
         "facade_match_geometry.py", "facade_match_structure.py", "map_facade_to_3d.py", "try_grounding_dino16.py")}
@@ -344,15 +359,15 @@ def run_pipeline(photo_path=PHOTO_PATH, top_buildings=TOP_BUILDINGS, views_per_b
     write_json(output_root / "latest_run.json", {"run_dir": str(output)})
     try:
         print("[1/5] 准备门窗检测（已有相同照片优先复用）", flush=True)
-        detections, detection_path = detection_for_photo(photo_path, output)
+        detections, detection_path = detection_for_photo(photo_path, output, offline_only=offline_detection)
         print("[2/5] DINOv3检索多建筑图库", flush=True)
-        retrieval = retrieve_gallery(photo_path, gallery, output_root / "retrieval_cache", roma.MODEL_CACHE,
+        retrieval = retrieve_gallery(photo_path, gallery, Path(retrieval_cache_root or output_root / "retrieval_cache"), roma.MODEL_CACHE,
                                      top_k_buildings=top_buildings, views_per_building=views_per_building)
         write_json(output / "retrieval.json", retrieval)
         views = retrieval["selected_candidates"]
         draw_retrieval(photo_path, views, output / "retrieval.png")
-        print("[3/5] RoMa逐个匹配候选", flush=True)
-        model, model_info = roma.load_roma_model()
+        print("[3/5] 匹配器逐个匹配候选：" + status["matcher"], flush=True)
+        model, model_info = matcher_api.load_roma_model()
         write_json(output / "model.json", model_info)
         photo = Image.open(photo_path).convert("RGB")
         candidates = []
@@ -376,7 +391,8 @@ def run_pipeline(photo_path=PHOTO_PATH, top_buildings=TOP_BUILDINGS, views_per_b
                     from facade_auto_mapping import validated_wall
                     validated_wall(manifest, wall_id)
                     row.update(candidate_match(photo, detections, view, wall_id, allowed, crop, manifest,
-                                               objects, depth, model, model_info, photo_hash, directory))
+                                               objects, depth, model, model_info, photo_hash, directory,
+                                               matcher_api=matcher_api, cache_root=output_root))
                 except ValueError as exc:
                     row.update({"gate_passed": False, "error": str(exc)})
                 write_json(directory / "result.json", row)
@@ -386,7 +402,7 @@ def run_pipeline(photo_path=PHOTO_PATH, top_buildings=TOP_BUILDINGS, views_per_b
             evaluate_view(view)
         # DINO的前两个视角可能分别看见不同墙；不能把缺少同墙第二视角当成通过。
         preliminary, _ = select_candidate(candidates)
-        if preliminary is not None:
+        if preliminary is not None and not single_view_experiment:
             confirmed = any(c.get("gate_passed") and c.get("wall_vote", {}).get("accepted") and
                             c["building_id"] == preliminary["building_id"] and c["wall_id"] == preliminary["wall_id"] and
                             c["view_name"] != preliminary["view_name"] for c in candidates)
@@ -400,14 +416,18 @@ def run_pipeline(photo_path=PHOTO_PATH, top_buildings=TOP_BUILDINGS, views_per_b
         print("[4/5] 对比候选建筑、墙面与几何证据", flush=True)
         selected, decision = select_candidate(candidates)
         if selected is not None:
-            try:
-                agreement = check_view_agreement(selected, candidates, photo.size)
-            except ValueError as exc:
-                agreement = {"available": False, "passed": False, "reason": "invalid_wall_projection", "error": str(exc)}
-            decision["cross_view_agreement"] = agreement
-            if not agreement["passed"]:
-                decision.update({"accepted": False, "reason": agreement.get("reason", "views_disagree_on_world_position")})
-                selected = None
+            if single_view_experiment:
+                decision["cross_view_agreement"] = {"required": False, "available": False,
+                                                     "passed": None, "reason": "0_degree_only_experiment"}
+            else:
+                try:
+                    agreement = check_view_agreement(selected, candidates, photo.size)
+                except ValueError as exc:
+                    agreement = {"available": False, "passed": False, "reason": "invalid_wall_projection", "error": str(exc)}
+                decision["cross_view_agreement"] = agreement
+                if not agreement["passed"]:
+                    decision.update({"accepted": False, "reason": agreement.get("reason", "views_disagree_on_world_position")})
+                    selected = None
         status.update({"selection": decision, "candidate_count": len(candidates),
                        "detection_source": str(detection_path), "independent_accuracy_verified": False})
         if selected is None:
