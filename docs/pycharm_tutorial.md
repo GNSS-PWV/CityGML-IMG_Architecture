@@ -126,21 +126,27 @@ PHOTO_PATH = Path(r"E:\我的照片\楼房正面.jpg")
 python run_facade_pipeline.py --photo-dir "Drills/Texture2LoD3_dataset/textures"
 ```
 
-### 可选：在 PyCharm 复现实验 E 第二轮对照
+### 在 PyCharm 自己运行 ±45° 墙面视角实验
 
-实验 E 不替换日常 8 视角图库。当前源码生成每面墙 `-30° / 0° / +30°` 三张图；历史第一轮的 ±15° 图库已经单独保存，当前设置复现的是第二轮。先右键运行 `build_wall_view_gallery.py`，在“编辑配置 → 脚本参数”填入：
+当前源码生成每面墙 `-45° / 0° / +45°` 三张图。**请在 PyCharm 项目树中展开 `CityGML-IMG_Architecture`，右键运行里面的 `run_experiment_e45.py`；不要运行外层 `E:\workinCODEX\prog_3D\render_building_views.py`，那份是旧代码。** 确认右下角解释器为 `torch_1`，**脚本参数留空**。入口会用当前解释器先建图库，再批量处理照片，不需要手工复制图库路径。它把结果写入全新的 `E:\workinCODEX\prog_3D\my_results\experiment_e45_user`；历史 ±15°、±30° 图库和结果不被覆盖。
+
+控制台先出现 `[1/2]`。完成后可打开 `wall_view_gallery/latest_run.json`，顺着 `run_dir` 找到 `batch_summary.json`：检查 `status` 为 `complete`、`wall_view_yaws_deg` 为 `[-45.0, 0.0, 45.0]`，再打开同目录的 `gallery_index.json` 与某栋 `wall_*_m45.png`、`wall_*_0.png`、`wall_*_p45.png` 看三个方向。脚本会自动进入 `[2/2]`，逐张照片做候选检索、RoMa 匹配和三维预测。已有合格的实验 D 检测会复用；如果某张照片缓存缺失，原入口可能调用收费的云端检测 API。
+
+全部完成后，控制台会打印本次 `batch_时间/summary.json` 路径。打开它看 `records`：`mapped` 是自动通过并输出预测面，`needs_review` 是证据不足，`failed` 才是运行错误。每行的 `run_dir` 指向该照片的文件夹；先看 `result.json` 的 `status` 和 `selection.reason`，再看 `retrieval.png`、候选文件夹中的 `alignment.png` 和 `result.json`。这次 ±45° 的正确映射数量尚未统计，必须以你实际运行的汇总为准。
+
+如果想在建图库之后先停下来人工查看，也可以分两次右键运行已有入口。先运行 `build_wall_view_gallery.py`，在“编辑配置 → 脚本参数”填入：
 
 ```text
---output-root E:\workinCODEX\prog_3D\my_results\experiment_e2\wall_view_gallery_30deg --image-size 900 600 --workers 2
+--output-root E:\workinCODEX\prog_3D\my_results\experiment_e45_user\wall_view_gallery --image-size 900 600 --workers 2
 ```
 
-运行完成后，打开 `wall_view_gallery_30deg/latest_run.json`，复制其中 `run_dir`，末尾补上 `\gallery_index.json`。再编辑 `run_facade_pipeline` 的运行配置，填入：
+运行完成后，打开 `wall_view_gallery/latest_run.json`，复制其中 `run_dir`，末尾补上 `\gallery_index.json`。再编辑 `run_facade_pipeline.py` 的运行配置，填入：
 
 ```text
---photo-dir Drills\Texture2LoD3_dataset\textures --top-buildings 5 --views-per-building 2 --gallery-index E:\...\wall_gallery_时间\gallery_index.json --output-root E:\workinCODEX\prog_3D\my_results\experiment_e2\wall_view_pipeline_30deg_opening_layout
+--photo-dir Drills\Texture2LoD3_dataset\textures --top-buildings 5 --views-per-building 2 --gallery-index E:\...\wall_gallery_时间\gallery_index.json --output-root E:\workinCODEX\prog_3D\my_results\experiment_e45_user\wall_view_pipeline
 ```
 
-这会复用相同照片和已有实验 D 检测，结果写进独立目录。最后运行 `evaluate_experiment_e.py`，参数依次填写基线 `summary.json`、墙面图库批次 `summary.json` 和输出目录 `docs\results\experiment_e2`。评价脚本把照片名转为建筑编号只用于运行结束后的表格核对；模型推理从不读取这个编号。查看 [第二轮对照图](images/实验E_30度与窗布局检查.png) 时，应同时看“正确自动映射”和“错配自动映射”，不能只看映射总数。
+这会复用相同照片和已有实验 D 检测，结果写进独立目录。最后可运行 `evaluate_experiment_e.py`，参数依次填写基线 `summary.json`、墙面图库批次 `summary.json` 和输出目录 `docs\results\experiment_e45_user`。评价脚本把照片名转为建筑编号只用于运行结束后的表格核对；模型推理从不读取这个编号。与[第二轮 ±30° 结果](results/experiment_e2/experiment_e_audit.json)对照时，应同时看“正确自动映射”和“错配自动映射”，不能只看映射总数。
 
 打开某张照片的 `candidate_XX/result.json`，看 `layout_validation` 与 `door_layout_validation`。`required: true` 才表示该项布局检查实际启用；`required: false` 是证据不足，不能读成“门窗布局已验证”。这批目标墙可见门最多 2 个，门布局检查没有触发；请主要看窗布局与几何检查。`4907518_left` 在第一轮错配，第二轮改为 `needs_review`，可用两轮的逐图报告对照候选及失败理由。
 

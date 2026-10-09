@@ -50,31 +50,31 @@ python run_facade_pipeline.py --photo-dir "Drills/Texture2LoD3_dataset/textures"
 
 ### 实验 E：墙面正视/近正视图库
 
-实验 E 不覆盖 `my_results/render_gallery` 的基线图库。每个通过单平面检查、近似竖直且面积足够大的 CityGML 外立面生成三个视角；当前代码默认为 `-30° / 0° / +30°`，第一轮历史结果使用 `-15° / 0° / +15°`。小窗台、饰线等被模型拆分出的碎片墙面不会入选。筛选只读 CityGML 几何，不读照片、检测结果或建筑答案。
+实验 E 不覆盖 `my_results/render_gallery` 的基线图库。每个通过单平面检查、近似竖直且面积足够大的 CityGML 外立面生成三个视角；当前代码默认为 `-45° / 0° / +45°`，历史结果分别使用 ±15° 和 ±30°。小窗台、饰线等被模型拆分出的碎片墙面不会入选。筛选只读 CityGML 几何，不读照片、检测结果或建筑答案。
 
-在仓库根目录运行（本次实验的实际尺寸为 `900 600`）：
+在仓库根目录运行（±45° 计划保持前两轮的 `900 600` 尺寸；也可在 PyCharm 直接运行 `run_experiment_e45.py` 自动完成两步）：
 
 ```powershell
-python build_wall_view_gallery.py --output-root "E:\workinCODEX\prog_3D\my_results\experiment_e2\wall_view_gallery_30deg" --image-size 900 600 --workers 2
+python build_wall_view_gallery.py --output-root "E:\workinCODEX\prog_3D\my_results\experiment_e45_user\wall_view_gallery" --image-size 900 600 --workers 2
 ```
 
-完成后打开 `my_results/experiment_e2/wall_view_gallery_30deg/latest_run.json`，把其中 `run_dir` 末尾加上 `gallery_index.json`，作为下面的 `--gallery-index` 值。然后用完全相同的照片、`Top-5` 和每栋两视图配额重跑：
+完成后打开 `my_results/experiment_e45_user/wall_view_gallery/latest_run.json`，把其中 `run_dir` 末尾加上 `gallery_index.json`，作为下面的 `--gallery-index` 值。然后用完全相同的照片、`Top-5` 和每栋两视图配额重跑：
 
 ```powershell
-python run_facade_pipeline.py --photo-dir "Drills\Texture2LoD3_dataset\textures" --top-buildings 5 --views-per-building 2 --gallery-index "E:\...\wall_gallery_时间\gallery_index.json" --output-root "E:\workinCODEX\prog_3D\my_results\experiment_e2\wall_view_pipeline_30deg_opening_layout"
+python run_facade_pipeline.py --photo-dir "Drills\Texture2LoD3_dataset\textures" --top-buildings 5 --views-per-building 2 --gallery-index "E:\...\wall_gallery_时间\gallery_index.json" --output-root "E:\workinCODEX\prog_3D\my_results\experiment_e45_user\wall_view_pipeline"
 ```
 
 `--output-root` 使检索缓存、逐图诊断和批次汇总都写入独立目录，因而不会覆盖基线；已有实验 D 检测只要内容哈希与参数相同会复用，不会重新请求 API。最后以照片文件名仅作**事后开发集核对**，不能作为推理输入：
 
 ```powershell
-python evaluate_experiment_e.py --baseline "E:\...\facade_pipeline\batch_...\summary.json" --wall-views "E:\...\wall_view_pipeline_30deg_opening_layout\batch_...\summary.json" --output docs\results\experiment_e2
+python evaluate_experiment_e.py --baseline "E:\...\facade_pipeline\batch_...\summary.json" --wall-views "E:\...\experiment_e45_user\wall_view_pipeline\batch_...\summary.json" --output docs\results\experiment_e45_user
 ```
 
-第一轮 ±15° 结果为：17 张照片中正确自动映射 4、错配 1、待复核 12。第二轮 ±30° 加布局检查的结果为：正确自动映射 4、错配 0、待复核 13。两轮墙面图库均为 27 栋、435 张 900×600 图，而基线图库使用 1800×1200；与基线之间不能只归因于视角。第二轮同时改变视角间隔与布局门槛，也不能单独归因于其中一项。[两轮对照](experiment_log.md#32-实验-e-第二轮30-与门窗布局检查)记录了每项指标。
+第一轮 ±15° 结果为：17 张照片中正确自动映射 4、错配 1、待复核 12。第二轮 ±30° 加布局检查的结果为：正确自动映射 4、错配 0、待复核 13。两轮墙面图库均为 27 栋、435 张 900×600 图，而基线图库使用 1800×1200；与基线之间不能只归因于视角。第二轮同时改变视角间隔与布局门槛，也不能单独归因于其中一项。当前 ±45° 尚未完整运行，[两轮历史对照](experiment_log.md#32-实验-e-第二轮30-与门窗布局检查)不能当作新角度结果。
 
 候选结果的 `layout_validation` 记录窗布局检查：照片和该墙各至少 12 个有效窗时，要求至少 12 对互为最近邻窗，且关联窗在照片中的凸包面积、横向与纵向跨度达到固定门槛。`door_layout_validation` 记录门布局检查：双方各至少 3 个有效门时，要求投影门中心有至少 2 对互为最近邻且距离足够近。`required: false` 表示证据不足、该项没有被验证；这些检查只决定自动接受还是待复核，不修改 RoMa 变换，也不证明真实三维位置精度。
 
-每张完成或异常后立即写入 `my_results/facade_pipeline/batch_时间/summary.json`。异常行记录 `status: failed` 和 `error_type`；已经建立单图报告时保留 `run_dir`，尚未建目录时为 `null`，之后继续处理后续照片。`photo_count` 是计划数量，`records` 是已处理记录；批次正常结束不等于每张都成功。没有合格检测缓存的照片仍会使用 API 额度。
+每张完成或异常后立即写入本次 `--output-root` 下的 `batch_时间/summary.json`；没有指定 `--output-root` 时默认位于 `my_results/facade_pipeline`。异常行记录 `status: failed` 和 `error_type`；已经建立单图报告时保留 `run_dir`，尚未建目录时为 `null`，之后继续处理后续照片。`photo_count` 是计划数量，`records` 是已处理记录；批次正常结束不等于每张都成功。没有合格检测缓存的照片仍会使用 API 额度。
 
 ## 已通过的单图样例：4907507
 
