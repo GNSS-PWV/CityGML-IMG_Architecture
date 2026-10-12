@@ -1,0 +1,14 @@
+{
+  "format": "yolo11-onnx",
+  "input_size": 640,
+  "weights": "../models/yolo11-candidate/Yolo11s_best.onnx",
+  "names": "../models/yolo11-candidate/door_window.names",
+  "sha256": {
+    "weights": "35b3237b7cb316715a46769e609b1d1d10ab87bb3e8c56608adead22e43f3cd0",
+    "names": "7b35ae08d73c480910bd8d715506368dd4203067e326bf7eadf80a4eca672df2"
+  },
+  "class_ids": {
+    "door": 0,
+    "window": 1
+  }
+}

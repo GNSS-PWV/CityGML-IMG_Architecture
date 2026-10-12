@@ -1,0 +1,13 @@
+{
+  "format": "darknet",
+  "input_size": 608,
+  "config": "../models/yolov3-openimages/yolov3-openimages.cfg",
+  "weights": "../models/yolov3-openimages/yolov3-openimages.weights",
+  "names": "../models/yolov3-openimages/openimages.names",
+  "class_ids": {"door": 159, "window": 484},
+  "sha256": {
+    "weights": "be129d792d8c7cc19b17bcb9d40ced71cdf079bfd246cbd1cfca40568ac74ee1",
+    "config": "ec8bb5ccff5ad0ca9972bfbb0b6cc289844ce0fa24a079cb52dc5c24f683cb1e",
+    "names": "44cdd34ebe5b46440b6ec5d0978f292def7b57c7cea049f3d4fe79ed88d40664"
+  }
+}
