@@ -1,0 +1,35 @@
+{
+  "method": "local_window_center_alignment_no_vlm_api",
+  "policy_version": "six_pairs_affine_dense_holdout_0.45_sparse_dense_fallback_layout_mild",
+  "layout_profile": "mild",
+  "minimum_window_pairs": 6,
+  "minimum_dense_holdout_inlier_fraction": 0.45,
+  "sparse_window_policy": "reuse only a previously auto-approved dense-only source match",
+  "expected_photo_count": 17,
+  "totals": {
+    "1.1": {
+      "completed_photos": 17,
+      "correct_building_entered": 14,
+      "correct_building_window_passed": 7,
+      "any_window_passed": 8,
+      "final_mapped": 5,
+      "wrong_building_mapped": 0,
+      "needs_review": 12,
+      "correct_building_mapped": 5,
+      "dense_fallback_mapped": 0
+    },
+    "2.1": {
+      "completed_photos": 17,
+      "correct_building_entered": 14,
+      "correct_building_window_passed": 10,
+      "any_window_passed": 13,
+      "final_mapped": 10,
+      "wrong_building_mapped": 1,
+      "needs_review": 7,
+      "correct_building_mapped": 9,
+      "dense_fallback_mapped": 0
+    }
+  },
+  "fully_completed": true,
+  "accuracy_scope": "building ID inferred from filename only after run; no independent wall/3D GT"
+}

@@ -1,5 +1,7 @@
 # 当前流程的安装与运行
 
+**2026-10-19 更新：**本页主要说明原单图自动流程的环境与缓存。已配置好 `torch_1`、只想看最新 0° 窗中心对齐实验时，直接看 [当前成果](CURRENT_STATUS.md) 和 [实验 1.1/2.1 教程](experiment_window_centers.md)；那一轮读取既有检测与匹配结果，不会再次调用门窗检测 API。
+
 当前统一入口已串联：实验 D 门窗检测、DINOv3 多建筑检索、RoMa 候选墙面匹配、自动检查与三维预测预览。已有 27 栋、216 张基础渲染图库；并非所有照片都能通过匹配检查。输出是独立预测面，尚未修改建筑、开孔或写出新的 LoD3 CityGML。操作和结果判读见 [自动流程教程](pipeline.md)。
 
 本页负责环境与缓存准备；已经配置好的本机可以直接看 [PyCharm 手把手教程](pycharm_tutorial.md)，按图像路径、运行配置和结果文件逐步操作。
@@ -19,7 +21,7 @@
 | `match_facade_roma.py` | 固定建筑的历史对照入口；统一流程复用其 RoMa 推理/绘图函数 | 已准备缓存后本地GPU，不收费 |
 | `map_facade_to_3d.py` | 历史人工标定与三维预览入口 | 当前自动匹配流程不要求运行它 |
 
-旧 `detect_my_facade.py` 是已停用的Tiny版本。当前入口以上表为准；本次自动清理被执行策略阻止，旧文件尚未删除。
+旧 `detect_my_facade.py` 是已弃用的 Grounding DINO Tiny 检测入口，仍在仓库中；当前入口以上表为准。
 
 `my_results/`、数据、环境和模型缓存没有在这次提交中重复上传。现有数据由 Git LFS 管理。正式实验结果在本地保存，仓库 `docs/images/` 和 `docs/results/` 仅放代表图与精简记录。
 
@@ -29,7 +31,7 @@
 2. 新建或选择Python 3.12环境。在仓库根目录安装已固定的依赖：
 
    ```powershell
-   python -m pip install -r requirements-roma.lock.txt
+   python -m pip install -r ..\environment\requirements\requirements-roma.lock.txt
    ```
 
    文件包含CUDA 12.6版PyTorch，适用于本项目验证过的NVIDIA环境；其他显卡环境需选择相应PyTorch构建。RoMa源码固定到官方提交 `95c9968145c8906b7b59383258e9f73b02853d89`，需要本机安装Git。

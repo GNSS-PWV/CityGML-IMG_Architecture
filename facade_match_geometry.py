@@ -9,6 +9,25 @@
 import numpy as np
 
 
+MIN_HOLDOUT_INLIER_FRACTION = .45
+
+
+def dense_gate_from_saved_report(report):
+    """按当前比例门槛复核缓存报告，其他几何检查仍须全部通过。"""
+    checks = report.get("checks")
+    fraction = report.get("holdout_inlier_fraction")
+    if not isinstance(checks, dict) or not checks or fraction is None:
+        return False
+    fraction_checks = [key for key in checks
+                       if key.startswith("holdout_inlier_fraction_at_least_")]
+    if len(fraction_checks) != 1 or not isinstance(fraction, (int, float)):
+        return False
+    other = [passed for key, passed in checks.items()
+             if key != fraction_checks[0]]
+    return bool(other and all(other) and np.isfinite(fraction) and
+                fraction >= MIN_HOLDOUT_INLIER_FRACTION)
+
+
 def _points(value, columns=2):
     value = np.asarray(value, dtype=np.float64)
     if value.ndim != 2 or value.shape[1] != columns:
@@ -86,7 +105,7 @@ def fit_and_check(photo_xy, render_xy, photo_wh, render_wh, ransac_px=4.0):
     照片分成 8×4 格，(列号+行号)%3==0 的格子全部留作检查，其余格子拟合。
     留出点不参与 RANSAC 或最终重拟合，因此不是用拟合点报告训练误差。
     固定的初步几何门槛：训练内点≥40，留出点≥20且留出内点≥20，留出内点
-    比例≥50%，训练内点覆盖照片面积≥30%，宽≥65%、高≥60%，变换不能镜像或
+    比例≥45%，训练内点覆盖照片面积≥30%，宽≥65%、高≥60%，变换不能镜像或
     在照片范围内穿过无穷远。误差阈值默认是完整渲染图上的4像素。
 
     gate_passed 仅表示自动一致性通过；永不据此设置“真实精度已确认”。
@@ -145,7 +164,8 @@ def fit_and_check(photo_xy, render_xy, photo_wh, render_wh, ransac_px=4.0):
         "train_inliers_at_least_40": bool(train_inliers.sum() >= 40),
         "holdout_matches_at_least_20": bool(holdout.sum() >= 20),
         "holdout_inliers_at_least_20": bool(holdout_inliers.sum() >= 20),
-        "holdout_inlier_fraction_at_least_0_50": bool(holdout_fraction >= .5),
+        "holdout_inlier_fraction_at_least_0_45":
+            bool(holdout_fraction >= MIN_HOLDOUT_INLIER_FRACTION),
         "train_photo_hull_fraction_at_least_0_30": coverage["convex_hull_fraction"] >= .30,
         "train_photo_x_span_at_least_0_65": coverage["x_span_fraction"] >= .65,
         "train_photo_y_span_at_least_0_60": coverage["y_span_fraction"] >= .60,

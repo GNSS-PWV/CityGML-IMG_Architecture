@@ -8,7 +8,15 @@
 
 如果照片关联到了错误建筑，后续从照片中提取的楼层、立面或其他属性也会被写入错误对象。因此，“找对楼”是利用街景影像辅助三维城市模型更新的重要前置环节。
 
-## 项目状态
+## 当前成果（2026-10-19）
+
+目前已跑通 **17 张立面照片的门窗检测 → 多建筑/墙面候选检索 → 图像匹配 → 窗中心精对齐 → 三维预测面预览**。6–7 对窗时用仿射拟合，8 对以上用单应拟合；少于 6 对时，只有原稠密匹配已自动确认同一墙面才复用其变换，否则待复核。RoMa 留出点内点比例门槛为 0.45。流程没有调用 GPT 视觉模型，也没有修改源 CityGML。最新完整批次中，实验 1.1 正确建筑映射 **5/17、错配 0/17**；实验 2.1 正确建筑映射 **9/17、错配 1/17、待复核 7/17**。这些是开发照片上按建筑 ID 事后核对的结果，不是独立三维定位精度。完整数字和结果边界请先看 [当前成果与运行入口](./docs/CURRENT_STATUS.md)。
+
+若要自己在 PyCharm 复核，使用 `torch_1` 打开 [窗中心批量入口](./run_experiment_window_centers.py)；结果解释和操作顺序见 [窗中心实验教程](./docs/experiment_window_centers.md)。最新快照在 [2026-10-12 完整批次](./docs/results/window_centers_20261012_relaxed/comparison.md)。[2026-10-19 组会 PPT、演讲稿和导师审阅意见](./docs/meetings/2026-10-19/README.md)集中说明本轮成果及仍需验证的问题。
+
+![修正可视化后的 4907507 窗中心对齐核对图](./docs/images/window_center_alignment_4907507.png)
+
+## 历史阶段记录（截至 2026-10-09）
 
 **2026-10-09 进展**：墙面图库代码已按用户要求改为 **-45° / 0° / +45°**，可在 PyCharm 运行 [±45° 一键入口](./run_experiment_e45.py)；这一新角度尚未完成整批实验，因此下表的已验证数字仍来自 ±15°、±30° 和原 8 视角。已完成的 ±30° 第二轮在同一批 17 张开发照片中正确自动映射 **4 张**、错配 **0 张**、13 张待复核；这不是独立测试集准确率。
 
@@ -46,7 +54,7 @@ DINOv3 检索中，数据集对应建筑位于 Top-1 的照片为 **10/17**，�
 
 **渲染图的门窗来自已有 LoD3 模型，不是检测预测或真实照片贴图。** 模型引用的纹理资源缺失时使用模型颜色与默认材质。8 个基础环绕视角不能保证复杂建筑每面墙的最佳可见性，后续可补墙面正视图。
 
-当前单图建议运行 [照片自动找楼与三维映射入口](./run_facade_pipeline.py)，修改 `PHOTO_PATH` 即可更换照片；要亲自在 PyCharm 跑 ±45° 整批实验，右键运行 [run_experiment_e45.py](./run_experiment_e45.py)。初次操作看 [PyCharm 手把手教程](./docs/pycharm_tutorial.md)，流程与字段速查见 [自动流程说明](./docs/pipeline.md)。其他入口：[批量建立图库](./build_render_gallery.py)、[实验 E 墙面图库](./build_wall_view_gallery.py)、[单栋渲染](./render_building_views.py)、[实验 D 批量检测](./try_grounding_dino16.py)。方法来源、结果限制和历史记录见 [实验记录](./docs/experiment_log.md)。`detect_my_facade.py` 为已弃用的 Tiny 历史入口；`match_facade_roma.py` 的旧主流程用于固定建筑对照，`map_facade_to_3d.py` 保留人工标定和预览用途；统一入口复用其函数，不要求运行人工点选。
+当前单图建议运行 [照片自动找楼与三维映射入口](./run_facade_pipeline.py)，修改 `PHOTO_PATH` 即可更换照片；要亲自在 PyCharm 跑 ±45° 整批实验，右键运行 [run_experiment_e45.py](./run_experiment_e45.py)。初次操作看 [PyCharm 手把手教程](./docs/pycharm_tutorial.md)，流程与字段速查见 [自动流程说明](./docs/pipeline.md)。其他入口：[批量建立图库](./build_render_gallery.py)、[实验 E 墙面图库](./build_wall_view_gallery.py)、[单栋渲染](./render_building_views.py)、[实验 D 批量检测](./try_grounding_dino16.py)。方法来源、结果限制和历史记录见 [实验记录](./docs/experiment_log.md)。`detect_my_facade.py` 是已弃用的 Grounding DINO Tiny 历史入口，仍在仓库中，但本轮不调用；`match_facade_roma.py` 的旧主流程用于固定建筑对照，`map_facade_to_3d.py` 保留人工标定和预览用途。
 
 统一入口不从照片文件名提取建筑答案，使用图像特征检索后再比较候选几何证据。已有合格检测按图片内容和参数复用；新照片需要云端门窗检测时会使用平台额度。自动检查不通过则输出 `needs_review`，不强行投影；通过时生成独立预测面，仍不修改源 CityGML。检索精度评价、重复窗列错配分析和独立三维精度验证仍需继续。
 
@@ -233,6 +241,8 @@ git push -u origin feature/任务名称
 
 ## 项目文档
 
+- [当前成果、最新四组实验及代码入口](./docs/CURRENT_STATUS.md)
+- [0° 窗中心精对齐实验与 PyCharm 操作](./docs/experiment_window_centers.md)
 - [PyCharm 手把手操作：单图、批量与结果阅读](./docs/pycharm_tutorial.md)
 - [照片自动找楼与三维映射教程](./docs/pipeline.md)
 - [当前实验记录与门窗检测、三维映射运行说明](./docs/experiment_log.md)

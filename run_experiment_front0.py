@@ -122,6 +122,8 @@ def write_reports(batch, states):
             "correct_building_geometry_passed": sum(bool(r.get("correct_building_geometry_passed")) for r in rows.values()),
             "correct_building_candidate_gate_passed": sum(bool(r.get("correct_building_candidate_gate_passed")) for r in rows.values()),
             "final_mapped": sum(bool(r.get("final_mapped")) for r in rows.values()),
+            "correct_building_mapped": sum(bool(r.get("final_mapped")) and not bool(r.get("wrong_building_mapped"))
+                                           for r in rows.values()),
             "wrong_building_mapped": sum(bool(r.get("wrong_building_mapped")) for r in rows.values()),
             "needs_review": sum(bool(r.get("needs_review")) for r in rows.values()),
             "statuses": dict(Counter(r["status"] for r in rows.values()))}
@@ -131,7 +133,9 @@ def write_reports(batch, states):
     for label, key in (("已处理照片", "completed_photos"), ("正确建筑进入候选", "correct_building_entered"),
                        ("正确建筑几何通过", "correct_building_geometry_passed"),
                        ("正确建筑通过几何+布局候选门槛", "correct_building_candidate_gate_passed"),
-                       ("最终自动映射", "final_mapped"), ("错配（建筑ID）", "wrong_building_mapped"),
+                       ("最终自动映射", "final_mapped"),
+                       ("其中建筑ID正确", "correct_building_mapped"),
+                       ("错配（建筑ID）", "wrong_building_mapped"),
                        ("待复核", "needs_review")):
         lines.append(f"| {label} | {totals['1'][key]}/17 | {totals['2'][key]}/17 |")
     lines.extend(["", "两组均使用同一批145张0°渲染图、17张照片、DINOv3检索和离线实验D门窗检测。",
